@@ -14,10 +14,17 @@ class Showcase extends React.Component {
 
     const renders = [];
 
+    const keys = Object.keys(data[0]);
+
     for (let i = 0; i < data.length; i += 1) {
+      const showcaseProjectData = [];
+      keys.forEach((key) => { showcaseProjectData.push(`${key}: ${data[i][key]}`); showcaseProjectData.push(<br key={`showcaseBR${key}`} />); });
       const project = (
         <li key={`showcase${i}`}>
-          {data[i].name}
+          <div>
+            {showcaseProjectData}
+          </div>
+          <br />
         </li>
       );
       renders.push(project);

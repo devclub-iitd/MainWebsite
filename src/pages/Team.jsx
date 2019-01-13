@@ -14,10 +14,17 @@ class Team extends React.Component {
 
     const renders = [];
 
+    const keys = Object.keys(data[0]);
+
     for (let i = 0; i < data.length; i += 1) {
+      const memberData = [];
+      keys.forEach((key) => { memberData.push(`${key}: ${data[i][key]}`); memberData.push(<br key={`membersBR${key}`} />); });
       const project = (
         <li key={`member${i}`}>
-          {data[i].name}
+          <div>
+            {memberData}
+          </div>
+          <br />
         </li>
       );
       renders.push(project);

@@ -14,10 +14,17 @@ class OpenProjects extends React.Component {
 
     const renders = [];
 
+    const keys = Object.keys(data[0]);
+
     for (let i = 0; i < data.length; i += 1) {
+      const openProjectData = [];
+      keys.forEach((key) => { openProjectData.push(`${key}: ${data[i][key]}`); openProjectData.push(<br key={`openProjectsBR${key}`} />); });
       const project = (
         <li key={`open-projects${i}`}>
-          {data[i].name}
+          <div>
+            {openProjectData}
+          </div>
+          <br />
         </li>
       );
       renders.push(project);
@@ -25,6 +32,7 @@ class OpenProjects extends React.Component {
 
     return renders;
   }
+
 
   render() {
     return (

@@ -15,14 +15,17 @@ class App extends React.Component {
       teamMembers: [],
       showcase: [],
       openProjects: [],
+      about: [],
 
       errorShowcase: false,
       errorTeamMembers: false,
       errorOpenProjects: false,
+      errorAbout: false,
 
       isLoadingShowcase: true,
       isLoadingTeamMembers: true,
       isLoadingOpenProjects: true,
+      isLoadingAbout: true,
     };
   }
 
@@ -62,12 +65,28 @@ class App extends React.Component {
         this.setState({ errorTeamMembers: true, isLoadingTeamMembers: false });
         console.log('Error getting documents: ', error);
       });
+
+    ref = firestore.collection('about');
+    ref.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.setState({ about: doc.data() });
+      });
+      this.setState({ isLoadingAbout: false });
+    })
+      .catch((error) => {
+        this.setState({ errorAbout: true, isLoadingAbout: false });
+        console.log('Error getting documents: ', error);
+      });
+
+    // ref = firestore.collection('open-projects');
+    // projects.forEach((mem) => { ref.add(mem); });
   }
 
   render() {
     const { showcase, isLoadingShowcase, errorShowcase } = this.state;
     const { teamMembers, isLoadingTeamMembers, errorTeamMembers } = this.state;
     const { openProjects, isLoadingOpenProjects, errorOpenProjects } = this.state;
+    const { about, isLoadingAbout, errorAbout } = this.state;
 
     return (
       <Router>
@@ -98,7 +117,18 @@ class App extends React.Component {
           <hr />
 
           <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
+          <Route
+            path="/about"
+            render={
+              props => (
+                <About
+                  {...props}
+                  data={about}
+                  isLoading={isLoadingAbout}
+                  error={errorAbout}
+                />
+              )}
+          />
           <Route
             path="/showcase"
             render={

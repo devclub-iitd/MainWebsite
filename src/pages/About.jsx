@@ -1,10 +1,47 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const About = () => (
-  <div>
-    About
-  </div>
-);
+class About extends React.Component {
+  renderProjects() {
+    const { data, isLoading, error } = this.props;
 
+    if (isLoading) {
+      return 'Loading';
+    }
+    if (error) {
+      return 'Error';
+    }
+
+    const keys = Object.keys(data);
+
+    const aboutFields = [];
+    keys.forEach((key) => {
+      const listItem = (
+        <li key={`aboutListItem${key}`}>
+          {`${key}: ${data[key]}`}
+        </li>
+      );
+      aboutFields.push(listItem);
+    });
+    return aboutFields;
+  }
+
+  render() {
+    return (
+      <div>
+        About Club
+        <ul>
+          {this.renderProjects()}
+        </ul>
+      </div>
+    );
+  }
+}
+
+About.propTypes = {
+  data: PropTypes.objectOf().isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
+};
 
 export default About;
