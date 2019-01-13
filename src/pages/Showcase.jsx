@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class Team extends React.Component {
+class Showcase extends React.Component {
   renderProjects() {
     const { data, isLoading, error } = this.props;
 
@@ -16,7 +16,7 @@ class Team extends React.Component {
 
     for (let i = 0; i < data.length; i += 1) {
       const project = (
-        <li key={`member${i}`}>
+        <li key={`showcase${i}`}>
           {data[i].name}
         </li>
       );
@@ -29,7 +29,7 @@ class Team extends React.Component {
   render() {
     return (
       <div>
-        Members
+        Showcase Projects
         <ul>
           {this.renderProjects()}
         </ul>
@@ -38,10 +38,10 @@ class Team extends React.Component {
   }
 }
 
-Team.propTypes = {
+Showcase.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   isLoading: PropTypes.bool.isRequired,
   error: PropTypes.bool.isRequired,
 };
 
-export default Team;
+export default Showcase;

@@ -60,3 +60,6 @@ typings/
 # next.js build output
 .next
 .gitsecret/keys/random_seed
+
+# Manually added
+src/config/firebase.jsx
