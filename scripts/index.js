@@ -77,12 +77,28 @@ function authorize(credentials, callback) {
   });
 }
 
-function onFetch(sheetName, data) {
-  const ref = firestore.collection(sheetName);
+function onFetch(sheetName, rows) {
+  for (let i = 1; i < rows.length; i += 1) {
+    const dataRow = {};
+    for (let j = 0; j < rows[0].length; j += 1) {
+      if (j >= rows[i].length) {
+        dataRow[rows[0][j]] = '';
+      } else {
+        dataRow[rows[0][j]] = rows[i][j];
+      }
+    }
 
-  for (let i = 0; i < data.length; i += 1) {
-    ref.add(data[i]).then(() => {
-      console.log(`Added data row ${i + 1} (out of ${data.length})`);
+    let refPath = '';
+    if (sheetName === 'resources') {
+      refPath = `${rows[i][0]}/${rows[i][1]}`;
+    } else {
+      refPath = `${sheetName}/${i}`;
+    }
+
+    firestore.doc(refPath).set(dataRow).then(() => {
+      console.log(`Added data row ${i} (out of ${rows.length - 1}) for ${sheetName}`);
+    }).catch((error1) => {
+      console.log(error1);
     });
   }
 }
@@ -99,25 +115,17 @@ function fetchData(auth, sheetName, onFetchCallback) {
     if (err) return console.log(`The API returned an error: ${err}`);
     const rows = res.data.values;
 
-    const data = [];
-
-    for (let i = 1; i < rows.length; i += 1) {
-      const dataRow = {};
-      for (let j = 0; j < rows[0].length; j += 1) {
-        dataRow[rows[0][j]] = rows[i][j];
-      }
-      data.push(dataRow);
-    }
-    console.log('Data Fetched');
-    onFetchCallback(sheetName, data);
+    console.log(`Data Fetched from Sheets API for ${sheetName}`);
+    onFetchCallback(sheetName, rows);
   });
 }
 
 function transferData(auth) {
-  // const sheets = ['open-projects', 'showcase', 'about', 'members'];
-  // for(let i=0;)
-  fetchData(auth, process.argv[2], onFetch);
-  console.log('Fetching Data');
+  const sheets = ['open-projects', 'showcase', 'about', 'members', 'resources'];
+  for (let i = 0; i < sheets.length; i += 1) {
+    fetchData(auth, sheets[i], onFetch);
+    console.log(`Fetching Data For sheet ${sheets[i]}`);
+  }
 }
 
 // Load client secrets from a local file.
