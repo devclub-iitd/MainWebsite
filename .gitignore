@@ -66,3 +66,4 @@ src/config/firebase.jsx
 scripts/credentials.json
 scripts/token.json
 scripts/serviceAccountKey.json
+build/*
