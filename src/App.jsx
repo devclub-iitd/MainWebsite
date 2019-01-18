@@ -7,6 +7,7 @@ import Team from './pages/Team';
 import OpenProjects from './pages/OpenProjects';
 import Showcase from './pages/Showcase';
 import firestore from './helpers/firebase';
+import Admin from './pages/Admin';
 
 class App extends React.Component {
   constructor(props) {
@@ -92,31 +93,22 @@ class App extends React.Component {
       <Router>
         <div>
           <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About Us</Link>
-            </li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About Us</Link></li>
             <li>
               Projects
               <ul>
-                <li>
-                  <Link to="/showcase">Showcase</Link>
-                </li>
-                <li>
-                  <Link to="/open-projects">Open Projects</Link>
-                </li>
+                <li><Link to="/showcase">Showcase</Link></li>
+                <li><Link to="/open-projects">Open Projects</Link></li>
               </ul>
             </li>
-            <li>
-              <Link to="/team">Team</Link>
-            </li>
+            <li><Link to="/team">Team</Link></li>
           </ul>
 
           <hr />
 
           <Route exact path="/" component={Home} />
+          <Route exact path="/admin" component={Admin} />
           <Route
             path="/about"
             render={
