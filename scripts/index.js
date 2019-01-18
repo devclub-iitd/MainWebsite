@@ -121,7 +121,7 @@ function fetchData(auth, sheetName, onFetchCallback) {
 }
 
 function transferData(auth) {
-  const sheets = ['open-projects', 'showcase', 'about', 'members', 'resources'];
+  const sheets = ['open-projects', 'showcase', 'about', 'members', 'resources', 'events'];
   for (let i = 0; i < sheets.length; i += 1) {
     fetchData(auth, sheets[i], onFetch);
     console.log(`Fetching Data For sheet ${sheets[i]}`);

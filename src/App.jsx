@@ -12,6 +12,8 @@ import firestore from './helpers/firebase';
 import Admin from './pages/Admin';
 import Topbar from './components/Topbar';
 
+import Events from './pages/Events';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -39,6 +41,8 @@ class App extends React.Component {
       showcase: [],
       openProjects: [],
       about: [],
+      resources: {},
+      events: [],
 
       errorShowcase: false,
       errorTeamMembers: false,
@@ -49,6 +53,7 @@ class App extends React.Component {
       isLoadingTeamMembers: true,
       isLoadingOpenProjects: true,
       isLoadingAbout: true,
+      isLoadingEvents: true,
     };
   }
 
@@ -101,8 +106,49 @@ class App extends React.Component {
         console.log('Error getting documents: ', error);
       });
 
-    // ref = firestore.collection('open-projects');
-    // projects.forEach((mem) => { ref.add(mem); });
+    ref = firestore.collection('events');
+    ref.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.setState(prevState => ({ events: [...prevState.events, doc.data()] }));
+      });
+      this.setState({ isLoadingEvents: false });
+    })
+      .catch((error) => {
+        console.log('Error getting documents: ', error);
+      });
+
+    // Need to do this due to some error in firestore not allowing to call getCollections on a doc.
+    const subCollections = ['assignments', 'lectures', 'orientation', 'recruitment'];
+    ref = firestore.collection('resources');
+    ref.get().then((collectionSnap) => {
+      collectionSnap.forEach((directory) => {
+        const data = directory.data();
+        subCollections.forEach((subCollection) => {
+          const subRef = firestore.collection(`${data.path}/${data.doc_name}/${subCollection}`);
+          subRef.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              const documentData = doc.data();
+
+              this.setState((prevState) => {
+                const dataRes = JSON.parse(JSON.stringify(prevState.resources));
+                if (dataRes[data.doc_name] === undefined) {
+                  dataRes[data.doc_name] = {};
+                }
+                if (dataRes[data.doc_name][subCollection] === undefined) {
+                  dataRes[data.doc_name][subCollection] = {};
+                }
+                dataRes[data.doc_name][subCollection][documentData.doc_name] = documentData;
+                console.log(dataRes);
+                return { resources: dataRes };
+              });
+            });
+          });
+        });
+      });
+    })
+      .catch((error) => {
+        console.log('Error getting documents: ', error);
+      });
   }
 
   render() {
@@ -110,6 +156,7 @@ class App extends React.Component {
     const { teamMembers, isLoadingTeamMembers, errorTeamMembers } = this.state;
     const { openProjects, isLoadingOpenProjects, errorOpenProjects } = this.state;
     const { about, isLoadingAbout, errorAbout } = this.state;
+    const { events, isLoadingEvents } = this.state;
 
     return (
       <div>
@@ -120,6 +167,7 @@ class App extends React.Component {
               {/* <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/events">Events</Link></li>
             <li>
               Projects
               <ul>
@@ -182,6 +230,18 @@ class App extends React.Component {
                 />
               )}
               />
+              <Route
+                path="/events"
+                render={
+              props => (
+                <Events
+                  {...props}
+                  data={events}
+                  isLoading={isLoadingEvents}
+                />
+              )}
+              />
+
             </div>
           </Router>
         </MuiThemeProvider>
