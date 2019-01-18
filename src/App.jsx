@@ -6,7 +6,7 @@ import About from './pages/About';
 import Team from './pages/Team';
 import OpenProjects from './pages/OpenProjects';
 import Showcase from './pages/Showcase';
-import firestore from './config/firebase';
+import firestore from './helpers/firebase';
 
 class App extends React.Component {
   constructor(props) {

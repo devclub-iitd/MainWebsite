@@ -62,8 +62,8 @@ typings/
 .gitsecret/keys/random_seed
 
 # Manually added
-src/config/firebase.jsx
 scripts/credentials.json
 scripts/token.json
 scripts/serviceAccountKey.json
 build/*
+src/config/firebase_config.jsx
