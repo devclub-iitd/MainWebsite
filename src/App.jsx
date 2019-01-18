@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { blue, indigo } from '@material-ui/core/colors';
 import './App.css';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -8,6 +10,26 @@ import OpenProjects from './pages/OpenProjects';
 import Showcase from './pages/Showcase';
 import firestore from './helpers/firebase';
 import Admin from './pages/Admin';
+import Topbar from './components/Topbar';
+
+
+const theme = createMuiTheme({
+  palette: {
+    secondary: {
+      main: blue[900],
+    },
+    primary: {
+      main: indigo[700],
+    },
+  },
+  typography: {
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '"Lato"',
+      'sans-serif',
+    ].join(','),
+  },
+});
 
 class App extends React.Component {
   constructor(props) {
@@ -90,9 +112,12 @@ class App extends React.Component {
     const { about, isLoadingAbout, errorAbout } = this.state;
 
     return (
-      <Router>
-        <div>
-          <ul>
+      <div>
+        <MuiThemeProvider theme={theme}>
+          <Router>
+            <div>
+              <Topbar />
+              {/* <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About Us</Link></li>
             <li>
@@ -103,15 +128,15 @@ class App extends React.Component {
               </ul>
             </li>
             <li><Link to="/team">Team</Link></li>
-          </ul>
+          </ul> */}
 
-          <hr />
+              <hr />
 
-          <Route exact path="/" component={Home} />
-          <Route exact path="/admin" component={Admin} />
-          <Route
-            path="/about"
-            render={
+              <Route exact path="/" component={Home} />
+              <Route exact path="/admin" component={Admin} />
+              <Route
+                path="/about"
+                render={
               props => (
                 <About
                   {...props}
@@ -120,10 +145,10 @@ class App extends React.Component {
                   error={errorAbout}
                 />
               )}
-          />
-          <Route
-            path="/showcase"
-            render={
+              />
+              <Route
+                path="/showcase"
+                render={
               props => (
                 <Showcase
                   {...props}
@@ -132,10 +157,10 @@ class App extends React.Component {
                   error={errorShowcase}
                 />
               )}
-          />
-          <Route
-            path="/open-projects"
-            render={
+              />
+              <Route
+                path="/open-projects"
+                render={
               props => (
                 <OpenProjects
                   {...props}
@@ -144,10 +169,10 @@ class App extends React.Component {
                   error={errorOpenProjects}
                 />
               )}
-          />
-          <Route
-            path="/team"
-            render={
+              />
+              <Route
+                path="/team"
+                render={
               props => (
                 <Team
                   {...props}
@@ -156,9 +181,11 @@ class App extends React.Component {
                   error={errorTeamMembers}
                 />
               )}
-          />
-        </div>
-      </Router>
+              />
+            </div>
+          </Router>
+        </MuiThemeProvider>
+      </div>
     );
   }
 }
