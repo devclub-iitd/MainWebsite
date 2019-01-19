@@ -67,3 +67,4 @@ scripts/token.json
 scripts/serviceAccountKey.json
 build/*
 src/config/firebase_config.jsx
+src/images/
