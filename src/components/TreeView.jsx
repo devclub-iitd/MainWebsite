@@ -13,8 +13,6 @@ import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
-import Topbar from './Topbar';
-import { CssBaseline } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -30,19 +28,6 @@ const styles = theme => ({
     maxWidth: 360,
     paddingLeft: theme.spacing.unit * 4 * 2,
   },
-  grid: {
-    width: 1200,
-    marginTop: 40,
-    [theme.breakpoints.down('sm')]: {
-      width: 'calc(100% - 20px)'
-    }
-  },
-  topBar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 32
-  }
 });
 
 function generateTree(obj, classes, level = 0) {
@@ -122,11 +107,7 @@ class TreeView extends React.Component {
     const { classes, data } = this.props;
     return (
       <React.Fragment>
-        <CssBaseline />
-        <Topbar />
-        <React.Fragment>
-          { generateTree(data, classes) }
-        </React.Fragment>
+        { generateTree(data, classes) }
       </React.Fragment>
     );
   }

@@ -1,31 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import withStyles from '@material-ui/core/styles/withStyles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Topbar from '../components/Topbar';
-
-const styles = theme => ({
-  grid: {
-    width: 1200,
-    marginTop: 40,
-    [theme.breakpoints.down('sm')]: {
-      width: 'calc(100% - 20px)'
-    }
-  },
-  topBar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 32
-  }
-});
-
 class Team extends React.Component {
   renderProjects() {
     const { data, isLoading, error } = this.props;
 
-    if (isLoading) {
+    if (isLoading !== false) {
       return 'Loading';
     }
     if (error) {
@@ -56,8 +36,6 @@ class Team extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <CssBaseline />
-        <Topbar />
         <div>
           Members
           <ul>
@@ -75,4 +53,4 @@ Team.propTypes = {
   error: PropTypes.bool.isRequired,
 };
 
-export default withStyles(styles)(Team);
+export default Team;

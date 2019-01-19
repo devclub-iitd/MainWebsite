@@ -24,7 +24,6 @@ const styles = theme => ({
     boxShadow: 'none',
     borderBottom: `1px solid ${theme.palette.grey['100']}`,
     backgroundColor: 'white',
-
   },
   inline: {
     display: 'inline',
@@ -179,7 +178,7 @@ class Topbar extends Component {
                           component={Link}
                           to={{ pathname: item.pathname, search: location.search }}
                           classes={{ root: classes.tabItem }}
-                          label={item.label}
+                          label={<span className={classes.tabLabel}>{item.label}</span>}
                         />
                       ))}
                     </Tabs>

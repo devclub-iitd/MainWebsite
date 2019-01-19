@@ -1,25 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import withStyles from '@material-ui/core/styles/withStyles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Topbar from '../components/Topbar';
+// import withStyles from '@material-ui/core/styles/withStyles';
+// import CssBaseline from '@material-ui/core/CssBaseline';
+// import Topbar from '../components/Topbar';
 
-const styles = theme => ({
-  grid: {
-    width: 1200,
-    marginTop: 40,
-    [theme.breakpoints.down('sm')]: {
-      width: 'calc(100% - 20px)'
-    }
-  },
-  topBar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 32
-  }
-});
+// const styles = theme => ({
+//   grid: {
+//     width: 1200,
+//     marginTop: 40,
+//     [theme.breakpoints.down('sm')]: {
+//       width: 'calc(100% - 20px)'
+//     }
+//   },
+//   topBar: {
+//     display: 'flex',
+//     justifyContent: 'space-between',
+//     alignItems: 'center',
+//     marginTop: 32
+//   }
+// });
 
 class About extends React.Component {
   renderProjects() {
@@ -52,8 +52,6 @@ class About extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <CssBaseline />
-        <Topbar />
         <div>
                   About Club
           <ul>
@@ -72,4 +70,4 @@ About.propTypes = {
   error: PropTypes.bool.isRequired,
 };
 
-export default withStyles(styles)(About);
+export default About;

@@ -1,26 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import withStyles from '@material-ui/core/styles/withStyles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Topbar from '../components/Topbar';
-
-const styles = theme => ({
-  grid: {
-    width: 1200,
-    marginTop: 40,
-    [theme.breakpoints.down('sm')]: {
-      width: 'calc(100% - 20px)'
-    }
-  },
-  topBar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 32
-  }
-});
-
 class Showcase extends React.Component {
   renderProjects() {
     const { data, isLoading, error } = this.props;
@@ -57,14 +37,12 @@ class Showcase extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <CssBaseline />
-        <Topbar />
-          <div>
-            Showcase Projects
-            <ul>
-              {this.renderProjects()}
-            </ul>
-          </div>
+        <div>
+          Showcase Projects
+          <ul>
+            {this.renderProjects()}
+          </ul>
+        </div>
       </React.Fragment>
     );
   }
@@ -76,4 +54,4 @@ Showcase.propTypes = {
   error: PropTypes.bool.isRequired,
 };
 
-export default withStyles(styles)(Showcase);
+export default Showcase;

@@ -80,7 +80,7 @@ class App extends React.Component {
           <HashRouter>
             <ScrollToTop>
               <div>
-                {/* <Topbar /> */}
+                <Topbar />
                 <Route exact path="/" component={Home} />
                 <Route exact path="/admin" component={Admin} />
                 <Route
