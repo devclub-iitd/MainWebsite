@@ -1,11 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import withStyles from '@material-ui/core/styles/withStyles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Topbar from '../components/Topbar';
+
+const styles = theme => ({
+  grid: {
+    width: 1200,
+    marginTop: 40,
+    [theme.breakpoints.down('sm')]: {
+      width: 'calc(100% - 20px)'
+    }
+  },
+  topBar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 32
+  }
+});
+
 class OpenProjects extends React.Component {
   renderProjects() {
     const { data, isLoading, error } = this.props;
 
-    if (isLoading) {
+    if (isLoading !== false) {
       return 'Loading';
     }
     if (error) {
@@ -36,12 +56,16 @@ class OpenProjects extends React.Component {
 
   render() {
     return (
-      <div>
-        Open Projects
-        <ul>
-          {this.renderProjects()}
-        </ul>
-      </div>
+      <React.Fragment>
+        <CssBaseline />
+        <Topbar />
+        <div>
+          Open Projects
+          <ul>
+            {this.renderProjects()}
+          </ul>
+        </div>
+      </React.Fragment>
     );
   }
 }
@@ -52,4 +76,4 @@ OpenProjects.propTypes = {
   error: PropTypes.bool.isRequired,
 };
 
-export default OpenProjects;
+export default withStyles(styles)(OpenProjects);

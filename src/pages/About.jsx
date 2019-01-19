@@ -5,7 +5,6 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Topbar from '../components/Topbar';
 
-
 const styles = theme => ({
   grid: {
     width: 1200,
@@ -14,13 +13,13 @@ const styles = theme => ({
       width: 'calc(100% - 20px)'
     }
   },
-    topBar: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginTop: 32
-    }
-  });
+  topBar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 32
+  }
+});
 
 class About extends React.Component {
   renderProjects() {

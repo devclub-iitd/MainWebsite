@@ -1,8 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import withStyles from '@material-ui/core/styles/withStyles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Topbar from '../components/Topbar';
+
+const styles = theme => ({
+  grid: {
+    width: 1200,
+    marginTop: 40,
+    [theme.breakpoints.down('sm')]: {
+      width: 'calc(100% - 20px)'
+    }
+  },
+  topBar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 32
+  }
+});
+
 class Events extends React.Component {
-  renderProjects() {
+  renderEvents() {
     const { data, isLoading, error } = this.props;
 
     if (isLoading !== false) {
@@ -36,12 +56,16 @@ class Events extends React.Component {
 
   render() {
     return (
-      <div>
-        Open Projects
-        <ul>
-          {this.renderProjects()}
-        </ul>
-      </div>
+      <React.Fragment>
+        <CssBaseline />
+        <Topbar />
+        <div>
+                  Events
+          <ul>
+            {this.renderProjects()}
+          </ul>
+        </div>
+      </React.Fragment>
     );
   }
 }
@@ -52,4 +76,4 @@ Events.propTypes = {
   error: PropTypes.bool.isRequired,
 };
 
-export default Events;
+export default withStyles(styles)(Events);

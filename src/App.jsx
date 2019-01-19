@@ -14,6 +14,7 @@ import Admin from './pages/Admin';
 import Resources from './pages/Resources';
 import Events from './pages/Events';
 import ScrollToTop from './components/ScrollTop';
+import Topbar from './components/Topbar';
 
 const theme = createMuiTheme({
   palette: {
@@ -76,89 +77,86 @@ class App extends React.Component {
     return (
       <div>
         <MuiThemeProvider theme={theme}>
-        <HashRouter>
-        <ScrollToTop>
-            <div>
-              
-              <Route exact path="/" component={Home} />
-              <Route exact path="/admin" component={Admin} />
-              <Route
-                path="/about"
-                render={
-                  props => (
-                    <About
-                      {...props}
-                      data={data.about}
-                      isLoading={isLoading.about}
-                      error={errorFetching.about}
-                    />
-                  )}
-              />
-              <Route
-                path="/showcase"
-                render={
-                  props => (
-                    <Showcase
-                      {...props}
-                      data={data.showcase}
-                      isLoading={isLoading.showcase}
-                      error={errorFetching.showcase}
-                    />
-                  )}
-              />
-              <Route
-                path="/open-projects"
-                render={
-                  props => (
-                    <OpenProjects
-                      {...props}
-                      data={data['open-projects']}
-                      isLoading={isLoading['open-projects']}
-                      error={errorFetching['open-projects']}
-                    />
-                  )}
-              />
-              <Route
-                path="/team"
-                render={
-                  props => (
-                    <Team
-                      {...props}
-                      data={data.members}
-                      isLoading={isLoading.members}
-                      error={errorFetching.members}
-                    />
-                  )}
-              />
-              <Route
-                path="/events"
-                render={
-                  props => (
-                    <Events
-                      {...props}
-                      data={data.events}
-                      isLoading={isLoading.events}
-                      error={errorFetching.events}
-                    />
-                  )}
-              />
-              <Route
-                path="/resources"
-                render={
-                  props => (
-                    <Resources
-                      {...props}
-                      data={data.resources}
-                      isLoading={isLoading.resources}
-                      error={errorFetching.resources}
-                    />
-                  )}
-              />
-           
-           
-           </div>
-          </ScrollToTop>
-
+          <HashRouter>
+            <ScrollToTop>
+              <div>
+                {/* <Topbar /> */}
+                <Route exact path="/" component={Home} />
+                <Route exact path="/admin" component={Admin} />
+                <Route
+                  path="/about"
+                  render={
+                    props => (
+                      <About
+                        {...props}
+                        data={data.about}
+                        isLoading={isLoading.about}
+                        error={errorFetching.about}
+                      />
+                    )}
+                />
+                <Route
+                  path="/showcase"
+                  render={
+                    props => (
+                      <Showcase
+                        {...props}
+                        data={data.showcase}
+                        isLoading={isLoading.showcase}
+                        error={errorFetching.showcase}
+                      />
+                    )}
+                />
+                <Route
+                  path="/open-projects"
+                  render={
+                    props => (
+                      <OpenProjects
+                        {...props}
+                        data={data['open-projects']}
+                        isLoading={isLoading['open-projects']}
+                        error={errorFetching['open-projects']}
+                      />
+                    )}
+                />
+                <Route
+                  path="/team"
+                  render={
+                    props => (
+                      <Team
+                        {...props}
+                        data={data.members}
+                        isLoading={isLoading.members}
+                        error={errorFetching.members}
+                      />
+                    )}
+                />
+                <Route
+                  path="/events"
+                  render={
+                    props => (
+                      <Events
+                        {...props}
+                        data={data.events}
+                        isLoading={isLoading.events}
+                        error={errorFetching.events}
+                      />
+                    )}
+                />
+                <Route
+                  path="/resources"
+                  render={
+                    props => (
+                      <Resources
+                        {...props}
+                        data={data.resources}
+                        isLoading={isLoading.resources}
+                        error={errorFetching.resources}
+                      />
+                    )}
+                />
+              </div>
+            </ScrollToTop>
           </HashRouter>
         </MuiThemeProvider >
         </div>
