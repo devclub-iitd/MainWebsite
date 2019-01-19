@@ -11,10 +11,8 @@ import OpenProjects from './pages/OpenProjects';
 import Showcase from './pages/Showcase';
 import firestore from './helpers/firebase';
 import Admin from './pages/Admin';
-import Topbar from './components/Topbar';
 import Resources from './pages/Resources';
 import Events from './pages/Events';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import ScrollToTop from './components/ScrollTop';
 
 const theme = createMuiTheme({
@@ -77,14 +75,10 @@ class App extends React.Component {
 
     return (
       <div>
+        <MuiThemeProvider theme={theme}>
         <HashRouter>
         <ScrollToTop>
             <div>
-            <React.Fragment>
-              <CssBaseline />
-              <Topbar />
-            </React.Fragment>
-              {/* <hr /> */}
               
               <Route exact path="/" component={Home} />
               <Route exact path="/admin" component={Admin} />
@@ -163,9 +157,10 @@ class App extends React.Component {
            
            
            </div>
-        </ScrollToTop>
+          </ScrollToTop>
 
-        </HashRouter>
+          </HashRouter>
+        </MuiThemeProvider >
         </div>
       
     );
