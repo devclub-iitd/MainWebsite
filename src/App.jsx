@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { blue, indigo } from '@material-ui/core/colors';
 import './App.css';
@@ -13,7 +14,8 @@ import Admin from './pages/Admin';
 import Topbar from './components/Topbar';
 import Resources from './pages/Resources';
 import Events from './pages/Events';
-
+import CssBaseline from '@material-ui/core/CssBaseline';
+import ScrollToTop from './components/ScrollTop';
 
 const theme = createMuiTheme({
   palette: {
@@ -75,11 +77,15 @@ class App extends React.Component {
 
     return (
       <div>
-        <MuiThemeProvider theme={theme}>
-          <Router>
+        <HashRouter>
+        <ScrollToTop>
             <div>
+            <React.Fragment>
+              <CssBaseline />
               <Topbar />
-              <hr />
+            </React.Fragment>
+              {/* <hr /> */}
+              
               <Route exact path="/" component={Home} />
               <Route exact path="/admin" component={Admin} />
               <Route
@@ -154,10 +160,14 @@ class App extends React.Component {
                     />
                   )}
               />
-            </div>
-          </Router>
-        </MuiThemeProvider>
-      </div>
+           
+           
+           </div>
+        </ScrollToTop>
+
+        </HashRouter>
+        </div>
+      
     );
   }
 }
