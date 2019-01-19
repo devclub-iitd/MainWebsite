@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 
 class About extends React.Component {
   renderProjects() {
-    const { data, isLoading, error } = this.props;
+    const { isLoading, error } = this.props;
+    let { data } = this.props;
 
-    if (isLoading) {
+    if (isLoading !== false) {
       return 'Loading';
     }
     if (error) {
       return 'Error';
     }
+
+    [data] = data;
 
     const keys = Object.keys(data);
 

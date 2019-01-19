@@ -90,9 +90,9 @@ function onFetch(sheetName, rows) {
 
     let refPath = '';
     if (sheetName === 'resources') {
-      refPath = `${rows[i][0]}/${rows[i][1]}`;
+      refPath = `${sheetName}/${dataRow.doc_name}`;
     } else {
-      refPath = `${sheetName}/${i}`;
+      refPath = `${sheetName}/${i - 1}`;
     }
 
     firestore.doc(refPath).set(dataRow).then(() => {

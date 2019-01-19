@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 
 class Events extends React.Component {
   renderProjects() {
-    const { data, isLoading } = this.props;
+    const { data, isLoading, error } = this.props;
 
-    if (isLoading) {
+    if (isLoading !== false) {
       return 'Loading';
+    }
+    if (error) {
+      return 'Error';
     }
 
     const renders = [];
@@ -45,6 +48,8 @@ class Events extends React.Component {
 
 Events.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
 };
 
 export default Events;
