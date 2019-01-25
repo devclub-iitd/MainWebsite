@@ -1,4 +1,5 @@
 # MainWebsite
+
 Repo for the Main website of DevClub built on React using NodeJS
 
 ## Development Instructions
@@ -16,5 +17,5 @@ Repo for the Main website of DevClub built on React using NodeJS
 
 ## Instructions
 
-* Visit https://console.firebase.google.com/project/main-website-38951/overview and click on HTML icon (adjacent to Android icon) and copy config credentials.
-* Paste these credentials into a copy of src/config/firebase.jsx.example at the appropriate location and rename this new file as firebase.jsx at the same location (src/config/firebase.jsx).
+* Visit <https://console.firebase.google.com/project/main-website-38951/overview> and click on HTML icon (adjacent to Android icon) and copy config credentials.
+* Paste these credentials into a copy of src/config/firebase_config.jsx.example at the appropriate location and rename this new file as firebase_config.jsx at the same location (src/config/firebase_config.jsx).
