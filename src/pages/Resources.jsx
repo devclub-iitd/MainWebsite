@@ -3,19 +3,31 @@ import TreeView from '../components/TreeView';
 
 function processResourceData(data) {
   if (data === undefined) {
-    return {};
+    return { archive: {}, new: {} };
   }
 
-  const processedData = {};
+  const processedData = { archive: {}, new: {} };
 
   data.forEach((entry) => {
-    if (processedData[entry.directory_year] === undefined) {
-      processedData[entry.directory_year] = {};
+    if (entry.archive === 'Y') {
+      if (processedData.archive[entry.directory_year] === undefined) {
+        processedData.archive[entry.directory_year] = {};
+      }
+      if (processedData.archive[entry.directory_year][entry.sub_directory] === undefined) {
+        processedData.archive[entry.directory_year][entry.sub_directory] = [];
+      }
+
+      processedData.archive[entry.directory_year][entry.sub_directory].push(entry);
+    } else {
+      if (processedData.new[entry.directory_year] === undefined) {
+        processedData.new[entry.directory_year] = {};
+      }
+      if (processedData.new[entry.directory_year][entry.sub_directory] === undefined) {
+        processedData.new[entry.directory_year][entry.sub_directory] = [];
+      }
+
+      processedData.new[entry.directory_year][entry.sub_directory].push(entry);
     }
-    if (processedData[entry.directory_year][entry.sub_directory] === undefined) {
-      processedData[entry.directory_year][entry.sub_directory] = [];
-    }
-    processedData[entry.directory_year][entry.sub_directory].push(entry);
   });
 
   return processedData;
@@ -25,17 +37,11 @@ const Resources = (props) => {
   const { data } = props;
   const processedData = processResourceData(data);
   return (
-    <TreeView data={processedData} />
+    <div>
+      <TreeView data={processedData.archive} />
+      <TreeView data={processedData.new} />
+    </div>
   );
 };
 
-// class Resources extends React.Component {
-//   render() {
-//     const { data } = this.props;
-//     const processedData = processResourceData(data);
-//     return (
-//       <TreeView data={processedData} />
-//     );
-//   }
-// }
 export default Resources;

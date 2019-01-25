@@ -36,37 +36,19 @@ class TreeView extends React.Component {
     this.generateTree.bind(this);
   }
 
-  handleClick(name, parentDirectory) {
+  handleClick(selfPath) {
     this.setState((prevState) => {
-      if (prevState[parentDirectory] === undefined) {
-        return ({
-          [parentDirectory]: {
-            [name]: true,
-          },
-        });
+      if (prevState[selfPath] === undefined) {
+        return ({ [selfPath]: true });
       }
-      if (prevState[parentDirectory][name] === undefined) {
-        return ({
-          [parentDirectory]: {
-            ...prevState[parentDirectory],
-            [name]: true,
-          },
-        });
-      }
-      return ({
-        [parentDirectory]: {
-          ...prevState[parentDirectory],
-          [name]: !prevState[parentDirectory][name],
-        },
-      });
+      return ({ [selfPath]: !prevState[selfPath] });
     });
   }
 
-  generateTree(obj, classes, level = 0, parentDirectoryInput) {
+  generateTree(obj, classes, level = 0, parentConcatenatedName) {
+    const parentDirectory = parentConcatenatedName === undefined ? 'root' : parentConcatenatedName;
+
     let className = '';
-
-    const parentDirectory = parentDirectoryInput === undefined ? 'root' : parentDirectoryInput;
-
     switch (level) {
       case 0: className = classes.root;
         break;
@@ -100,29 +82,17 @@ class TreeView extends React.Component {
     }
 
     const keys = Object.keys(obj);
-
-    // const onClickFunction = (keys) => this.handleClick(keys);
-
     for (let i = 0; i < keys.length; i += 1) {
-      let openState = false;
-      if (level === 0) {
-        const { root } = this.state;
-        if (root !== undefined && root[keys[i]] !== undefined) {
-          openState = root[keys[i]];
-        }
-      } else if (level === 1) {
-        const { [parentDirectory]: parent } = this.state;
-        if (parent !== undefined && parent[keys[i]] !== undefined) {
-          openState = parent[keys[i]];
-        }
-      }
+      const selfPath = `${parentDirectory}/${keys[i]}`;
 
+      const { [selfPath]: selfPathOpenState } = this.state;
+      const openState = selfPathOpenState === undefined ? false : selfPathOpenState;
       const listItemJSX = (
         <ListItem
           button
           className={className}
           onClick={
-            e => this.handleClick(keys[i], parentDirectory, e)
+            e => this.handleClick(selfPath, e)
           }
         >
           <ListItemIcon>
@@ -135,7 +105,7 @@ class TreeView extends React.Component {
       listItems.push(listItemJSX);
       const subListJSX = (
         <Collapse in={openState} timeout="auto" unmountOnExit>
-          {this.generateTree(obj[keys[i]], classes, level + 1, keys[i])}
+          {this.generateTree(obj[keys[i]], classes, level + 1, `${parentDirectory}/${keys[i]}`)}
         </Collapse>
       );
       listItems.push(subListJSX);
