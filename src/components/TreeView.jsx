@@ -1,18 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
 
 const styles = theme => ({
   root: {
@@ -22,92 +18,142 @@ const styles = theme => ({
   },
   nested: {
     // maxWidth: 360,
-    // paddingLeft: theme.spacing.unit * 4,
+    paddingLeft: theme.spacing.unit * 4,
   },
   superNested: {
     // maxWidth: 360,
-    // paddingLeft: theme.spacing.unit * 4 * 2,
+    paddingLeft: theme.spacing.unit * 4 * 2,
   },
 });
 
-function generateTree(obj, classes, level = 0) {
+class TreeView extends React.Component {
+  state = {
+  };
 
-  let className = '';
-  switch (level) {
-    case 0: className = classes.root;
-      break;
-    case 1: className = classes.nested;
-      break;
-    case 2: className = classes.superNested;
-      break;
-    default:
-      className = classes.superNested;
+  constructor(props) {
+    super(props);
+    this.handleClick.bind(this);
+    this.generateTree.bind(this);
   }
 
-  const listItems = [];
+  handleClick(name, parentDirectory) {
+    this.setState((prevState) => {
+      if (prevState[parentDirectory] === undefined) {
+        return ({
+          [parentDirectory]: {
+            [name]: true,
+          },
+        });
+      }
+      if (prevState[parentDirectory][name] === undefined) {
+        return ({
+          [parentDirectory]: {
+            ...prevState[parentDirectory],
+            [name]: true,
+          },
+        });
+      }
+      return ({
+        [parentDirectory]: {
+          ...prevState[parentDirectory],
+          [name]: !prevState[parentDirectory][name],
+        },
+      });
+    });
+  }
 
-  if (Array.isArray(obj)) {
-    for (let i = 0; i < obj.length; i += 1) {
+  generateTree(obj, classes, level = 0, parentDirectoryInput) {
+    let className = '';
+
+    const parentDirectory = parentDirectoryInput === undefined ? 'root' : parentDirectoryInput;
+
+    switch (level) {
+      case 0: className = classes.root;
+        break;
+      case 1: className = classes.nested;
+        break;
+      case 2: className = classes.superNested;
+        break;
+      default:
+        className = classes.superNested;
+    }
+
+    const listItems = [];
+
+    if (Array.isArray(obj)) {
+      for (let i = 0; i < obj.length; i += 1) {
+        const listItemJSX = (
+          <ListItem button className={className}>
+            <ListItemIcon>
+              <SendIcon />
+            </ListItemIcon>
+            <ListItemText inset primary={obj[i].name} />
+          </ListItem>
+        );
+        listItems.push(listItemJSX);
+      }
+      return (
+        <List component="div" disablePadding>
+          {listItems}
+        </List>
+      );
+    }
+
+    const keys = Object.keys(obj);
+
+    // const onClickFunction = (keys) => this.handleClick(keys);
+
+    for (let i = 0; i < keys.length; i += 1) {
+      let openState = false;
+      if (level === 0) {
+        const { root } = this.state;
+        if (root !== undefined && root[keys[i]] !== undefined) {
+          openState = root[keys[i]];
+        }
+      } else if (level === 1) {
+        const { [parentDirectory]: parent } = this.state;
+        if (parent !== undefined && parent[keys[i]] !== undefined) {
+          openState = parent[keys[i]];
+        }
+      }
+
       const listItemJSX = (
-        <ListItem button className={className}>
+        <ListItem
+          button
+          className={className}
+          onClick={
+            e => this.handleClick(keys[i], parentDirectory, e)
+          }
+        >
           <ListItemIcon>
             <SendIcon />
           </ListItemIcon>
-          <ListItemText inset primary={obj[i].name} />
+          <ListItemText inset primary={keys[i]} />
+          {openState ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
       );
       listItems.push(listItemJSX);
+      const subListJSX = (
+        <Collapse in={openState} timeout="auto" unmountOnExit>
+          {this.generateTree(obj[keys[i]], classes, level + 1, keys[i])}
+        </Collapse>
+      );
+      listItems.push(subListJSX);
     }
+
+
     return (
       <List component="div" disablePadding>
         {listItems}
       </List>
     );
   }
-
-  const keys = Object.keys(obj);
-
-  for (let i = 0; i < keys.length; i += 1) {
-    const listItemJSX = (
-      <ListItem button className={className}>
-        <ListItemIcon>
-          <SendIcon />
-        </ListItemIcon>
-        <ListItemText inset primary={keys[i]} />
-        <ExpandLess />
-      </ListItem>
-    );
-    listItems.push(listItemJSX);
-    const subListJSX = (
-      <Collapse in={true} timeout="auto" unmountOnExit>
-        {generateTree(obj[keys[i]], classes, level + 1)}
-      </Collapse>
-    );
-    listItems.push(subListJSX);
-  }
-
-
-  return (
-      <List component="div" disablePadding>
-        {listItems}
-      </List>
-  );
-}
-
-class TreeView extends React.Component {
-  state = {
-    open: true,
-  };
-
-  handleClick = () => {
-    this.setState(state => ({ open: !state.open }));
-  };
 
   render() {
     const { classes, data } = this.props;
     return (
       <React.Fragment>
-        { generateTree(data, classes) }
+        {this.generateTree(data, classes)}
       </React.Fragment>
     );
   }
@@ -115,6 +161,7 @@ class TreeView extends React.Component {
 
 TreeView.propTypes = {
   classes: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(TreeView);
