@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { HashRouter } from 'react-router-dom'
+import { Route, HashRouter } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import { blue, indigo } from '@material-ui/core/colors';
 import './App.css';
@@ -36,81 +35,81 @@ const theme = createMuiTheme({
   },
 });
 
-const styles = theme => ({
+const styles = themeLocal => ({
   root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.grey['100'],
-    overflow: 'hidden',
-    // background: `url(${backgroundShape}) no-repeat`,
-    backgroundSize: 'cover',
-    backgroundPosition: '0 400px',
-    paddingBottom: 200
+    // flexGrow: 1,
+    // backgroundColor: theme.palette.grey['100'],
+    // overflow: 'hidden',
+    // // background: `url(${backgroundShape}) no-repeat`,
+    // backgroundSize: 'cover',
+    // backgroundPosition: '0 400px',
+    // paddingBottom: 200
   },
   grid: {
-    width: 1200,
-    marginTop: 40,
-    [theme.breakpoints.down('sm')]: {
-      width: 'calc(100% - 20px)'
-    }
+    // width: 1200,
+    // marginTop: 40,
+    // [theme.breakpoints.down('sm')]: {
+    //   width: 'calc(100% - 20px)'
+    // }
   },
   paper: {
-    padding: theme.spacing.unit * 3,
-    textAlign: 'left',
-    color: theme.palette.text.secondary,
+    // padding: theme.spacing.unit * 3,
+    // textAlign: 'left',
+    // color: theme.palette.text.secondary,
   },
   rangeLabel: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    paddingTop: theme.spacing.unit * 2
+    // display: 'flex',
+    // justifyContent: 'space-between',
+    // paddingTop: theme.spacing.unit * 2
   },
   topBar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 32
+    // display: 'flex',
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
+    // marginTop: 32
   },
   outlinedButtom: {
-    textTransform: 'uppercase',
-    margin: theme.spacing.unit
+    // textTransform: 'uppercase',
+    // margin: theme.spacing.unit
   },
   actionButtom: {
-    textTransform: 'uppercase',
-    margin: theme.spacing.unit,
-    width: 152
+    // textTransform: 'uppercase',
+    // margin: theme.spacing.unit,
+    // width: 152
   },
   blockCenter: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center'
+    // padding: theme.spacing.unit * 2,
+    // textAlign: 'center'
   },
   block: {
-    padding: theme.spacing.unit * 2,
+    // padding: theme.spacing.unit * 2,
   },
   box: {
-    marginBottom: 40,
-    height: 65
+    // marginBottom: 40,
+    // height: 65
   },
   inlining: {
-    display: 'inline-block',
-    marginRight: 10
+    // display: 'inline-block',
+    // marginRight: 10
   },
   buttonBar: {
-    display: 'flex'
+    // display: 'flex'
   },
   alignRight: {
-    display: 'flex',
-    justifyContent: 'flex-end'
+    // display: 'flex',
+    // justifyContent: 'flex-end'
   },
   noBorder: {
-    borderBottomStyle: 'hidden'
+    // borderBottomStyle: 'hidden'
   },
   loadingState: {
-    opacity: 0.05
+    // opacity: 0.05
   },
   loadingMessage: {
-    position: 'absolute',
-    top: '40%',
-    left: '40%'
-  }
+    // position: 'absolute',
+    // top: '40%',
+    // left: '40%'
+  },
 });
 
 class App extends React.Component {
@@ -133,7 +132,9 @@ class App extends React.Component {
         querySnapshot.forEach((doc) => {
           this.setState((prevState) => {
             const newStateData = JSON.parse(JSON.stringify(prevState.data));
-            newStateData[sheetName] = newStateData[sheetName] === undefined ? [] : newStateData[sheetName];
+            newStateData[sheetName] = newStateData[sheetName] === undefined
+              ? []
+              : newStateData[sheetName];
             newStateData[sheetName] = [...newStateData[sheetName], doc.data()];
             return { data: newStateData };
           });
@@ -237,9 +238,9 @@ class App extends React.Component {
               </div>
             </ScrollToTop>
           </HashRouter>
-        </MuiThemeProvider >
-        </div>
-      
+        </MuiThemeProvider>
+      </div>
+
     );
   }
 }

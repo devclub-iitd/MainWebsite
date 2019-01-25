@@ -16,17 +16,17 @@ import StarBorder from '@material-ui/icons/StarBorder';
 
 const styles = theme => ({
   root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    // width: '100%',
+    // maxWidth: 360,
+    // backgroundColor: theme.palette.background.paper,
   },
   nested: {
-    maxWidth: 360,
-    paddingLeft: theme.spacing.unit * 4,
+    // maxWidth: 360,
+    // paddingLeft: theme.spacing.unit * 4,
   },
   superNested: {
-    maxWidth: 360,
-    paddingLeft: theme.spacing.unit * 4 * 2,
+    // maxWidth: 360,
+    // paddingLeft: theme.spacing.unit * 4 * 2,
   },
 });
 
