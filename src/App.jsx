@@ -8,12 +8,12 @@ import About from './pages/About';
 import Team from './pages/Team';
 import OpenProjects from './pages/OpenProjects';
 import Showcase from './pages/Showcase';
-import firestore from './helpers/firebase';
 import Admin from './pages/Admin';
 import Resources from './pages/Resources';
 import Events from './pages/Events';
 import ScrollToTop from './components/ScrollTop';
 import Topbar from './components/Topbar';
+import fetchSheetsData from './database/database';
 
 // const backgroundShape = require('./images/shape.svg');
 
@@ -113,42 +113,28 @@ const styles = themeLocal => ({
 });
 
 class App extends React.Component {
+  state = {
+    data: {},
+    errorFetching: {},
+    isLoading: {},
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      data: {},
-      errorFetching: {},
-      isLoading: {},
-    };
+    this.setData = this.setData.bind(this);
   }
 
   componentDidMount() {
-    const sheetNames = ['showcase', 'open-projects', 'members', 'about', 'events', 'resources'];
+    fetchSheetsData(this.setData);
+  }
 
-    sheetNames.forEach((sheetName) => {
-      const ref = firestore.collection(sheetName);
-
-      ref.get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          this.setState((prevState) => {
-            const newStateData = JSON.parse(JSON.stringify(prevState.data));
-            newStateData[sheetName] = newStateData[sheetName] === undefined
-              ? []
-              : newStateData[sheetName];
-            newStateData[sheetName] = [...newStateData[sheetName], doc.data()];
-            return { data: newStateData };
-          });
-        });
-        this.setState(prevState => ({ isLoading: { ...prevState.isLoading, [sheetName]: false } }));
-      })
-        .catch((error) => {
-          this.setState(prevState => ({
-            isLoading: { ...prevState.isLoading, [sheetName]: false },
-            errorFetching: { ...prevState.errorFetching, [sheetName]: true },
-          }));
-          console.log(`Error fetching data for ${sheetName} : ${error}`);
-        });
-    });
+  setData(sheetName, dataPackage) {
+    console.log(sheetName, dataPackage);
+    this.setState(prevState => ({
+      data: { ...prevState.data, [sheetName]: dataPackage.data },
+      isLoading: { ...prevState.isLoading, [sheetName]: dataPackage.isLoading },
+      errorFetching: { ...prevState.errorFetching, [sheetName]: dataPackage.errorFetching },
+    }));
   }
 
   render() {
