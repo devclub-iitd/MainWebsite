@@ -88,12 +88,7 @@ function onFetch(sheetName, rows) {
       }
     }
 
-    let refPath = '';
-    if (sheetName === 'resources') {
-      refPath = `${sheetName}/${dataRow.doc_name}`;
-    } else {
-      refPath = `${sheetName}/${i - 1}`;
-    }
+    const refPath = `${sheetName}/${dataRow.id}`;
 
     firestore.doc(refPath).set(dataRow).then(() => {
       console.log(`Added data row ${i} (out of ${rows.length - 1}) for ${sheetName}`);
