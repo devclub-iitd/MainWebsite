@@ -82,7 +82,6 @@ class Topbar extends Component {
     window.scrollTo(0, 0);
   }
 
-
   mobileMenuOpen = () => {
     this.setState({ menuDrawer: true });
   }

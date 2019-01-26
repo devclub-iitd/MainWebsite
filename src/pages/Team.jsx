@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import MemberViewCard from '../components/MemberViewCard';
 
 class Team extends React.Component {
-  renderProjects() {
+  renderMembers() {
     const { data, isLoading, error } = this.props;
 
     if (isLoading !== false) {
@@ -17,17 +19,25 @@ class Team extends React.Component {
     const keys = Object.keys(data[0]);
 
     for (let i = 0; i < data.length; i += 1) {
-      const memberData = [];
-      keys.forEach((key) => { memberData.push(`${key}: ${data[i][key]}`); memberData.push(<br key={`membersBR${key}`} />); });
+      const memberData = {};
+      keys.forEach((key) => { memberData[key] = data[i][key]; });
+      
+      console.log(memberData);
       const project = (
         <li key={`member${i}`}>
           <div>
-            {memberData}
+            {memberData['DisplayOnWebsite']} <br />
           </div>
           <br />
         </li>
       );
-      renders.push(project);
+      if (memberData['DisplayOnWebsite'] === 'Y') {
+        renders.push(
+          <Col xs={12} md={6} lg={4}>
+            <MemberViewCard memberData={memberData} isLoading={isLoading} />
+          </Col>
+        );
+      }
     }
 
     return renders;
@@ -36,12 +46,11 @@ class Team extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div>
-          Members
-          <ul>
-            {this.renderProjects()}
-          </ul>
-        </div>
+        <Grid auto>
+          <Row>
+            {this.renderMembers()}
+          </Row>
+        </Grid>
       </React.Fragment>
     );
   }
