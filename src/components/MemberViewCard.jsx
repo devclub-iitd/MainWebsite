@@ -5,6 +5,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import Chip from '@material-ui/core/Chip';
 import { Link } from 'react-router-dom';
 import { Facebook, GithubCircle, Email } from 'mdi-material-ui';
 import Typography from '@material-ui/core/Typography';
@@ -16,6 +17,9 @@ const styles = theme => ({
   },
   cardContent: {
     justifyContent: 'center',
+  },
+  chip: {
+    margin: theme.spacing.unit,
   },
   bullet: {
     display: 'inline-block',
@@ -69,6 +73,12 @@ class MemberViewCard extends Component {
             {memberData['Description']}
           </Typography>
         </CardContent>
+        <Chip
+          label={memberData['Category']}
+          className={classes.chip}
+          component="a"
+          clickable
+        />
         <CardActions>
           <div className={classes.social}>
             <Link to={memberData['Github URL']}><Facebook className={classes.socialIcon} /></Link>
