@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TreeView from '../components/TreeView';
 
 function processResourceData(data) {
@@ -42,6 +43,10 @@ const Resources = (props) => {
       <TreeView data={processedData.new} />
     </div>
   );
+};
+
+Resources.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Resources;

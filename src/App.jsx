@@ -35,80 +35,80 @@ const theme = createMuiTheme({
   },
 });
 
-const styles = themeLocal => ({
+const styles = themeIn => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.grey['100'],
+    backgroundColor: themeIn.palette.grey['100'],
     overflow: 'hidden',
     // background: `url(${backgroundShape}) no-repeat`,
     backgroundSize: 'cover',
     backgroundPosition: '0 400px',
-    paddingBottom: 200
+    paddingBottom: 200,
   },
   grid: {
     width: 1200,
     marginTop: 40,
-    [theme.breakpoints.down('sm')]: {
-      width: 'calc(100% - 20px)'
-    }
+    [themeIn.breakpoints.down('sm')]: {
+      width: 'calc(100% - 20px)',
+    },
   },
   paper: {
-    padding: theme.spacing.unit * 3,
+    padding: themeIn.spacing.unit * 3,
     textAlign: 'left',
-    color: theme.palette.text.secondary,
+    color: themeIn.palette.text.secondary,
   },
   rangeLabel: {
     display: 'flex',
     justifyContent: 'space-between',
-    paddingTop: theme.spacing.unit * 2
+    paddingTop: themeIn.spacing.unit * 2,
   },
   topBar: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 32
+    marginTop: 32,
   },
   outlinedButtom: {
     textTransform: 'uppercase',
-    margin: theme.spacing.unit
+    margin: themeIn.spacing.unit,
   },
   actionButtom: {
     textTransform: 'uppercase',
-    margin: theme.spacing.unit,
-    width: 152
+    margin: themeIn.spacing.unit,
+    width: 152,
   },
   blockCenter: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center'
+    padding: themeIn.spacing.unit * 2,
+    textAlign: 'center',
   },
   block: {
-    padding: theme.spacing.unit * 2,
+    padding: themeIn.spacing.unit * 2,
   },
   box: {
     marginBottom: 40,
-    height: 65
+    height: 65,
   },
   inlining: {
     display: 'inline-block',
-    marginRight: 10
+    marginRight: 10,
   },
   buttonBar: {
-    sdisplay: 'flex'
+    sdisplay: 'flex',
   },
   alignRight: {
     display: 'flex',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   noBorder: {
-    borderBottomStyle: 'hidden'
+    borderBottomStyle: 'hidden',
   },
   loadingState: {
-    opacity: 0.05
+    opacity: 0.05,
   },
   loadingMessage: {
     position: 'absolute',
     top: '40%',
-    left: '40%'
+    left: '40%',
   },
 });
 
@@ -129,7 +129,6 @@ class App extends React.Component {
   }
 
   setData(sheetName, dataPackage) {
-    console.log(sheetName, dataPackage);
     this.setState(prevState => ({
       data: { ...prevState.data, [sheetName]: dataPackage.data },
       isLoading: { ...prevState.isLoading, [sheetName]: dataPackage.isLoading },

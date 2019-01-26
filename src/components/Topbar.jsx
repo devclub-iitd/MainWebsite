@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Link, withRouter } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
@@ -73,78 +73,75 @@ const styles = theme => ({
 });
 
 class Topbar extends Component {
-    state = {
-      value: 0,
-      menuDrawer: false,
-    };
+  state = {
+    value: 0,
+    menuDrawer: false,
+  };
 
-    componentDidMount() {
-      window.scrollTo(0, 0);
-    }
-
-
-    mobileMenuOpen = () => {
-      this.setState({ menuDrawer: true });
-    }
-
-    mobileMenuClose = () => {
-      this.setState({ menuDrawer: false });
-    }
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
 
-    handleChange = (event, value) => {
-      this.setState({ value });
-    };
+  mobileMenuOpen = () => {
+    this.setState({ menuDrawer: true });
+  }
 
+  mobileMenuClose = () => {
+    this.setState({ menuDrawer: false });
+  }
 
-    current = () => {
-      const currentPath = this.props.location.pathname;
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
 
-      if (currentPath === '/home') {
-        return 0;
-      }
-      if (currentPath === '/about') {
-        return 1;
-      }
-      if (currentPath === '/projects') {
-        return 2;
-      }
-      if (currentPath === '/events') {
-        return 3;
-      }
-      if (currentPath === '/resources') {
-        return 4;
-      }
-      if (currentPath === '/team') {
-        return 5;
-      }
+  current = () => {
+    const currentPath = this.props.location.pathname;
 
+    if (currentPath === '/home') {
       return 0;
     }
+    if (currentPath === '/about') {
+      return 1;
+    }
+    if (currentPath === '/projects') {
+      return 2;
+    }
+    if (currentPath === '/events') {
+      return 3;
+    }
+    if (currentPath === '/resources') {
+      return 4;
+    }
+    if (currentPath === '/team') {
+      return 5;
+    }
 
-    render() {
-      const { classes, noTabs, location } = this.props;
-      const { menuDrawer, value } = this.state;
+    return 0;
+  }
 
-      console.log(this.current() + '129');
-      return (
-        <AppBar position="absolute" color="default" className={classes.appBar}>
-          <Toolbar>
-            <Grid container spacing={24} alignItems="baseline">
-              <Grid item xs={12} alignItems="baseline" className={classes.flex}>
-                <div className={classes.inline}>
-                  <Typography variant="h6" color="inherit" noWrap>
-                    <Link to="/" className={classes.link}>
-                      <img width={20} src={logo} alt="Logo" />
-                      <span className={classes.tagline}>DevClub</span>
-                    </Link>
-                  </Typography>
-                </div>
-                {!noTabs && (
+  render() {
+    const { classes, noTabs, location } = this.props;
+    const { menuDrawer, value } = this.state;
+
+    return (
+      <AppBar position="absolute" color="default" className={classes.appBar}>
+        <Toolbar>
+          <Grid container spacing={24} alignItems="baseline">
+            <Grid item xs={12} alignItems="baseline" className={classes.flex}>
+              <div className={classes.inline}>
+                <Typography variant="h6" color="inherit" noWrap>
+                  <Link to="/" className={classes.link}>
+                    <img width={20} src={logo} alt="Logo" />
+                    <span className={classes.tagline}>DevClub</span>
+                  </Link>
+                </Typography>
+              </div>
+              {!noTabs && (
                 <React.Fragment>
                   <div className={classes.productLogo}>
                     <Typography>
-                                            IIT Delhi
+                      IIT Delhi
                     </Typography>
                   </div>
                   <div className={classes.iconContainer}>
@@ -186,13 +183,20 @@ class Topbar extends Component {
                     </Tabs>
                   </div>
                 </React.Fragment>
-                )}
-              </Grid>
+              )}
             </Grid>
-          </Toolbar>
-        </AppBar>
-      );
-    }
+          </Grid>
+        </Toolbar>
+      </AppBar>
+    );
+  }
 }
+
+Topbar.propTypes = {
+  currentPath: PropTypes.object.isRequired,
+  noTabs: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+};
 
 export default withRouter(withStyles(styles)(Topbar));
