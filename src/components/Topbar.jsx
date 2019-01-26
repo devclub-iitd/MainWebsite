@@ -20,55 +20,55 @@ const logo = require('../logo.svg');
 
 const styles = theme => ({
   appBar: {
-    // position: 'relative',
-    // boxShadow: 'none',
-    // borderBottom: `1px solid ${theme.palette.grey['100']}`,
-    // backgroundColor: 'white',
+    position: 'relative',
+    boxShadow: 'none',
+    borderBottom: `1px solid ${theme.palette.grey['100']}`,
+    backgroundColor: 'white',
   },
   inline: {
-    // display: 'inline',
+    display: 'inline',
   },
   flex: {
-    // display: 'flex',
-    // [theme.breakpoints.down('sm')]: {
-    //   display: 'flex',
-    //   justifyContent: 'space-evenly',
-    //   alignItems: 'center',
-    // },
+    display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
+    },
   },
   link: {
-    // textDecoration: 'none',
-    // color: 'inherit',
+    textDecoration: 'none',
+    color: 'inherit',
   },
   productLogo: {
-    // display: 'inline-block',
-    // borderLeft: `1px solid ${theme.palette.grey.A100}`,
-    // marginLeft: 32,
-    // paddingLeft: 24,
+    display: 'inline-block',
+    borderLeft: `1px solid ${theme.palette.grey.A100}`,
+    marginLeft: 32,
+    paddingLeft: 24,
   },
   tagline: {
-    // display: 'inline-block',
-    // marginLeft: 10,
+    display: 'inline-block',
+    marginLeft: 10,
   },
   iconContainer: {
-    // display: 'none',
-    // [theme.breakpoints.down('sm')]: {
-    //   display: 'block',
-    // },
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+    },
   },
   iconButton: {
-    // float: 'right',
+    float: 'right',
   },
   tabContainer: {
-    // marginLeft: 32,
-    // [theme.breakpoints.down('sm')]: {
-    //   display: 'none',
-    // },
+    marginLeft: 32,
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
   tabItem: {
-    // paddingTop: 20,
-    // paddingBottom: 20,
-    // minWidth: 'auto',
+    paddingTop: 20,
+    paddingBottom: 20,
+    minWidth: 'auto',
   },
 });
 
