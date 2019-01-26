@@ -98,7 +98,8 @@ class Topbar extends Component {
 
 
     current = () => {
-      const { currentPath } = this.props;
+      const currentPath = this.props.location.pathname;
+
       if (currentPath === '/home') {
         return 0;
       }
@@ -125,6 +126,7 @@ class Topbar extends Component {
       const { classes, noTabs, location } = this.props;
       const { menuDrawer, value } = this.state;
 
+      console.log(this.current() + '129');
       return (
         <AppBar position="absolute" color="default" className={classes.appBar}>
           <Toolbar>
