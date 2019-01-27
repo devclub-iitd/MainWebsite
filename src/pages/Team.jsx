@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import StackGrid from 'react-stack-grid';
 import MemberViewCard from '../components/MemberViewCard';
 
 class Team extends React.Component {
@@ -33,9 +33,9 @@ class Team extends React.Component {
       // );
       if (memberData.DisplayOnWebsite === 'Y') {
         const col = (
-          <Col key={`col${i}`} xs={12} md={6} lg={4}>
+          <React.Fragment key={`frag${i}`}>
             <MemberViewCard memberData={memberData} isLoading={isLoading} />
-          </Col>
+          </React.Fragment>
         );
         renders.push(col);
       }
@@ -47,11 +47,9 @@ class Team extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Grid>
-          <Row>
-            {this.renderMembers()}
-          </Row>
-        </Grid>
+        <StackGrid columnWidth={400}>
+          {this.renderMembers()}
+        </StackGrid>
       </React.Fragment>
     );
   }
