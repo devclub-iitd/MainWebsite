@@ -21,22 +21,23 @@ class Team extends React.Component {
     for (let i = 0; i < data.length; i += 1) {
       const memberData = {};
       keys.forEach((key) => { memberData[key] = data[i][key]; });
-      
-      console.log(memberData);
-      const project = (
-        <li key={`member${i}`}>
-          <div>
-            {memberData['DisplayOnWebsite']} <br />
-          </div>
-          <br />
-        </li>
-      );
-      if (memberData['DisplayOnWebsite'] === 'Y') {
-        renders.push(
+      // const project = (
+      //   <li key={`member${i}`}>
+      //     <div>
+      //       {memberData.DisplayOnWebsite}
+      //       {' '}
+      //       <br />
+      //     </div>
+      //     <br />
+      //   </li>
+      // );
+      if (memberData.DisplayOnWebsite === 'Y') {
+        const col = (
           <Col xs={12} md={6} lg={4}>
             <MemberViewCard memberData={memberData} isLoading={isLoading} />
           </Col>
         );
+        renders.push(col);
       }
     }
 
