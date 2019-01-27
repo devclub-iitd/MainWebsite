@@ -21,7 +21,9 @@ const styles = {
 let id = 0;
 function createData(name, calories, fat, carbs, protein) {
   id += 1;
-  return { id, name, calories, fat, carbs, protein };
+  return {
+    id, name, calories, fat, carbs, protein,
+  };
 }
 
 const data = [
@@ -66,7 +68,7 @@ function SimpleTable(props) {
 }
 
 SimpleTable.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styles)(SimpleTable);
