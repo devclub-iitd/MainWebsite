@@ -6,7 +6,6 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Chip from '@material-ui/core/Chip';
-import { Link } from 'react-router-dom';
 import { Facebook, GithubCircle, Email } from 'mdi-material-ui';
 import Typography from '@material-ui/core/Typography';
 import { grey } from '@material-ui/core/colors';
@@ -52,13 +51,12 @@ const styles = theme => ({
     '&:hover': {
       color: grey[800],
     },
-  }
+  },
 });
 
 class MemberViewCard extends Component {
   renderData() {
     const { classes, memberData, isLoading } = this.props;
-
     if (isLoading !== false) {
       return 'Loading from MemberViewCard:34\n';
     }
@@ -84,9 +82,9 @@ class MemberViewCard extends Component {
         />
         <CardActions>
           <div className={classes.social}>
-            <a href={memberData['FB URL']} className={classes.socialIcon} ><Facebook /></a>
-            <a href={memberData['Github URL']} className={classes.socialIcon} ><GithubCircle /></a>
-            <a href={memberData['Primary Email Address']} className={classes.socialIcon} ><Email /></a>
+            <a href={memberData['FB URL']} className={classes.socialIcon}><Facebook /></a>
+            <a href={memberData['Github URL']} className={classes.socialIcon}><GithubCircle /></a>
+            <a href={memberData['Primary Email Address']} className={classes.socialIcon}><Email /></a>
           </div>
         </CardActions>
       </Card>
@@ -105,8 +103,8 @@ class MemberViewCard extends Component {
 }
 
 MemberViewCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-  memberData: PropTypes.object.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  memberData: PropTypes.objectOf(PropTypes.string).isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 
