@@ -15,7 +15,6 @@ const styles = theme => ({
   card: {
     minWidth: 275,
     margin: '10px',
-    height: 400,
   },
   cardContent: {
     justifyContent: 'center',
@@ -48,10 +47,10 @@ const styles = theme => ({
     alignItems: 'flex-end',
   },
   socialIcon: {
-    color: grey[800],
+    color: grey[700],
     margin: theme.spacing.unit * 2,
     '&:hover': {
-      color: grey[400],
+      color: grey[800],
     },
   }
 });
