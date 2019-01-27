@@ -9,11 +9,13 @@ import Chip from '@material-ui/core/Chip';
 import { Link } from 'react-router-dom';
 import { Facebook, GithubCircle, Email } from 'mdi-material-ui';
 import Typography from '@material-ui/core/Typography';
+import { grey } from '@material-ui/core/colors';
 
 const styles = theme => ({
   card: {
     minWidth: 275,
     margin: '10px',
+    height: 400,
   },
   cardContent: {
     justifyContent: 'center',
@@ -46,8 +48,12 @@ const styles = theme => ({
     alignItems: 'flex-end',
   },
   socialIcon: {
+    color: grey[800],
     margin: theme.spacing.unit * 2,
-  },
+    '&:hover': {
+      color: grey[400],
+    },
+  }
 });
 
 class MemberViewCard extends Component {
@@ -81,9 +87,9 @@ class MemberViewCard extends Component {
         />
         <CardActions>
           <div className={classes.social}>
-            <Link to={memberData['Github URL']}><Facebook className={classes.socialIcon} /></Link>
-            <Link to={memberData['FB URL']}><GithubCircle className={classes.socialIcon} /></Link>
-            <Link to={memberData['Primary Email Address']}><Email className={classes.socialIcon} /></Link>
+            <a href={memberData['FB URL']} className={classes.socialIcon} ><Facebook /></a>
+            <a href={memberData['Github URL']} className={classes.socialIcon} ><GithubCircle /></a>
+            <a href={memberData['Primary Email Address']} className={classes.socialIcon} ><Email /></a>
           </div>
         </CardActions>
       </Card>
