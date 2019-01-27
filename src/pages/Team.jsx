@@ -33,7 +33,7 @@ class Team extends React.Component {
       // );
       if (memberData.DisplayOnWebsite === 'Y') {
         const col = (
-          <Col xs={12} md={6} lg={4}>
+          <Col key={`col${i}`} xs={12} md={6} lg={4}>
             <MemberViewCard memberData={memberData} isLoading={isLoading} />
           </Col>
         );
@@ -47,7 +47,7 @@ class Team extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Grid auto>
+        <Grid>
           <Row>
             {this.renderMembers()}
           </Row>
@@ -58,9 +58,15 @@ class Team extends React.Component {
 }
 
 Team.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  error: PropTypes.bool.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object),
+  isLoading: PropTypes.bool,
+  error: PropTypes.bool,
+};
+
+Team.defaultProps = {
+  data: [],
+  isLoading: true,
+  error: false,
 };
 
 export default Team;

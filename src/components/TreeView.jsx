@@ -65,7 +65,7 @@ class TreeView extends React.Component {
     if (Array.isArray(obj)) {
       for (let i = 0; i < obj.length; i += 1) {
         const listItemJSX = (
-          <ListItem button className={className}>
+          <ListItem key={`${level}tree${i}`} button className={className}>
             <ListItemIcon>
               <SendIcon />
             </ListItemIcon>
@@ -89,6 +89,7 @@ class TreeView extends React.Component {
       const openState = selfPathOpenState === undefined ? false : selfPathOpenState;
       const listItemJSX = (
         <ListItem
+          key={`${level}tree${i}`}
           button
           className={className}
           onClick={
@@ -104,7 +105,7 @@ class TreeView extends React.Component {
       );
       listItems.push(listItemJSX);
       const subListJSX = (
-        <Collapse in={openState} timeout="auto" unmountOnExit>
+        <Collapse key={`${level}treeCollapse${i}`} in={openState} timeout="auto" unmountOnExit>
           {this.generateTree(obj[keys[i]], classes, level + 1, `${parentDirectory}/${keys[i]}`)}
         </Collapse>
       );
@@ -130,8 +131,8 @@ class TreeView extends React.Component {
 }
 
 TreeView.propTypes = {
-  classes: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  data: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default withStyles(styles)(TreeView);

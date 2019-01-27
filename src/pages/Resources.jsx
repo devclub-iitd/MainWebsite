@@ -46,7 +46,11 @@ const Resources = (props) => {
 };
 
 Resources.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  data: PropTypes.arrayOf(PropTypes.object),
+};
+
+Resources.defaultProps = {
+  data: [],
 };
 
 export default Resources;

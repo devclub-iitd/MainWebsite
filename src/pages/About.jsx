@@ -1,31 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import withStyles from '@material-ui/core/styles/withStyles';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import Topbar from '../components/Topbar';
-
-// const styles = theme => ({
-//   grid: {
-//     width: 1200,
-//     marginTop: 40,
-//     [theme.breakpoints.down('sm')]: {
-//       width: 'calc(100% - 20px)'
-//     }
-//   },
-//   topBar: {
-//     display: 'flex',
-//     justifyContent: 'space-between',
-//     alignItems: 'center',
-//     marginTop: 32
-//   }
-// });
-
 class About extends React.Component {
   renderProjects() {
     const { isLoading, error } = this.props;
     let { data } = this.props;
-
     if (isLoading !== false) {
       return 'Loading';
     }
@@ -53,7 +32,7 @@ class About extends React.Component {
     return (
       <React.Fragment>
         <div>
-                  About Club
+          About Club
           <ul>
             {this.renderProjects()}
           </ul>
@@ -65,9 +44,14 @@ class About extends React.Component {
 }
 
 About.propTypes = {
-  data: PropTypes.objectOf().isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  error: PropTypes.bool.isRequired,
+  data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+  isLoading: PropTypes.bool,
+  error: PropTypes.bool,
 };
 
+About.defaultProps = {
+  data: [],
+  isLoading: true,
+  error: false,
+};
 export default About;

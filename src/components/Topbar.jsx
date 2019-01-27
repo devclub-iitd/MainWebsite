@@ -95,39 +95,28 @@ class Topbar extends Component {
   };
 
   current = () => {
-    const currentPath = this.props.location.pathname;
+    const { location } = this.props;
+    const currentPath = location.pathname;
 
-    if (currentPath === '/home') {
-      return 0;
+    switch (currentPath) {
+      case '/home': return 0;
+      case '/about': return 1;
+      case '/projects': return 2;
+      case '/events': return 3;
+      case '/resources': return 4;
+      case '/team': return 5;
+      default: return 0;
     }
-    if (currentPath === '/about') {
-      return 1;
-    }
-    if (currentPath === '/projects') {
-      return 2;
-    }
-    if (currentPath === '/events') {
-      return 3;
-    }
-    if (currentPath === '/resources') {
-      return 4;
-    }
-    if (currentPath === '/team') {
-      return 5;
-    }
-
-    return 0;
   }
 
   render() {
     const { classes, noTabs, location } = this.props;
     const { menuDrawer, value } = this.state;
-
     return (
       <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
           <Grid container spacing={24} alignItems="baseline">
-            <Grid item xs={12} alignItems="baseline" className={classes.flex}>
+            <Grid item xs={12} container alignItems="baseline" className={classes.flex}>
               <div className={classes.inline}>
                 <Typography variant="h6" color="inherit" noWrap>
                   <Link to="/" className={classes.link}>
@@ -149,15 +138,15 @@ class Topbar extends Component {
                     </IconButton>
                   </div>
                   <div className={classes.tabContainer}>
-                    <SwipeableDrawer anchor="right" open={menuDrawer} onClose={this.mobileMenuClose}>
+                    <SwipeableDrawer anchor="right" open={menuDrawer} onOpen={this.mobileMenuOpen} onClose={this.mobileMenuClose}>
                       <AppBar title="Menu" />
                       <List>
                         {Menu.map(item => (
                           <ListItem
+                            key={item.label}
                             component={Link}
                             to={{ pathname: item.pathname, search: location.search }}
                             button
-                            key={item.index}
                           >
                             <ListItemText primary={item.label} />
                           </ListItem>
@@ -170,9 +159,9 @@ class Topbar extends Component {
                       textColor="primary"
                       onChange={this.handleChange}
                     >
-                      {Menu.map((item, index) => (
+                      {Menu.map(item => (
                         <Tab
-                          key={index} // eslint-disable-line react/no-array-index-key
+                          key={item.label}
                           component={Link}
                           to={{ pathname: item.pathname, search: location.search }}
                           classes={{ root: classes.tabItem }}
@@ -192,10 +181,13 @@ class Topbar extends Component {
 }
 
 Topbar.propTypes = {
-  currentPath: PropTypes.object.isRequired,
-  noTabs: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired,
+  noTabs: PropTypes.bool,
+  location: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+};
+
+Topbar.defaultProps = {
+  noTabs: false,
 };
 
 export default withRouter(withStyles(styles)(Topbar));

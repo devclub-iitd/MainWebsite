@@ -108,7 +108,7 @@ class MemberViewCard extends Component {
 MemberViewCard.propTypes = {
   classes: PropTypes.object.isRequired,
   memberData: PropTypes.object.isRequired,
-  isLoading: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(MemberViewCard);
