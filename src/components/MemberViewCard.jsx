@@ -59,8 +59,6 @@ const styles = theme => ({
 class MemberViewCard extends Component {
   renderData() {
     const { classes, memberData, isLoading } = this.props;
-    const bull = <span className={classes.bullet}>•</span>;
-    console.log(this.props);
 
     if (isLoading !== false) {
       return 'Loading from MemberViewCard:34\n';
@@ -70,17 +68,17 @@ class MemberViewCard extends Component {
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <div className={classes.inline}>
-            <Avatar alt={memberData['Name']} src={memberData['Picture URL']} className={classes.bigAvatar} />
+            <Avatar alt={memberData.Name} src={memberData['Picture URL']} className={classes.bigAvatar} />
             <Typography variant="h5" component="h2">
-              {memberData['Name']}
+              {memberData.Name}
             </Typography>
           </div>
           <Typography component="p">
-            {memberData['Description']}
+            {memberData.Description}
           </Typography>
         </CardContent>
         <Chip
-          label={memberData['Category']}
+          label={memberData.Category}
           className={classes.chip}
           component="a"
           clickable
@@ -104,11 +102,13 @@ class MemberViewCard extends Component {
         </div>
       </React.Fragment>
     );
-  }  
+  }
 }
-  
+
 MemberViewCard.propTypes = {
   classes: PropTypes.object.isRequired,
+  memberData: PropTypes.object.isRequired,
+  isLoading: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(MemberViewCard);
