@@ -1,4 +1,9 @@
-import { cyan, deepPurple, brown, amber } from '@material-ui/core/colors';
+import {
+  cyan,
+  deepPurple,
+  brown,
+  amber,
+} from '@material-ui/core/colors';
 
 const colors = {
   color1: {
@@ -16,6 +21,6 @@ const colors = {
   color4: {
     main: brown[200],
   },
-}
+};
 
 export default colors;
