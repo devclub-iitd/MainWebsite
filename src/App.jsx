@@ -19,11 +19,11 @@ import fetchSheetsData from './database/database';
 
 const theme = createMuiTheme({
   palette: {
-    secondary: {
-      main: blue[900],
-    },
     primary: {
       main: indigo[700],
+    },
+    secondary: {
+      main: blue[900],
     },
   },
   typography: {

@@ -9,12 +9,10 @@ import Chip from '@material-ui/core/Chip';
 import { Facebook, GithubCircle, Email } from 'mdi-material-ui';
 import Typography from '@material-ui/core/Typography';
 import { grey } from '@material-ui/core/colors';
+import styled from 'styled-components';
+import colors from './Pallete';
 
 const styles = theme => ({
-  card: {
-    minWidth: 275,
-    margin: '10px',
-  },
   cardContent: {
     textAlign: 'center',
     justifyContent: 'center',
@@ -60,15 +58,49 @@ const styles = theme => ({
   },
 });
 
+const StyledCard = styled(Card)`
+  minWidth: 275;
+  margin: 10px;
+  background: -webkit-linear-gradient(250deg, #ffffff 60%, ${props => props.theme.main} 60%);
+  background: -o-linear-gradient(250deg, #ffffff 60%, ${props => props.theme.main} 60%);
+  background: -moz-linear-gradient(250deg, #ffffff 60%, ${props => props.theme.main} 60%);
+  background: linear-gradient(250deg, #ffffff 60%, ${props => props.theme.main} 60%);
+`;
+
+// const cardStyle = {
+//   background: '-webkit-linear-gradient(70deg, #ffffff 60%, #ffed4b 60%)',
+//   background: '-o-linear-gradient(70deg, #ffffff 60%, #ffed4b 60%)',
+//   background: '-moz-linear-gradient(70deg, #ffffff 60%, #ffed4b 60%)',
+//   background: 'linear-gradient(70deg, #ffffff 60%, #ffed4b 60%)',
+// };
+
 class MemberViewCard extends Component {
+  backgroundColor = (string) => {
+    if (string === 'Senior Undergraduate') {
+      return colors.color1.main;
+    } else if (string === 'Junior Undergraduate') {
+      return colors.color2.main;
+    } else {
+      return colors.color3.main;
+    }
+  };
+
   renderData() {
     const { classes, memberData, isLoading } = this.props;
+    
     if (isLoading !== false) {
       return 'Loading from MemberViewCard:34\n';
     }
+    
+    // let backgroundColor = this.getBackgroundColor(memberData.Category);
+    console.log(this.backgroundColor(memberData.Category));
 
+    const backgroundTheme = {
+      main: this.backgroundColor(memberData.Category),
+    };
+    
     return (
-      <Card className={classes.card}>
+      <StyledCard className={classes.card} theme={backgroundTheme}>
         <CardContent className={classes.cardContent}>
           <div>
             <div className={classes.avatarHolder}>
@@ -95,7 +127,7 @@ class MemberViewCard extends Component {
             <a href={memberData['Primary Email Address']} className={classes.socialIcon}><Email /></a>
           </div>
         </CardActions>
-      </Card>
+      </StyledCard>
     );
   }
 
