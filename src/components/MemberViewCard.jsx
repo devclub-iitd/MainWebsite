@@ -16,10 +16,15 @@ const styles = theme => ({
     margin: '10px',
   },
   cardContent: {
+    textAlign: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   chip: {
-    margin: theme.spacing.unit,
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
+    marginLeft: theme.spacing.unit*2,
+    marginRight: theme.spacing.unit*2,
   },
   bullet: {
     display: 'inline-block',
@@ -32,13 +37,14 @@ const styles = theme => ({
   pos: {
     marginBottom: 12,
   },
-  bigAvatar: {
+  avatarHolder: {
+    width: '100%',
     margin: 10,
+  },
+  bigAvatar: {
+    margin: '0 auto',
     width: 100,
     height: 100,
-  },
-  inline: {
-    display: 'inline',
   },
   social: {
     display: 'flex',
@@ -64,8 +70,10 @@ class MemberViewCard extends Component {
     return (
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
-          <div className={classes.inline}>
-            <Avatar alt={memberData.Name} src={memberData['Picture URL']} className={classes.bigAvatar} />
+          <div>
+            <div className={classes.avatarHolder}>
+              <Avatar alt={memberData.Name} src={memberData['Picture URL']} className={classes.bigAvatar} />
+            </div>
             <Typography variant="h5" component="h2">
               {memberData.Name}
             </Typography>
