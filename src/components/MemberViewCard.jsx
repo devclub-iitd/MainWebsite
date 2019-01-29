@@ -29,7 +29,7 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 2,
   },
   intro: {
-    minHeight: 80,  
+    minHeight: 80,
   },
   bullet: {
     display: 'inline-block',
@@ -126,7 +126,7 @@ class MemberViewCard extends Component {
           clickable
         />
         <StyledCardActions theme={backgroundTheme}>
-          <div className={classes.social} >
+          <div className={classes.social}>
             <a href={memberData['FB URL']} className={classes.socialIcon}><Facebook /></a>
             <a href={memberData['Github URL']} className={classes.socialIcon}><GithubCircle /></a>
             <a href={memberData['Primary Email Address']} className={classes.socialIcon}><Email /></a>

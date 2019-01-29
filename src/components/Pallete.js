@@ -1,4 +1,9 @@
-import { cyan, brown, amber, green } from '@material-ui/core/colors';
+import {
+  cyan,
+  brown,
+  amber,
+  green,
+} from '@material-ui/core/colors';
 
 const colors = {
   color1: {

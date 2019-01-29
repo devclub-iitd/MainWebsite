@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import MemberViewCard from '../components/MemberViewCard';
 import { Typography } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
+import MemberViewCard from '../components/MemberViewCard';
 
 const centerText = {
-    justifyContent: 'center',
+  justifyContent: 'center',
 };
 
 class Team extends React.Component {
@@ -21,7 +21,7 @@ class Team extends React.Component {
     }
 
     let renders = {};
-    const senior = [], junior = [], sopho = [];
+    const senior = []; const junior = []; const sopho = [];
 
     const keys = Object.keys(data[0]);
 
@@ -44,9 +44,9 @@ class Team extends React.Component {
             <MemberViewCard memberData={memberData} isLoading={isLoading} />
           </Grid>
         );
-        if (memberData.Category === "Senior Undergraduate") {
+        if (memberData.Category === 'Senior Undergraduate') {
           senior.push(col);
-        } else if (memberData.Category === "Junior Undergraduate") {
+        } else if (memberData.Category === 'Junior Undergraduate') {
           junior.push(col);
         } else {
           sopho.push(col);
@@ -55,10 +55,10 @@ class Team extends React.Component {
     }
 
     renders = {
-      senior: senior,
-      junior: junior,
-      sopho: sopho,
-    }; 
+      senior,
+      junior,
+      sopho,
+    };
     return renders;
   }
 
@@ -66,8 +66,8 @@ class Team extends React.Component {
     const rendered = this.renderMembers();
     return (
       <Grid container>
-        <Grid container md={1}></Grid>
-        <Grid container xs={12} md={10}>
+        <Grid container item md={1} />
+        <Grid container item xs={12} md={10}>
           <Typography gutterBottom variant="h5" style={centerText}>
             Senior Undergraduates
           </Typography>
@@ -91,7 +91,7 @@ class Team extends React.Component {
             {rendered.sopho}
           </Grid>
         </Grid>
-        <Grid container md={1}></Grid>
+        <Grid container item md={1} />
       </Grid>
     );
   }
