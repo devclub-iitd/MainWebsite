@@ -1,17 +1,17 @@
-import { cyan, deepPurple, brown, amber } from '@material-ui/core/colors';
+import { cyan, brown, amber, green } from '@material-ui/core/colors';
 
 const colors = {
   color1: {
-    main: cyan[300],
+    main: cyan[500],
     light: cyan[200],
   },
   color2: {
-    main: deepPurple[300],
-    light: deepPurple[200],
+    main: green[500],
+    light: green[200],
   },
   color3: {
     main: amber[400],
-    light: amber[300],
+    light: amber[200],
   },
   color4: {
     main: brown[200],

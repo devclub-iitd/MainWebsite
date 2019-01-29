@@ -13,6 +13,10 @@ import styled from 'styled-components';
 import colors from './Pallete';
 
 const styles = theme => ({
+  card: {
+    minWidth: 275,
+    margin: '10px',
+  },
   cardContent: {
     textAlign: 'center',
     justifyContent: 'center',
@@ -23,6 +27,9 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit,
     marginLeft: theme.spacing.unit*2,
     marginRight: theme.spacing.unit*2,
+  },
+  intro: {
+    minHeight: 80,  
   },
   bullet: {
     display: 'inline-block',
@@ -50,7 +57,7 @@ const styles = theme => ({
     alignItems: 'flex-end',
   },
   socialIcon: {
-    color: grey[700],
+    color: '#050401',
     margin: theme.spacing.unit * 2,
     '&:hover': {
       color: grey[800],
@@ -58,13 +65,12 @@ const styles = theme => ({
   },
 });
 
-const StyledCard = styled(Card)`
-  minWidth: 275;
-  margin: 10px;
-  background: -webkit-linear-gradient(250deg, #ffffff 60%, ${props => props.theme.main} 60%);
-  background: -o-linear-gradient(250deg, #ffffff 60%, ${props => props.theme.main} 60%);
-  background: -moz-linear-gradient(250deg, #ffffff 60%, ${props => props.theme.main} 60%);
-  background: linear-gradient(250deg, #ffffff 60%, ${props => props.theme.main} 60%);
+const StyledCardActions = styled(CardActions)`
+  background-color: ${props => props.theme.main};
+  // background: -webkit-linear-gradient(250deg, #ffffff 60%, ${props => props.theme.main} 60%);
+  // background: -o-linear-gradient(250deg, #ffffff 60%, ${props => props.theme.main} 60%);
+  // background: -moz-linear-gradient(250deg, #ffffff 60%, ${props => props.theme.main} 60%);
+  // background: linear-gradient(250deg, #ffffff 60%, ${props => props.theme.main} 60%);
 `;
 
 // const cardStyle = {
@@ -100,7 +106,7 @@ class MemberViewCard extends Component {
     };
     
     return (
-      <StyledCard className={classes.card} theme={backgroundTheme}>
+      <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <div>
             <div className={classes.avatarHolder}>
@@ -110,7 +116,7 @@ class MemberViewCard extends Component {
               {memberData.Name}
             </Typography>
           </div>
-          <Typography component="p">
+          <Typography component="p" className={classes.intro}>
             {memberData.Description}
           </Typography>
         </CardContent>
@@ -120,14 +126,14 @@ class MemberViewCard extends Component {
           component="a"
           clickable
         />
-        <CardActions>
-          <div className={classes.social}>
+        <StyledCardActions theme={backgroundTheme}>
+          <div className={classes.social} >
             <a href={memberData['FB URL']} className={classes.socialIcon}><Facebook /></a>
             <a href={memberData['Github URL']} className={classes.socialIcon}><GithubCircle /></a>
             <a href={memberData['Primary Email Address']} className={classes.socialIcon}><Email /></a>
           </div>
-        </CardActions>
-      </StyledCard>
+        </StyledCardActions>
+      </Card>
     );
   }
 
