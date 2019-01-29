@@ -16,6 +16,6 @@ const colors = {
   color4: {
     main: brown[200],
   },
-}
+};
 
 export default colors;

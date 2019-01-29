@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 class Showcase extends React.Component {
   renderProjects() {
     const { data, isLoading, error } = this.props;
-    // let { data } = this.props;
 
     if (isLoading !== false) {
       return 'Loading';

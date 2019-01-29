@@ -51,21 +51,22 @@ class ProjectViewCard extends React.Component {
   };
 
   render() {
+    const { expanded } = this.state;
     const { classes } = this.props;
 
     return (
       <Card className={classes.card}>
         <CardHeader
-          avatar={
+          avatar={(
             <Avatar aria-label="Recipe" className={classes.avatar}>
               R
             </Avatar>
-          }
-          action={
+          )}
+          action={(
             <IconButton>
               <MoreVertIcon />
             </IconButton>
-          }
+          )}
           title="Shrimp and Chorizo Paella"
           subheader="September 14, 2016"
         />
@@ -89,16 +90,16 @@ class ProjectViewCard extends React.Component {
           </IconButton>
           <IconButton
             className={classnames(classes.expand, {
-              [classes.expandOpen]: this.state.expanded,
+              [classes.expandOpen]: expanded,
             })}
             onClick={this.handleExpandClick}
-            aria-expanded={this.state.expanded}
+            aria-expanded={expanded}
             aria-label="Show more"
           >
             <ExpandMoreIcon />
           </IconButton>
         </CardActions>
-        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>Method:</Typography>
             <Typography paragraph>
@@ -131,7 +132,7 @@ class ProjectViewCard extends React.Component {
 }
 
 ProjectViewCard.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styles)(ProjectViewCard);

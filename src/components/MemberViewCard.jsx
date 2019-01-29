@@ -25,8 +25,8 @@ const styles = theme => ({
   chip: {
     marginTop: theme.spacing.unit,
     marginBottom: theme.spacing.unit,
-    marginLeft: theme.spacing.unit*2,
-    marginRight: theme.spacing.unit*2,
+    marginLeft: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit * 2,
   },
   intro: {
     minHeight: 80,  
@@ -84,27 +84,26 @@ class MemberViewCard extends Component {
   backgroundColor = (string) => {
     if (string === 'Senior Undergraduate') {
       return colors.color1.main;
-    } else if (string === 'Junior Undergraduate') {
+    } if (string === 'Junior Undergraduate') {
       return colors.color2.main;
-    } else {
-      return colors.color3.main;
     }
+    return colors.color3.main;
   };
 
   renderData() {
     const { classes, memberData, isLoading } = this.props;
-    
+
     if (isLoading !== false) {
       return 'Loading from MemberViewCard:34\n';
     }
-    
+
     // let backgroundColor = this.getBackgroundColor(memberData.Category);
-    console.log(this.backgroundColor(memberData.Category));
+    // console.log(this.backgroundColor(memberData.Category));
 
     const backgroundTheme = {
       main: this.backgroundColor(memberData.Category),
     };
-    
+
     return (
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
