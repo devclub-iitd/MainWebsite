@@ -104,7 +104,7 @@ class Topbar extends Component {
       case '/events': return 2;
       case '/resources': return 3;
       case '/team': return 4;
-      case '/open-projects': return 4;
+      case '/open-projects': return 5;
       default: return 0;
     }
   }

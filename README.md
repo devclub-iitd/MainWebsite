@@ -13,9 +13,8 @@ Repo for the Main website of DevClub built on React using NodeJS
 * Used NodeJS 11.x
 * Install ESlint extension in VS Code to see instructions from style guide.
 * Used airbnb's styleguide.
-* Using firestore database to fetch data dynamically.
+* Using ~~firestore database~~ DynamoDB to fetch data dynamically.
 
 ## Instructions
 
-* Visit <https://console.firebase.google.com/project/main-website-38951/overview> and click on HTML icon (adjacent to Android icon) and copy config credentials.
-* Paste these credentials into a copy of src/config/firebase_config.jsx.example at the appropriate location and rename this new file as firebase_config.jsx at the same location (src/config/firebase_config.jsx).
+* Fill in API links in src/config/API.js before using.
