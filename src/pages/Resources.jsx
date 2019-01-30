@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import TreeView from '../components/TreeView';
+import { fetchResources as fetchResourcesAction } from '../actions/allActions';
 
 function processResourceData(data) {
   if (data === undefined) {
@@ -34,23 +36,45 @@ function processResourceData(data) {
   return processedData;
 }
 
-const Resources = (props) => {
-  const { data } = props;
-  const processedData = processResourceData(data);
-  return (
-    <div>
-      <TreeView data={processedData.archive} />
-      <TreeView data={processedData.new} />
-    </div>
-  );
-};
+const mapStateToProps = state => ({
+  data: state.completeReducer.data.resources,
+  isLoading: state.completeReducer.isLoading.resources,
+  error: state.completeReducer.errorFetching.resources,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchResources: () => dispatch(fetchResourcesAction()),
+});
+
+class Resources extends React.Component {
+  constructor(props) {
+    super(props);
+    const { data } = this.props;
+    if (data === undefined || data.length === 0) {
+      const { fetchResources } = this.props;
+      fetchResources();
+    }
+  }
+
+  render() {
+    const { data } = this.props;
+    const processedData = processResourceData(data);
+    return (
+      <div>
+        <TreeView data={processedData.archive} />
+        <TreeView data={processedData.new} />
+      </div>
+    );
+  }
+}
 
 Resources.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
+  fetchResources: PropTypes.func.isRequired,
 };
 
 Resources.defaultProps = {
   data: [],
 };
 
-export default Resources;
+export default connect(mapStateToProps, mapDispatchToProps)(Resources);

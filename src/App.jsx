@@ -2,7 +2,9 @@ import React from 'react';
 import { Route, HashRouter } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import { blue, indigo } from '@material-ui/core/colors';
+
 import './App.css';
+
 import Home from './pages/Home';
 import Team from './pages/Team';
 import OpenProjects from './pages/OpenProjects';
@@ -10,9 +12,9 @@ import Showcase from './pages/Showcase';
 import Admin from './pages/Admin';
 import Resources from './pages/Resources';
 import Events from './pages/Events';
+
 import ScrollToTop from './components/ScrollTop';
 import Topbar from './components/Topbar';
-import fetchSheetsData from './database/database';
 
 // const backgroundShape = require('./images/shape.svg');
 
@@ -111,88 +113,25 @@ const styles = themeIn => ({
     left: '40%',
   },
 });
+const App = () => (
+  <div>
+    <MuiThemeProvider theme={theme}>
+      <HashRouter>
+        <ScrollToTop>
+          <div>
+            <Topbar />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/admin" component={Admin} />
+            <Route exact path="/team" component={Team} />
+            <Route exact path="/showcase" component={Showcase} />
+            <Route exact path="/events" component={Events} />
+            <Route exact path="/open-projects" component={OpenProjects} />
+            <Route exact path="/resources" component={Resources} />
+          </div>
+        </ScrollToTop>
+      </HashRouter>
+    </MuiThemeProvider>
+  </div>
+);
 
-class App extends React.Component {
-  state = {
-    data: {},
-    errorFetching: {},
-    isLoading: {},
-  };
-
-  constructor(props) {
-    super(props);
-    this.setData = this.setData.bind(this);
-  }
-
-  componentDidMount() {
-    fetchSheetsData(this.setData);
-  }
-
-  setData(sheetName, dataPackage) {
-    this.setState(prevState => ({
-      data: { ...prevState.data, [sheetName]: dataPackage.data },
-      isLoading: { ...prevState.isLoading, [sheetName]: dataPackage.isLoading },
-      errorFetching: { ...prevState.errorFetching, [sheetName]: dataPackage.errorFetching },
-    }));
-  }
-
-  render() {
-    const { data, isLoading, errorFetching } = this.state;
-
-    return (
-      <div>
-        <MuiThemeProvider theme={theme}>
-          <HashRouter>
-            <ScrollToTop>
-              <div>
-                <Topbar />
-                <Route exact path="/" component={Home} />
-                <Route exact path="/admin" component={Admin} />
-                <Route exact path="/team" component={Team} />
-                <Route exact path="/showcase" component={Showcase} />
-                <Route
-                  path="/open-projects"
-                  render={
-                    props => (
-                      <OpenProjects
-                        {...props}
-                        data={data['open-projects']}
-                        isLoading={isLoading['open-projects']}
-                        error={errorFetching['open-projects']}
-                      />
-                    )}
-                />
-                <Route
-                  path="/events"
-                  render={
-                    props => (
-                      <Events
-                        {...props}
-                        data={data.events}
-                        isLoading={isLoading.events}
-                        error={errorFetching.events}
-                      />
-                    )}
-                />
-                <Route
-                  path="/resources"
-                  render={
-                    props => (
-                      <Resources
-                        {...props}
-                        data={data.resources}
-                        isLoading={isLoading.resources}
-                        error={errorFetching.resources}
-                      />
-                    )}
-                />
-              </div>
-            </ScrollToTop>
-          </HashRouter>
-        </MuiThemeProvider>
-      </div>
-
-    );
-  }
-}
 export default withStyles(styles)(App);

@@ -19,7 +19,10 @@ const Menu = [
     label: 'Team',
     pathname: '/team',
   },
-
+  {
+    label: 'OpenProjects',
+    pathname: '/open-projects',
+  },
 ];
 
 export default Menu;

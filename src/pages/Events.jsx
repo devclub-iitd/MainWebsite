@@ -1,7 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchEvents as fetchEventsAction } from '../actions/allActions';
 
+const mapStateToProps = state => ({
+  data: state.completeReducer.data.events,
+  isLoading: state.completeReducer.isLoading.events,
+  error: state.completeReducer.errorFetching.events,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchEvents: () => dispatch(fetchEventsAction()),
+});
 class Events extends React.Component {
+  constructor(props) {
+    super(props);
+    const { data } = this.props;
+    if (data === undefined || data.length === 0) {
+      const { fetchEvents } = this.props;
+      fetchEvents();
+    }
+  }
+
   renderEvents() {
     const { data, isLoading, error } = this.props;
 
@@ -49,9 +69,16 @@ class Events extends React.Component {
 }
 
 Events.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  error: PropTypes.bool.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object),
+  isLoading: PropTypes.bool,
+  error: PropTypes.bool,
+  fetchEvents: PropTypes.func.isRequired,
 };
 
-export default Events;
+Events.defaultProps = {
+  data: [],
+  isLoading: true,
+  error: false,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Events);
