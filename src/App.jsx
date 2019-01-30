@@ -4,7 +4,6 @@ import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/
 import { blue, indigo } from '@material-ui/core/colors';
 import './App.css';
 import Home from './pages/Home';
-import About from './pages/About';
 import Team from './pages/Team';
 import OpenProjects from './pages/OpenProjects';
 import Showcase from './pages/Showcase';
@@ -149,30 +148,8 @@ class App extends React.Component {
                 <Topbar />
                 <Route exact path="/" component={Home} />
                 <Route exact path="/admin" component={Admin} />
-                <Route
-                  path="/about"
-                  render={
-                    props => (
-                      <About
-                        {...props}
-                        data={data.about}
-                        isLoading={isLoading.about}
-                        error={errorFetching.about}
-                      />
-                    )}
-                />
-                <Route
-                  path="/showcase"
-                  render={
-                    props => (
-                      <Showcase
-                        {...props}
-                        data={data.showcase}
-                        isLoading={isLoading.showcase}
-                        error={errorFetching.showcase}
-                      />
-                    )}
-                />
+                <Route exact path="/team" component={Team} />
+                <Route exact path="/showcase" component={Showcase} />
                 <Route
                   path="/open-projects"
                   render={
@@ -182,18 +159,6 @@ class App extends React.Component {
                         data={data['open-projects']}
                         isLoading={isLoading['open-projects']}
                         error={errorFetching['open-projects']}
-                      />
-                    )}
-                />
-                <Route
-                  path="/team"
-                  render={
-                    props => (
-                      <Team
-                        {...props}
-                        data={data.members}
-                        isLoading={isLoading.members}
-                        error={errorFetching.members}
                       />
                     )}
                 />

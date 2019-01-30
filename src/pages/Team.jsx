@@ -1,15 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import { Typography } from '@material-ui/core';
+import { Typography, withStyles } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
+import { connect } from 'react-redux';
 import MemberViewCard from '../components/MemberViewCard';
+import { fetchMembers as fetchTeamAction } from '../actions/allActions';
 
-const centerText = {
-  justifyContent: 'center',
-};
+const styles = () => ({
+  centerText: {
+    justifyContent: 'center',
+  },
+});
+
+const mapStateToProps = state => ({
+  data: state.completeReducer.data.members,
+  isLoading: state.completeReducer.isLoading.members,
+  error: state.completeReducer.errorFetching.members,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchMembers: () => dispatch(fetchTeamAction()),
+});
 
 class Team extends React.Component {
+  constructor(props) {
+    super(props);
+    const { data } = this.props;
+    if (data === undefined || data.length === 0) {
+      const { fetchMembers } = this.props;
+      fetchMembers();
+    }
+  }
+
   renderMembers() {
     const { data, isLoading, error } = this.props;
 
@@ -63,19 +86,20 @@ class Team extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     const rendered = this.renderMembers();
     return (
       <Grid container>
         <Grid container item md={1} />
         <Grid container item xs={12} md={10}>
-          <Typography gutterBottom variant="h5" style={centerText}>
+          <Typography gutterBottom variant="h5" className={classes.centerText}>
             Senior Undergraduates
           </Typography>
           <Grid container>
             {rendered.senior}
           </Grid>
           <Divider />
-          <Typography gutterBottom variant="h5" style={centerText}>
+          <Typography gutterBottom variant="h5" className={classes.centerText}>
             Junior Undergraduates
           </Typography>
           <Divider />
@@ -83,7 +107,7 @@ class Team extends React.Component {
             {rendered.junior}
           </Grid>
           <Divider />
-          <Typography gutterBottom variant="h5" style={centerText}>
+          <Typography gutterBottom variant="h5" className={classes.centerText}>
             Sophomores
           </Typography>
           <Divider />
@@ -101,6 +125,8 @@ Team.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   isLoading: PropTypes.bool,
   error: PropTypes.bool,
+  fetchMembers: PropTypes.func.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 Team.defaultProps = {
@@ -109,4 +135,4 @@ Team.defaultProps = {
   error: false,
 };
 
-export default Team;
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Team));
