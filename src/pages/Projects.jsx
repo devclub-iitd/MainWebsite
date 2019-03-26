@@ -13,7 +13,7 @@ const mapDispatchToProps = dispatch => ({
   fetchProjects: () => dispatch(fetchProjectsAction()),
 });
 
-class Showcase extends React.Component {
+class Projects extends React.Component {
   constructor(props) {
     super(props);
     const { data } = this.props;
@@ -68,17 +68,17 @@ class Showcase extends React.Component {
   }
 }
 
-Showcase.propTypes = {
+Projects.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   isLoading: PropTypes.bool,
   error: PropTypes.bool,
   fetchProjects: PropTypes.func.isRequired,
 };
 
-Showcase.defaultProps = {
+Projects.defaultProps = {
   data: [],
   isLoading: true,
   error: false,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Showcase);
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);

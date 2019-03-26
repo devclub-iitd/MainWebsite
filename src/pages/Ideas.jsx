@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchProjects: () => dispatch(fetchProjectsAction()),
 });
-class OpenProjects extends React.Component {
+class Ideas extends React.Component {
   constructor(props) {
     super(props);
     const { data } = this.props;
@@ -68,16 +68,16 @@ class OpenProjects extends React.Component {
   }
 }
 
-OpenProjects.propTypes = {
+Ideas.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   isLoading: PropTypes.bool,
   error: PropTypes.bool,
   fetchProjects: PropTypes.func.isRequired,
 };
 
-OpenProjects.defaultProps = {
+Ideas.defaultProps = {
   data: [],
   isLoading: true,
   error: false,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(OpenProjects);
+export default connect(mapStateToProps, mapDispatchToProps)(Ideas);

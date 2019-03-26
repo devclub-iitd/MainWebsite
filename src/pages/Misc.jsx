@@ -46,7 +46,7 @@ const mapDispatchToProps = dispatch => ({
   fetchResources: () => dispatch(fetchResourcesAction()),
 });
 
-class Resources extends React.Component {
+class Misc extends React.Component {
   constructor(props) {
     super(props);
     const { data } = this.props;
@@ -68,13 +68,13 @@ class Resources extends React.Component {
   }
 }
 
-Resources.propTypes = {
+Misc.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   fetchResources: PropTypes.func.isRequired,
 };
 
-Resources.defaultProps = {
+Misc.defaultProps = {
   data: [],
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Resources);
+export default connect(mapStateToProps, mapDispatchToProps)(Misc);

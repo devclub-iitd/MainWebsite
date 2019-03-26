@@ -4,24 +4,28 @@ const Menu = [
     pathname: '/',
   },
   {
-    label: 'Projects',
-    pathname: '/showcase',
+    label: 'Contact Us',
+    pathname: '/contact',
   },
   {
     label: 'Events',
     pathname: '/events',
   },
   {
-    label: 'Resources',
-    pathname: '/resources',
-  },
-  {
     label: 'Team',
     pathname: '/team',
   },
   {
-    label: 'OpenProjects',
-    pathname: '/open-projects',
+    label: 'Projects',
+    pathname: '/projects',
+  },
+  {
+    label: 'Ideas',
+    pathname: '/ideas',
+  },
+  {
+    label: 'Others Things',
+    pathname: '/misc',
   },
 ];
 

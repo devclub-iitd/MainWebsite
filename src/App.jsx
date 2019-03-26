@@ -7,11 +7,12 @@ import './App.css';
 
 import Home from './pages/Home';
 import Team from './pages/Team';
-import OpenProjects from './pages/OpenProjects';
-import Showcase from './pages/Showcase';
+import Ideas from './pages/Ideas';
+import Projects from './pages/Projects';
 import Admin from './pages/Admin';
-import Resources from './pages/Resources';
+import Misc from './pages/Misc';
 import Events from './pages/Events';
+import Contact from './pages/Contact';
 
 import ScrollToTop from './components/ScrollTop';
 import Topbar from './components/Topbar';
@@ -121,12 +122,13 @@ const App = () => (
           <div>
             <Topbar />
             <Route exact path="/" component={Home} />
-            <Route exact path="/admin" component={Admin} />
-            <Route exact path="/team" component={Team} />
-            <Route exact path="/showcase" component={Showcase} />
+            <Route exact path="/contact" component={Contact} />
             <Route exact path="/events" component={Events} />
-            <Route exact path="/open-projects" component={OpenProjects} />
-            <Route exact path="/resources" component={Resources} />
+            <Route exact path="/team" component={Team} />
+            <Route exact path="/projects" component={Projects} />
+            <Route exact path="/ideas" component={Ideas} />
+            <Route exact path="/misc" component={Misc} />
+            <Route exact path="/admin" component={Admin} />
           </div>
         </ScrollToTop>
       </HashRouter>
