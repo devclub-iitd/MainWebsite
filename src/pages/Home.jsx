@@ -5,8 +5,8 @@ const Home = () => (
     <div>
       Home
       <br />
-      <a href="http://bit.ly/2CGChyY"> Report bugs/Suggestions.</a>
     </div>
+    <a href="http://bit.ly/2CGChyY"> Report bugs/Suggestions.</a>
   </React.Fragment>
 );
 

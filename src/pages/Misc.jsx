@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TreeView from '../components/TreeView';
 import { fetchResources as fetchResourcesAction } from '../actions/allActions';
+import CustomModal from '../components/CustomModal';
 
 function processResourceData(data) {
   if (data === undefined) {
@@ -61,6 +62,9 @@ class Misc extends React.Component {
     const processedData = processResourceData(data);
     return (
       <div>
+        <CustomModal
+          id="Misc"
+        />
         <TreeView data={processedData.archive} />
         <TreeView data={processedData.new} />
       </div>

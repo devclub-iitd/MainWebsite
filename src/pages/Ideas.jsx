@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProjects as fetchProjectsAction } from '../actions/allActions';
+import CustomModal from '../components/CustomModal';
 
 const mapStateToProps = state => ({
   data: state.completeReducer.data.projects,
@@ -43,6 +44,9 @@ class Ideas extends React.Component {
         <li key={`open-projects${i}`}>
           <div>
             {openProjectData}
+            <CustomModal
+              id={data[i].id}
+            />
           </div>
           <br />
         </li>

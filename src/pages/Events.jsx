@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchEvents as fetchEventsAction } from '../actions/allActions';
+import CustomModal from '../components/CustomModal';
 
 const mapStateToProps = state => ({
   data: state.completeReducer.data.events,
@@ -43,6 +44,9 @@ class Events extends React.Component {
         <li key={`events${i}`}>
           <div>
             {eventsData}
+            <CustomModal
+              id={data[i].id}
+            />
           </div>
           <br />
         </li>
