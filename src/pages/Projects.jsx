@@ -46,6 +46,7 @@ class Projects extends React.Component {
           <div>
             {showcaseProjectData}
             <CustomModal
+              url={data[i].id}
               id={data[i].id}
             />
           </div>

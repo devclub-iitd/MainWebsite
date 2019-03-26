@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DiscussionEmbed, CommentCount } from 'disqus-react';
+import { urlBase, disqusShortname } from '../config/API';
 
 const DisqusBoard = (props) => {
-  const disqusShortname = 'devclub-in-1';
   const {
     url, id, title, body,
   } = props;
 
   const disqusConfig = {
-    url,
-    identifier: id,
+    url: urlBase + url.toLowerCase(),
+    identifier: id.toLowerCase(),
     title,
   };
 

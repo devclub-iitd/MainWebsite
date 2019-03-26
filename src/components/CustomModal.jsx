@@ -73,7 +73,7 @@ CustomModal.propTypes = {
 };
 
 CustomModal.defaultProps = {
-  // url: 'www.devclub.in',
+  url: '',
   id: 'default',
   title: 'DisQus DevClub',
   body: "Let's get the discussion started",

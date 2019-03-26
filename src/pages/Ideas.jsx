@@ -45,6 +45,7 @@ class Ideas extends React.Component {
           <div>
             {openProjectData}
             <CustomModal
+              url={data[i].id}
               id={data[i].id}
             />
           </div>

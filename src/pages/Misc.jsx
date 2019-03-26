@@ -63,6 +63,7 @@ class Misc extends React.Component {
     return (
       <div>
         <CustomModal
+          url="Misc"
           id="Misc"
         />
         <TreeView data={processedData.archive} />
