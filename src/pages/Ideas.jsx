@@ -47,6 +47,7 @@ class Ideas extends React.Component {
             <CustomModal
               url={data[i].id}
               id={data[i].id}
+              title={data[i].Projects}
             />
           </div>
           <br />

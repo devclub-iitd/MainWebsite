@@ -21,7 +21,6 @@ const styles = theme => ({
 });
 
 class CustomModal extends React.Component {
-
   state = {
     open: false,
   };

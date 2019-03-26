@@ -47,6 +47,7 @@ class Events extends React.Component {
             <CustomModal
               url={data[i].id}
               id={data[i].id}
+              title={`${data[i].Name} ${data[i].Date}`}
             />
           </div>
           <br />
