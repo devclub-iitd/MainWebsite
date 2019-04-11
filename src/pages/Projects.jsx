@@ -1,8 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
+import { Typography, withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { fetchProjects as fetchProjectsAction } from '../actions/allActions';
-import CustomModal from '../components/CustomModal';
+import ProjectViewCard from '../components/ProjectViewCard';
+
+const styles = () => ({
+  centerText: {
+    textAlign: 'center',
+    width: '100%',
+    marginTop: 20,
+    marginBottom: 20,
+  },
+});
 
 const mapStateToProps = state => ({
   data: state.completeReducer.data.projects,
@@ -35,41 +46,41 @@ class Projects extends React.Component {
     }
 
     const renders = [];
-
     const keys = Object.keys(data[0]);
+    let arg = 0;
 
     for (let i = 0; i < data.length; i += 1) {
-      const showcaseProjectData = [];
-      keys.forEach((key) => { showcaseProjectData.push(`${key}: ${data[i][key]}`); showcaseProjectData.push(<br key={`showcaseBR${key}`} />); });
-      const project = (
-        <li key={`showcase${i}`}>
-          <div>
-            {showcaseProjectData}
-            <CustomModal
-              url={data[i].id}
-              id={data[i].id}
-              title={data[i].Projects}
-            />
-          </div>
-          <br />
-        </li>
-      );
-      renders.push(project);
+      const projectData = {};
+      keys.forEach((key) => { projectData[key] = data[i][key]; });
+      if (projectData['DisplayOnWebsite (Y/N)'] === 'Y') {
+        projectData['arg'] = ''+(arg++);
+        const project = (
+          <Grid item key={`showcase${i}`} xs={12} md={6} lg={4}>
+            <ProjectViewCard projectData={projectData} isLoading={isLoading} />
+          </Grid>
+        );
+        renders.push(project);
+      }
     }
 
     return renders;
   }
 
   render() {
+    const { classes } = this.props;
     return (
-      <React.Fragment>
-        <div>
-          Showcase Projects
-          <ul>
+      <Grid container>
+        <Grid container item md={1} />
+        <Grid container item xs={12} md={10}>
+          <Typography gutterBottom variant="h5" className={classes.centerText}>
+            Showcase Projects
+          </Typography>
+          <Grid container>
             {this.renderProjects()}
-          </ul>
-        </div>
-      </React.Fragment>
+          </Grid>
+        </Grid>
+        <Grid container item md={1} />
+      </Grid>
     );
   }
 }
@@ -79,6 +90,7 @@ Projects.propTypes = {
   isLoading: PropTypes.bool,
   error: PropTypes.bool,
   fetchProjects: PropTypes.func.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 Projects.defaultProps = {
@@ -87,4 +99,4 @@ Projects.defaultProps = {
   error: false,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Projects);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Projects));

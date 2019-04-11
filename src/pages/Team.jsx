@@ -9,7 +9,10 @@ import { fetchMembers as fetchTeamAction } from '../actions/allActions';
 
 const styles = () => ({
   centerText: {
-    justifyContent: 'center',
+    textAlign: 'center',
+    width: '100%',
+    marginTop: 20,
+    marginBottom: 20,
   },
 });
 
@@ -87,7 +90,7 @@ class Team extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const rendered = this.renderMembers();
+    const renders = this.renderMembers();
     return (
       <Grid container>
         <Grid container item md={1} />
@@ -96,7 +99,7 @@ class Team extends React.Component {
             Senior Undergraduates
           </Typography>
           <Grid container>
-            {rendered.senior}
+            {renders.senior}
           </Grid>
           <Divider />
           <Typography gutterBottom variant="h5" className={classes.centerText}>
@@ -104,7 +107,7 @@ class Team extends React.Component {
           </Typography>
           <Divider />
           <Grid container>
-            {rendered.junior}
+            {renders.junior}
           </Grid>
           <Divider />
           <Typography gutterBottom variant="h5" className={classes.centerText}>
@@ -112,7 +115,7 @@ class Team extends React.Component {
           </Typography>
           <Divider />
           <Grid container>
-            {rendered.sopho}
+            {renders.sopho}
           </Grid>
         </Grid>
         <Grid container item md={1} />

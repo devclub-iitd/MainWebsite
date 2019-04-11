@@ -73,13 +73,6 @@ const StyledCardActions = styled(CardActions)`
   // background: linear-gradient(250deg, #ffffff 60%, ${props => props.theme.main} 60%);
 `;
 
-// const cardStyle = {
-//   background: '-webkit-linear-gradient(70deg, #ffffff 60%, #ffed4b 60%)',
-//   background: '-o-linear-gradient(70deg, #ffffff 60%, #ffed4b 60%)',
-//   background: '-moz-linear-gradient(70deg, #ffffff 60%, #ffed4b 60%)',
-//   background: 'linear-gradient(70deg, #ffffff 60%, #ffed4b 60%)',
-// };
-
 class MemberViewCard extends Component {
   backgroundColor = (string) => {
     if (string === 'Senior Undergraduate') {
@@ -94,7 +87,7 @@ class MemberViewCard extends Component {
     const { classes, memberData, isLoading } = this.props;
 
     if (isLoading !== false) {
-      return 'Loading from MemberViewCard:34\n';
+      return 'Loading MemberViewCard\n';
     }
 
     // let backgroundColor = this.getBackgroundColor(memberData.Category);

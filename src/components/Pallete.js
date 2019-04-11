@@ -19,7 +19,8 @@ const colors = {
     light: amber[200],
   },
   color4: {
-    main: brown[200],
+    main: brown[400],
+    light: brown[200],
   },
 };
 

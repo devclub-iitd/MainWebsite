@@ -18,3 +18,17 @@ Repo for the Main website of DevClub built on React using NodeJS
 ## Instructions
 
 * Fill in API links in src/config/API.js before using.
+
+## Design Practices
+
+* A common theme for the Website has been used. The theme colors can be set in the file **components/Pallete.js**. Each color has its own variants.
+Colors can be accessed in other files in the following manner:  
+
+```javascript
+import colors from '<path_to_components_folder>/Pallete';
+...
+
+...
+// Use the color here
+colors.color1.main
+```
