@@ -9,9 +9,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
+import { GithubCircle, Web } from 'mdi-material-ui';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CustomModal from '../components/CustomModal';
+import { grey } from '@material-ui/core/colors';
 import styled from 'styled-components';
 import colors from './Pallete';
 
@@ -37,6 +39,21 @@ const styles = theme => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
+  social: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  socialIcon: {
+    color: '#050401',
+    marginTop: 0,
+    marginBottom: 0,
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    '&:hover': {
+      color: grey[800],
+    },
+  },
 });
 
 const StyledCardActions = styled(CardActions)`
@@ -45,26 +62,17 @@ const StyledCardActions = styled(CardActions)`
 
 class ProjectViewCard extends React.Component {
   backgroundColor = (i, type) => {
-    if (i%4 === 0) {
-      if (type === 0)
-        return colors.color1.main;
-      else
-        return colors.color1.light;
-    } else if (i%4 === 1) {
-      if (type === 0)
-        return colors.color2.main;
-      else
-        return colors.color2.light;
-    } else if (i%4 === 2) {
-      if (type === 0)
-        return colors.color3.main;
-      else
-        return colors.color3.light;
-    }
+    let shade = "light"
     if (type === 0)
-      return colors.color4.main;
-    else
-      return colors.color4.light;
+      shade = "main"
+    if (i%4 === 0) {
+      return colors.color1[shade];
+    } else if (i%4 === 1) {
+      return colors.color2[shade];
+    } else if (i%4 === 2) {
+      return colors.color3[shade];
+    }
+    return colors.color4[shade];
   };
 
   state = { expanded: false };
@@ -99,7 +107,8 @@ class ProjectViewCard extends React.Component {
         />
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/paella.jpg"
+          // image="/static/images/cards/paella.jpg"
+          image="https://picsum.photos/400/200/?random"
           title="Screenshot Image"
         />
         <CardContent>
@@ -108,6 +117,10 @@ class ProjectViewCard extends React.Component {
           </Typography>
         </CardContent>
         <StyledCardActions className={classes.actions} theme={actionBackgroundTheme}>
+          <div className={classes.social}>
+            <a href={projectData['Github URL']} className={classes.socialIcon}><GithubCircle /></a>
+            <a href={projectData['Website URL']} className={classes.socialIcon}><Web /></a>
+          </div>
           <IconButton
             className={classnames(classes.expand, {
               [classes.expandOpen]: expanded,

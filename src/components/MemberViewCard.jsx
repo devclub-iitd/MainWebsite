@@ -58,7 +58,10 @@ const styles = theme => ({
   },
   socialIcon: {
     color: '#050401',
-    margin: theme.spacing.unit * 2,
+    marginTop: 0,
+    marginBottom: 0,
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
     '&:hover': {
       color: grey[800],
     },
