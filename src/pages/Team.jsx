@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { Typography, withStyles } from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
 import { connect } from 'react-redux';
 import MemberViewCard from '../components/MemberViewCard';
 import { fetchMembers as fetchTeamAction } from '../actions/allActions';
+import ReactFullpage from '@fullpage/react-fullpage';
+
+import "../overrides.css";
 
 const styles = () => ({
   centerText: {
@@ -54,19 +56,10 @@ class Team extends React.Component {
     for (let i = 0; i < data.length; i += 1) {
       const memberData = {};
       keys.forEach((key) => { memberData[key] = data[i][key]; });
-      // const project = (
-      //   <li key={`member${i}`}>
-      //     <div>
-      //       {memberData.DisplayOnWebsite}
-      //       {' '}
-      //       <br />
-      //     </div>
-      //     <br />
-      //   </li>
-      // );
+
       if (memberData.DisplayOnWebsite === 'Y') {
         const col = (
-          <Grid item key={`frag${i}`} xs={12} md={6} lg={3}>
+          <Grid item key={`frag${i}`} xs={12} md={4} lg={3}>
             <MemberViewCard memberData={memberData} isLoading={isLoading} />
           </Grid>
         );
@@ -88,35 +81,86 @@ class Team extends React.Component {
     return renders;
   }
 
+  renderSections(array) {
+    let arrayLength = 2;
+    if (window.innerWidth >= 1280) {
+      arrayLength = 8;
+    } else if (window.innerWidth >= 480) {
+      arrayLength = 6;
+    }
+    console.log(arrayLength);
+
+    if (array.length <= arrayLength) {
+      const section = (
+        <Grid container>
+          {array}
+        </Grid>
+      );
+      return section;
+    } else {
+      let slides = [];
+      for (let i = 0; i < array.length; i += arrayLength) {
+        const slide = (
+          <div className="slide">
+            <Grid container>
+              {array.slice(i, i+arrayLength)}
+            </Grid>
+          </div>
+        );
+        slides.push(slide);
+      }
+      return slides;
+    }
+  }
+
   render() {
-    const { classes } = this.props;
+    const { classes, isLoading } = this.props;
     const renders = this.renderMembers();
     return (
       <Grid container>
         <Grid container item md={1} />
         <Grid container item xs={12} md={10}>
-          <Typography gutterBottom variant="h5" className={classes.centerText}>
-            Senior Undergraduates
-          </Typography>
-          <Grid container>
-            {renders.senior}
-          </Grid>
-          <Divider />
-          <Typography gutterBottom variant="h5" className={classes.centerText}>
-            Junior Undergraduates
-          </Typography>
-          <Divider />
-          <Grid container>
-            {renders.junior}
-          </Grid>
-          <Divider />
-          <Typography gutterBottom variant="h5" className={classes.centerText}>
-            Sophomores
-          </Typography>
-          <Divider />
-          <Grid container>
-            {renders.sopho}
-          </Grid>
+          <ReactFullpage
+            slidesNavigation
+            controlArrows={false}
+            render={({ state, fullpageApi }) => {
+              if (isLoading === false) {
+                let seniorSection = this.renderSections(renders.senior);
+                let juniorSection = this.renderSections(renders.junior);
+                let sophoSection = this.renderSections(renders.sopho);
+                return (                                                                                                                                                                                                                                                        
+                  <ReactFullpage.Wrapper>
+                    <div className="section">
+                      <Typography gutterBottom variant="h5" className={classes.centerText}>
+                        Senior Undergraduates
+                      </Typography>
+                      {seniorSection}
+                    </div>
+                    <div className="section">
+                      <Typography gutterBottom variant="h5" className={classes.centerText}>
+                        Junior Undergraduates
+                      </Typography>
+                      {juniorSection}
+                    </div>
+                    <div className="section">
+                      <Typography gutterBottom variant="h5" className={classes.centerText}>
+                        Sophomores
+                      </Typography>
+                      {sophoSection}
+                    </div>
+                  </ReactFullpage.Wrapper>
+                );
+              } else {
+                return (
+                  <ReactFullpage.Wrapper>
+                    <div className="section">
+                      Loading
+                    </div>
+                  </ReactFullpage.Wrapper>
+                );
+              }
+            }}
+          />
         </Grid>
         <Grid container item md={1} />
       </Grid>

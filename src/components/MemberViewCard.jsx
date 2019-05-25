@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { grey } from '@material-ui/core/colors';
 import styled from 'styled-components';
 import colors from './Pallete';
+import MediaQuery from 'react-responsive';
 
 const styles = theme => ({
   card: {
@@ -111,9 +112,11 @@ class MemberViewCard extends Component {
               {memberData.Name}
             </Typography>
           </div>
-          <Typography component="p" className={classes.intro}>
-            {memberData.Description}
-          </Typography>
+          <MediaQuery query="(min-device-width: 1224px)">
+            <Typography component="p" className={classes.intro}>
+              {memberData.Description}
+            </Typography>
+          </MediaQuery>
         </CardContent>
         <Chip
           label={memberData.Category}
