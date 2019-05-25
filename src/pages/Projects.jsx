@@ -5,13 +5,19 @@ import { Typography, withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { fetchProjects as fetchProjectsAction } from '../actions/allActions';
 import ProjectViewCard from '../components/ProjectViewCard';
+import ReactFullpage from '@fullpage/react-fullpage';
+
+import "../overrides.css";
 
 const styles = () => ({
   centerText: {
     textAlign: 'center',
     width: '100%',
-    marginTop: 20,
-    marginBottom: 20,
+    paddingTop: 20,
+    paddingBottom: 20,
+    margin: 0,
+    backgroundColor: '#FFFFFF',
+    zIndex: 100,
   },
 });
 
@@ -47,7 +53,14 @@ class Projects extends React.Component {
 
     const renders = [];
     const keys = Object.keys(data[0]);
-    let arg = 0;
+    let arg = 0; 
+    let group = []; // Counter to make groups of projects to be shown on a single page
+    let groupLength = 1;
+    if (window.innerWidth >= 1280) {
+      groupLength = 3;
+    } else if (window.innerWidth >= 480) {
+      groupLength = 2;
+    }
 
     for (let i = 0; i < data.length; i += 1) {
       const projectData = {};
@@ -59,15 +72,28 @@ class Projects extends React.Component {
             <ProjectViewCard projectData={projectData} isLoading={isLoading} />
           </Grid>
         );
-        renders.push(project);
+        group.push(project);
+        if (group.length === groupLength) {
+          // Number of projects to be displayed in a single FullPage Component
+          const section = (
+            <div className="section">
+              <Grid container>
+                {group}
+              </Grid>
+            </div>
+          );
+          renders.push(section);
+          group = [];
+        }
       }
     }
-
+    console.log(renders);
     return renders;
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, isLoading } = this.props;
+    const renderSection = this.renderProjects();
     return (
       <Grid container>
         <Grid container item md={1} />
@@ -75,9 +101,27 @@ class Projects extends React.Component {
           <Typography gutterBottom variant="h5" className={classes.centerText}>
             Showcase Projects
           </Typography>
-          <Grid container>
-            {this.renderProjects()}
-          </Grid>
+          <ReactFullpage
+            render={({ state, fullpageApi }) => {
+              console.log(state);
+              console.log(renderSection); 
+              if (isLoading === false) {
+                return (                                                                                                                                                                                                                                                        
+                  <ReactFullpage.Wrapper>
+                    {renderSection}
+                  </ReactFullpage.Wrapper>
+                );
+              } else {
+                return (
+                  <ReactFullpage.Wrapper>
+                    <div className="section">
+                      Loading
+                    </div>
+                  </ReactFullpage.Wrapper>
+                );
+              }
+            }}
+          />
         </Grid>
         <Grid container item md={1} />
       </Grid>

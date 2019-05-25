@@ -29,7 +29,7 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 2,
   },
   intro: {
-    minHeight: 80,
+    minHeight: 70,
   },
   bullet: {
     display: 'inline-block',
