@@ -92,6 +92,10 @@ class Topbar extends Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
+  }
+
+  logoClick = () => {
+    this.setState({ value: 0 });
   };
 
   current = () => {
@@ -121,8 +125,8 @@ class Topbar extends Component {
               <div className={classes.inline}>
                 <Typography variant="h6" color="inherit" noWrap>
                   <Link to="/" className={classes.link}>
-                    <img width={20} src={logo} alt="Logo" />
-                    <span className={classes.tagline}>DevClub</span>
+                    <img onClick={this.logoClick} width={20} src={logo} alt="Logo" />
+                    <span onClick={this.logoClick} className={classes.tagline}>DevClub</span>
                   </Link>
                 </Typography>
               </div>
