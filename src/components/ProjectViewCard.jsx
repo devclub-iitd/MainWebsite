@@ -22,6 +22,9 @@ const styles = theme => ({
     maxWidth: 600,
     margin: '10px',
   },
+  cardContent: {
+    minHeight: '3em',
+  },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
@@ -111,7 +114,7 @@ class ProjectViewCard extends React.Component {
           image="https://picsum.photos/400/200/?random"
           title="Screenshot Image"
         />
-        <CardContent>
+        <CardContent className={classes.cardContent}>
           <Typography component="p">
             {projectData['Description']}
           </Typography>
