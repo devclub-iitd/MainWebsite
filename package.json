@@ -9,6 +9,7 @@
     "classnames": "^2.2.6",
     "disqus-react": "^1.0.5",
     "html-react-parser": "^0.6.3",
+    "json-loader": "^0.5.7",
     "mdi-material-ui": "^5.10.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
