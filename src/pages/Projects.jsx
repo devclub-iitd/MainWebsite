@@ -102,6 +102,7 @@ class Projects extends React.Component {
             Showcase Projects
           </Typography>
           <ReactFullpage
+            scrollBar={true}
             render={({ state, fullpageApi }) => {
               console.log(state);
               console.log(renderSection); 
