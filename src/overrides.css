@@ -7,6 +7,14 @@
 
 .fp-slidesNav.fp-bottom {
     bottom: 100px;
+    width: 200px;
+    margin: auto;
+    padding: auto;
+}
+
+.fp-slidesNav.fp-bottom ul {
+    width: fit-content;
+    margin: auto;
 }
 
 #fp-nav ul li:hover a.active span, 

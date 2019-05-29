@@ -9,12 +9,13 @@ import ReactFullpage from '@fullpage/react-fullpage';
 
 import "../overrides.css";
 
-const styles = () => ({
+const styles = theme => ({
   centerText: {
     textAlign: 'center',
     width: '100%',
-    marginTop: 20,
-    marginBottom: 20,
+    paddingTop: 20,
+    paddingBottom: 20,
+    marginTop: theme.spacing.unit * 10,
   },
 });
 
