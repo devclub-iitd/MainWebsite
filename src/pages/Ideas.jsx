@@ -8,7 +8,8 @@ import IdeaViewPanel from '../components/IdeaViewPanel';
 
 const styles = theme => ({
   backgroundPaper: {
-    padding: theme.spacing(8, 11),
+    padding: theme.spacing(10, 10),
+    textAlign: 'center',
   },
 });
 
