@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-// import classnames from 'classnames';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 // import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Grid from '@material-ui/core/Grid';
 import CustomModal from './CustomModal';
 
 const styles = theme => ({
@@ -17,12 +20,15 @@ const styles = theme => ({
 });
 
 class IdeaViewPanel extends React.Component {
-  // state = { expanded: false };
+  listItem = (str1, str2) => {
+    if (str2 === '' || str2 === '-') {
+      return null;
+    }
+    return <ListItem><ListItemText primary={str1} secondary={str2} /></ListItem>;
+  }
 
   render() {
-    // const { expanded } = this.state;
     const { classes, openProjectData, isLoading } = this.props;
-    // const project_id = openProjectData.id;
 
     if (isLoading !== false) {
       return 'Loading IdeaViewPanel\n';
@@ -39,11 +45,28 @@ class IdeaViewPanel extends React.Component {
             <Typography>{openProjectData.Projects}</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <CustomModal
-              url={openProjectData.id}
-              id={openProjectData.id}
-              title={openProjectData.id}
-            />
+            <div>
+              <List>
+                {this.listItem('Description', openProjectData.Description)}
+                {this.listItem('Extra', openProjectData.Extra)}
+                {this.listItem('Working Team', openProjectData['Working Team'])}
+                {this.listItem('Issuing Authority / Contact', openProjectData['Issuing Authority / Contact'])}
+                {this.listItem('Email ID / Number of Contact', openProjectData['Email ID / Number of Contact'])}
+                {this.listItem('Date of Issue', openProjectData['Date of Issue (dd-mm-yyyy)'])}
+                {this.listItem('Date of Closure', openProjectData['Date of Closure (If not Active)'])}
+                {this.listItem('Comments on Status', openProjectData['Comment on Status'])}
+                {this.listItem('Requirement', openProjectData['Requirement if still Active'])}
+                {this.listItem('Rewards/Benefit', openProjectData['Rewards/Benefit'])}
+                {this.listItem('Document', openProjectData.Document)}
+              </List>
+            </div>
+            <Grid container justify="flex-end">
+              <CustomModal
+                url={openProjectData.id}
+                id={openProjectData.id}
+                title={openProjectData.id}
+              />
+            </Grid>
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </div>

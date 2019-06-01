@@ -47,7 +47,6 @@ class Ideas extends React.Component {
 
     for (let i = 0; i < data.length; i += 1) {
       const openProjectData = [];
-      //  keys.forEach((key) => { openProjectData.push(`${key}: ${data[i][key]}`); openProjectData.push(<br key={`openProjectsBR${key}`} />); });
       keys.forEach((key) => { openProjectData[key] = data[i][key]; });
       const project = (
         <div>
