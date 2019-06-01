@@ -16,6 +16,7 @@ import Contact from './pages/Contact';
 
 import ScrollToTop from './components/ScrollTop';
 import Topbar from './components/Topbar';
+import SwitchWithSlide from "./components/SwitchWithSlide";
 
 // const backgroundShape = require('./images/shape.svg');
 
@@ -121,14 +122,16 @@ const App = () => (
         <ScrollToTop>
           <div>
             <Topbar />
-            <Route exact path="/" component={Home} />
-            <Route exact path="/contact" component={Contact} />
-            <Route exact path="/events" component={Events} />
-            <Route exact path="/team" component={Team} />
-            <Route exact path="/projects" component={Projects} />
-            <Route exact path="/ideas" component={Ideas} />
-            <Route exact path="/misc" component={Misc} />
-            <Route exact path="/admin" component={Admin} />
+            <SwitchWithSlide>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/contact" component={Contact} />
+              <Route exact path="/events" component={Events} />
+              <Route exact path="/team" component={Team} />
+              <Route exact path="/projects" component={Projects} />
+              <Route exact path="/ideas" component={Ideas} />
+              <Route exact path="/misc" component={Misc} />
+              <Route exact path="/admin" component={Admin} />
+            </SwitchWithSlide>
           </div>
         </ScrollToTop>
       </HashRouter>

@@ -85,7 +85,7 @@ class Projects extends React.Component {
         }
       }
     }
-    console.log(renders);
+    // console.log(renders);
     return renders;
   }
 
@@ -102,8 +102,7 @@ class Projects extends React.Component {
           <ReactFullpage
             scrollBar={true}
             render={({ state, fullpageApi }) => {
-              console.log(state);
-              console.log(renderSection); 
+              // console.log(state);
               if (isLoading === false) {
                 return (                                                                                                                                                                                                                                                        
                   <ReactFullpage.Wrapper>

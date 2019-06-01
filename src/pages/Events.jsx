@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { Paper, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { fetchEvents as fetchEventsAction } from '../actions/allActions';
-import CustomModal from '../components/CustomModal';
 import EventAlbumList from '../components/EventAlbumList';
 
 const styles = theme => ({
@@ -14,9 +13,7 @@ const styles = theme => ({
     width: '100%',
     paddingTop: 20,
     paddingBottom: 20,
-    margin: 0,
-    backgroundColor: '#FFFFFF',
-    zIndex: 100,
+    marginTop: theme.spacing.unit * 10,
   },
   paper: {
     padding: theme.spacing.unit * 2,

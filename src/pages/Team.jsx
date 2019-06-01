@@ -89,7 +89,7 @@ class Team extends React.Component {
     } else if (window.innerWidth >= 480) {
       arrayLength = 6;
     }
-    console.log(arrayLength);
+    // console.log(arrayLength);
 
     if (array.length <= arrayLength) {
       const section = (
