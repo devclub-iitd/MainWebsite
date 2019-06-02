@@ -97,7 +97,8 @@ class IdeaViewPanel extends React.Component {
                   </Grid>
                   <Grid item xs={6}>
                     <Grid container justify="flex-end" spacing={2}>
-                      {this.Label('label')}
+                      {/* To be replaced with labels from api */}
+                      {this.Label('sample label')}
                       {this.acceptLabel(openProjectData['Accepted (Y/N)'])}
                     </Grid>
                   </Grid>
