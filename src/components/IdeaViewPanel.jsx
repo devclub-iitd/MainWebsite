@@ -17,26 +17,17 @@ import Chip from '@material-ui/core/Chip';
 import DoneIcon from '@material-ui/icons/Done';
 import Avatar from '@material-ui/core/Avatar';
 import CustomModal from './CustomModal';
+import colors from './Pallete';
 
 const styles = theme => ({
   root: {
     width: '100%',
   },
   id: {
-    color: grey[400],
-  },
-  panel: {
-    //
+    color: grey[600],
   },
   panelSummary: {
     borderBottom: '1px solid rgba(0, 0, 0, .055)',
-  },
-  panelName: {
-    flexBasis: 'auto',
-    justifyContent: 'flex-start',
-  },
-  panelDetail: {
-    backgroundColor: grey[50],
   },
   serialNumber: {
     width: 25,
@@ -45,6 +36,21 @@ const styles = theme => ({
 });
 
 class IdeaViewPanel extends React.Component {
+  backgroundColor = (i, type) => {
+    let shade = 'light';
+    if (type === 0) {
+      shade = 'main';
+    }
+    if (i % 4 === 0) {
+      return colors.color1[shade];
+    } if (i % 4 === 1) {
+      return colors.color2[shade];
+    } if (i % 4 === 2) {
+      return colors.color3[shade];
+    }
+    return colors.color4[shade];
+  };
+
   listItem = (str1, str2) => {
     if (str2 === '' || str2 === '-') {
       return null;
@@ -54,16 +60,16 @@ class IdeaViewPanel extends React.Component {
 
   acceptLabel = (str) => {
     if (str === 'Y') {
-      return <Grid item><Chip icon={<DoneIcon />} label="Accepted" color="primary" variant="outlined" /></Grid>;
+      return <Grid item><Chip style={{ height: 27 }} icon={<DoneIcon />} label="Accepted" color="primary" variant="outlined" /></Grid>;
     }
     return null;
   }
 
-  Label = (str) => {
+  Label = (str, serialNo) => {
     if (str === '' || str === '-') {
       return null;
     }
-    return <Grid item><Chip label={str} variant="outlined" /></Grid>;
+    return <Grid item><Chip style={{ height: 27, background: this.backgroundColor(serialNo, 1) }} label={str} /></Grid>;
   }
 
   render() {
@@ -73,11 +79,19 @@ class IdeaViewPanel extends React.Component {
       return 'Loading IdeaViewPanel\n';
     }
 
+    const colorBackgroundLight = {
+      backgroundColor: this.backgroundColor(serialNo, 1),
+    };
+
+    const colorBackgroundDark = {
+      backgroundColor: this.backgroundColor(serialNo, 0),
+    };
+
     return (
       <Container maxWidth="lg">
         <div className={classes.root}>
           <Box boxShadow={5}>
-            <ExpansionPanel className={classes.panel}>
+            <ExpansionPanel>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls={openProjectData.id}
@@ -87,7 +101,7 @@ class IdeaViewPanel extends React.Component {
                 <Grid container>
                   <Grid item xs={6}>
                     <Grid container justify="flex-start" spacing={2}>
-                      <Grid item><Avatar className={classes.serialNumber}><Typography>{serialNo}</Typography></Avatar></Grid>
+                      <Grid item><Avatar className={classes.serialNumber} style={colorBackgroundDark}><Typography variant="body2">{serialNo}</Typography></Avatar></Grid>
                       <Grid item>
                         <Box textAlign="left">
                           <Typography variant="body1">{openProjectData.Projects}</Typography>
@@ -98,31 +112,33 @@ class IdeaViewPanel extends React.Component {
                   <Grid item xs={6}>
                     <Grid container justify="flex-end" spacing={2}>
                       {/* To be replaced with labels from api */}
-                      {this.Label('sample label')}
+                      {this.Label('sample label', serialNo)}
                       {this.acceptLabel(openProjectData['Accepted (Y/N)'])}
                     </Grid>
                   </Grid>
                 </Grid>
               </ExpansionPanelSummary>
-              <ExpansionPanelDetails className={classes.panelDetail}>
-                <div className={classes.id}>
-                  <Typography variant="caption"> #{openProjectData.id}</Typography>
-                </div>
-                <div>
-                  <List>
-                    {this.listItem('Description', openProjectData.Description)}
-                    {this.listItem('Extra', openProjectData.Extra)}
-                    {this.listItem('Working Team', openProjectData['Working Team'])}
-                    {this.listItem('Issuing Authority / Contact', openProjectData['Issuing Authority / Contact'])}
-                    {this.listItem('Email ID / Number of Contact', openProjectData['Email ID / Number of Contact'])}
-                    {this.listItem('Date of Issue', openProjectData['Date of Issue (dd-mm-yyyy)'])}
-                    {this.listItem('Date of Closure', openProjectData['Date of Closure (If not Active)'])}
-                    {this.listItem('Comments on Status', openProjectData['Comment on Status'])}
-                    {this.listItem('Requirements', openProjectData['Requirement if still Active'])}
-                    {this.listItem('Rewards/Benefit', openProjectData['Rewards/Benefit'])}
-                    {this.listItem('Document', openProjectData.Document)}
-                  </List>
-                </div>
+              <ExpansionPanelDetails style={colorBackgroundLight}>
+                <Grid container direction="column">
+                  <Grid item className={classes.id}>
+                    <Typography variant="caption"> #{openProjectData.id}</Typography>
+                  </Grid>
+                  <Grid item>
+                    <List>
+                      {this.listItem('Description', openProjectData.Description)}
+                      {this.listItem('Extra', openProjectData.Extra)}
+                      {this.listItem('Working Team', openProjectData['Working Team'])}
+                      {this.listItem('Issuing Authority / Contact', openProjectData['Issuing Authority / Contact'])}
+                      {this.listItem('Email ID / Number of Contact', openProjectData['Email ID / Number of Contact'])}
+                      {this.listItem('Date of Issue', openProjectData['Date of Issue (dd-mm-yyyy)'])}
+                      {this.listItem('Date of Closure', openProjectData['Date of Closure (If not Active)'])}
+                      {this.listItem('Comments on Status', openProjectData['Comment on Status'])}
+                      {this.listItem('Requirements', openProjectData['Requirement if still Active'])}
+                      {this.listItem('Rewards/Benefit', openProjectData['Rewards/Benefit'])}
+                      {this.listItem('Document', openProjectData.Document)}
+                    </List>
+                  </Grid>
+                </Grid>
                 <Grid container justify="flex-end">
                   <CustomModal
                     url={openProjectData.id}

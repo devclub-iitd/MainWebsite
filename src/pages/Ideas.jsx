@@ -1,15 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Paper from '@material-ui/core/Paper';
 import { Typography, withStyles } from '@material-ui/core';
 import { fetchProjects as fetchProjectsAction } from '../actions/allActions';
 import IdeaViewPanel from '../components/IdeaViewPanel';
 
 const styles = theme => ({
-  backgroundPaper: {
-    padding: theme.spacing(10, 10),
+  centerText: {
     textAlign: 'center',
+    width: '100%',
+    paddingTop: 20,
+    paddingBottom: 20,
+    marginTop: theme.spacing.unit * 10,
+  },
+  list: {
+    marginBottom: theme.spacing.unit * 10,
   },
 });
 
@@ -66,12 +71,12 @@ class Ideas extends React.Component {
     const { classes } = this.props;
     return (
       <React.Fragment>
-        <Paper className={classes.backgroundPaper}>
-          <Typography>
-            Open Projects
-          </Typography>
+        <Typography gutterBottom variant="h5" className={classes.centerText}>
+          Open Projects
+        </Typography>
+        <div className={classes.list}>
           {this.renderProjects()}
-        </Paper>
+        </div>
       </React.Fragment>
     );
   }
