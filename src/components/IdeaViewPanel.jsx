@@ -13,6 +13,9 @@ import Grid from '@material-ui/core/Grid';
 import { grey } from '@material-ui/core/colors';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
+import Chip from '@material-ui/core/Chip';
+import DoneIcon from '@material-ui/icons/Done';
+import Avatar from '@material-ui/core/Avatar';
 import CustomModal from './CustomModal';
 
 const styles = theme => ({
@@ -28,8 +31,16 @@ const styles = theme => ({
   panelSummary: {
     borderBottom: '1px solid rgba(0, 0, 0, .055)',
   },
+  panelName: {
+    flexBasis: 'auto',
+    justifyContent: 'flex-start',
+  },
   panelDetail: {
     backgroundColor: grey[50],
+  },
+  serialNumber: {
+    width: 25,
+    height: 25,
   },
 });
 
@@ -41,8 +52,22 @@ class IdeaViewPanel extends React.Component {
     return <ListItem><ListItemText primary={str1} secondary={str2} /></ListItem>;
   }
 
+  acceptLabel = (str) => {
+    if (str === 'Y') {
+      return <Grid item><Chip icon={<DoneIcon />} label="Accepted" color="primary" variant="outlined" /></Grid>;
+    }
+    return null;
+  }
+
+  Label = (str) => {
+    if (str === '' || str === '-') {
+      return null;
+    }
+    return <Grid item><Chip label={str} variant="outlined" /></Grid>;
+  }
+
   render() {
-    const { classes, openProjectData, isLoading } = this.props;
+    const { classes, openProjectData, isLoading, serialNo } = this.props;
 
     if (isLoading !== false) {
       return 'Loading IdeaViewPanel\n';
@@ -51,7 +76,7 @@ class IdeaViewPanel extends React.Component {
     return (
       <Container maxWidth="lg">
         <div className={classes.root}>
-          <Box boxShadow={2}>
+          <Box boxShadow={5}>
             <ExpansionPanel className={classes.panel}>
               <ExpansionPanelSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -59,9 +84,24 @@ class IdeaViewPanel extends React.Component {
                 id={openProjectData.id}
                 className={classes.panelSummary}
               >
-                <div>
-                  <Typography variant="body1">{openProjectData.Projects}</Typography>
-                </div>
+                <Grid container>
+                  <Grid item xs={6}>
+                    <Grid container justify="flex-start" spacing={2}>
+                      <Grid item><Avatar className={classes.serialNumber}><Typography>{serialNo}</Typography></Avatar></Grid>
+                      <Grid item>
+                        <Box textAlign="left">
+                          <Typography variant="body1">{openProjectData.Projects}</Typography>
+                        </Box>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Grid container justify="flex-end" spacing={2}>
+                      {this.Label('label')}
+                      {this.acceptLabel(openProjectData['Accepted (Y/N)'])}
+                    </Grid>
+                  </Grid>
+                </Grid>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails className={classes.panelDetail}>
                 <div className={classes.id}>
@@ -77,7 +117,7 @@ class IdeaViewPanel extends React.Component {
                     {this.listItem('Date of Issue', openProjectData['Date of Issue (dd-mm-yyyy)'])}
                     {this.listItem('Date of Closure', openProjectData['Date of Closure (If not Active)'])}
                     {this.listItem('Comments on Status', openProjectData['Comment on Status'])}
-                    {this.listItem('Requirement', openProjectData['Requirement if still Active'])}
+                    {this.listItem('Requirements', openProjectData['Requirement if still Active'])}
                     {this.listItem('Rewards/Benefit', openProjectData['Rewards/Benefit'])}
                     {this.listItem('Document', openProjectData.Document)}
                   </List>
@@ -102,6 +142,7 @@ IdeaViewPanel.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   openProjectData: PropTypes.objectOf(PropTypes.string).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  serialNo: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(IdeaViewPanel);
