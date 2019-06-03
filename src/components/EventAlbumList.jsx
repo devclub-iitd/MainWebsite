@@ -14,7 +14,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: "90%",
+    width: '90%',
     maxHeight: 450,
     marginTop: theme.spacing.unit,
   },
@@ -42,12 +42,12 @@ class EventAlbumList extends Component {
     } else if (window.innerWidth >= 480) {
       numCols = 4;
     }
-    return(
-      <div className = {classes.root} >
+    return (
+      <div className={classes.root}>
         <GridList cellHeight={160} className={classes.gridList} cols={numCols}>
           {mediaList.map(tile => (
             <GridListTile key={tile.fullUrl} cols={1}>
-              <img src={tile.fullUrl} />
+              <img src={tile.fullUrl} alt="Event" />
             </GridListTile>
           ))}
         </GridList>
@@ -68,7 +68,6 @@ class EventAlbumList extends Component {
 
 EventAlbumList.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  isLoading: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(EventAlbumList);

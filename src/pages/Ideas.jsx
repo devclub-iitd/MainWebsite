@@ -1,8 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Typography, withStyles } from '@material-ui/core';
 import { fetchProjects as fetchProjectsAction } from '../actions/allActions';
-import CustomModal from '../components/CustomModal';
+import IdeaViewPanel from '../components/IdeaViewPanel';
+
+const styles = theme => ({
+  centerText: {
+    textAlign: 'center',
+    width: '100%',
+    paddingTop: 20,
+    paddingBottom: 20,
+    marginTop: theme.spacing.unit * 10,
+  },
+  list: {
+    marginBottom: theme.spacing.unit * 10,
+  },
+});
 
 const mapStateToProps = state => ({
   data: state.completeReducer.data.projects,
@@ -38,20 +52,17 @@ class Ideas extends React.Component {
     const keys = Object.keys(data[0]);
 
     for (let i = 0; i < data.length; i += 1) {
+      const serialNo = i + 1;
       const openProjectData = [];
-      keys.forEach((key) => { openProjectData.push(`${key}: ${data[i][key]}`); openProjectData.push(<br key={`openProjectsBR${key}`} />); });
+      keys.forEach((key) => { openProjectData[key] = data[i][key]; });
       const project = (
-        <li key={`open-projects${i}`}>
-          <div>
-            {openProjectData}
-            <CustomModal
-              url={data[i].id}
-              id={data[i].id}
-              title={data[i].Projects}
-            />
-          </div>
-          <br />
-        </li>
+        <div>
+          <IdeaViewPanel
+            openProjectData={openProjectData}
+            isLoading={isLoading}
+            serialNo={serialNo}
+          />
+        </div>
       );
       renders.push(project);
     }
@@ -61,13 +72,14 @@ class Ideas extends React.Component {
 
 
   render() {
+    const { classes } = this.props;
     return (
       <React.Fragment>
-        <div>
+        <Typography gutterBottom variant="h5" className={classes.centerText}>
           Open Projects
-          <ul>
-            {this.renderProjects()}
-          </ul>
+        </Typography>
+        <div className={classes.list}>
+          {this.renderProjects()}
         </div>
       </React.Fragment>
     );
@@ -79,6 +91,7 @@ Ideas.propTypes = {
   isLoading: PropTypes.bool,
   error: PropTypes.bool,
   fetchProjects: PropTypes.func.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 Ideas.defaultProps = {
@@ -86,4 +99,4 @@ Ideas.defaultProps = {
   isLoading: true,
   error: false,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Ideas);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Ideas));
