@@ -10,8 +10,8 @@ import { Facebook, GithubCircle, Email } from 'mdi-material-ui';
 import Typography from '@material-ui/core/Typography';
 import { grey } from '@material-ui/core/colors';
 import styled from 'styled-components';
-import colors from './Pallete';
 import MediaQuery from 'react-responsive';
+import colors from './Pallete';
 
 const styles = theme => ({
   card: {

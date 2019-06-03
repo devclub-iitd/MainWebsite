@@ -57,7 +57,11 @@ class Ideas extends React.Component {
       keys.forEach((key) => { openProjectData[key] = data[i][key]; });
       const project = (
         <div>
-          <IdeaViewPanel openProjectData={openProjectData} isLoading={isLoading} serialNo={serialNo} />
+          <IdeaViewPanel
+            openProjectData={openProjectData}
+            isLoading={isLoading}
+            serialNo={serialNo}
+          />
         </div>
       );
       renders.push(project);

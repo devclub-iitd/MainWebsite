@@ -19,7 +19,7 @@ import Avatar from '@material-ui/core/Avatar';
 import CustomModal from './CustomModal';
 import colors from './Pallete';
 
-const styles = theme => ({
+const styles = ({
   root: {
     width: '100%',
   },
@@ -69,11 +69,20 @@ class IdeaViewPanel extends React.Component {
     if (str === '' || str === '-') {
       return null;
     }
-    return <Grid item><Chip style={{ height: 27, background: this.backgroundColor(serialNo, 1) }} label={str} /></Grid>;
+    return (
+      <Grid item>
+        <Chip style={{ height: 27, background: this.backgroundColor(serialNo, 1) }} label={str} />
+      </Grid>
+    );
   }
 
   render() {
-    const { classes, openProjectData, isLoading, serialNo } = this.props;
+    const {
+      classes,
+      openProjectData,
+      isLoading,
+      serialNo,
+    } = this.props;
 
     if (isLoading !== false) {
       return 'Loading IdeaViewPanel\n';
@@ -121,7 +130,9 @@ class IdeaViewPanel extends React.Component {
               <ExpansionPanelDetails style={colorBackgroundLight}>
                 <Grid container direction="column">
                   <Grid item className={classes.id}>
-                    <Typography variant="caption"> #{openProjectData.id}</Typography>
+                    <Typography variant="caption">
+                      {`#${openProjectData.id}`}
+                    </Typography>
                   </Grid>
                   <Grid item>
                     <List>

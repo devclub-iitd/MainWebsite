@@ -12,9 +12,9 @@ import IconButton from '@material-ui/core/IconButton';
 import { GithubCircle, Web } from 'mdi-material-ui';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import CustomModal from '../components/CustomModal';
 import { grey } from '@material-ui/core/colors';
 import styled from 'styled-components';
+import CustomModal from './CustomModal';
 import colors from './Pallete';
 
 const styles = theme => ({
@@ -64,21 +64,21 @@ const StyledCardActions = styled(CardActions)`
 `;
 
 class ProjectViewCard extends React.Component {
+  state = { expanded: false };
+
   backgroundColor = (i, type) => {
-    let shade = "light"
-    if (type === 0)
-      shade = "main"
-    if (i%4 === 0) {
+    let shade = 'light';
+    if (type === 0) { shade = 'main'; }
+    if (i % 4 === 0) {
       return colors.color1[shade];
-    } else if (i%4 === 1) {
+    } if (i % 4 === 1) {
       return colors.color2[shade];
-    } else if (i%4 === 2) {
+    } if (i % 4 === 2) {
       return colors.color3[shade];
     }
     return colors.color4[shade];
   };
 
-  state = { expanded: false };
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
@@ -92,7 +92,7 @@ class ProjectViewCard extends React.Component {
       return 'Loading ProjectViewCard\n';
     }
 
-    const arg = parseInt(projectData['arg'], 10)
+    const arg = parseInt(projectData.arg, 10);
     const actionBackgroundTheme = {
       main: this.backgroundColor(arg, 0),
     };
@@ -104,7 +104,7 @@ class ProjectViewCard extends React.Component {
     return (
       <Card className={classes.card}>
         <CardHeader
-          title={projectData['Projects']}
+          title={projectData.Projects}
           // subheader={projectData.launchDate}
           subheader="October 18, 2018"
         />
@@ -116,7 +116,7 @@ class ProjectViewCard extends React.Component {
         />
         <CardContent className={classes.cardContent}>
           <Typography component="p">
-            {projectData['Description']}
+            {projectData.Description}
           </Typography>
         </CardContent>
         <StyledCardActions className={classes.actions} theme={actionBackgroundTheme}>
@@ -137,12 +137,16 @@ class ProjectViewCard extends React.Component {
         </StyledCardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent style={expandBackgroundTheme}>
-            <Typography paragraph> Working Team: {projectData['Working Team']}
+            <Typography paragraph>
+              {' '}
+Working Team:
+              {' '}
+              {projectData['Working Team']}
             </Typography>
             <CustomModal
-              url={projectData['id']}
-              id={projectData['id']}
-              title={projectData['id']}
+              url={projectData.id}
+              id={projectData.id}
+              title={projectData.id}
             />
           </CardContent>
         </Collapse>

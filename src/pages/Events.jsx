@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { Paper, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { fetchEvents as fetchEventsAction } from '../actions/allActions';
-import CustomModal from '../components/CustomModal';
 import EventAlbumList from '../components/EventAlbumList';
 
 const styles = theme => ({
@@ -29,7 +28,7 @@ const styles = theme => ({
   eventText: {
     width: '90%',
     margin: 'auto',
-  }
+  },
 });
 
 const mapStateToProps = state => ({
@@ -52,7 +51,9 @@ class Events extends React.Component {
   }
 
   renderEvents() {
-    const { classes, data, isLoading, error } = this.props;
+    const {
+      classes, data, isLoading, error,
+    } = this.props;
 
     if (isLoading !== false) {
       return 'Loading';
@@ -68,15 +69,17 @@ class Events extends React.Component {
     for (let i = 0; i < data.length; i += 1) {
       const eventData = {};
       keys.forEach((key) => { eventData[key] = data[i][key]; });
-      if (eventData['DisplayOnWebsite'] === 'Y') {
+      if (eventData.DisplayOnWebsite === 'Y') {
         const project = (
           <Paper className={classes.paper}>
             <div className={classes.eventText}>
               <Typography variant="h5" component="h3" className={classes.eventTitle} inline>
-                {eventData['Name']}
+                {eventData.Name}
               </Typography>
               <Typography variant="h6" component="h4" inline>
-                | {eventData['Date']}
+                |
+                {' '}
+                {eventData.Date}
               </Typography>
             </div>
             <EventAlbumList isLoading={isLoading} />
