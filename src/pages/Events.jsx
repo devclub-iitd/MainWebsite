@@ -13,9 +13,7 @@ const styles = theme => ({
     width: '100%',
     paddingTop: 20,
     paddingBottom: 20,
-    margin: 0,
-    backgroundColor: '#FFFFFF',
-    zIndex: 100,
+    marginTop: theme.spacing.unit * 10,
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -27,7 +25,9 @@ const styles = theme => ({
   },
   eventText: {
     width: '90%',
-    margin: 'auto',
+    marginBottom: theme.spacing.unit,
+    marginRight: 'auto',
+    marginLeft: 'auto',
   },
 });
 
@@ -73,10 +73,10 @@ class Events extends React.Component {
         const project = (
           <Paper className={classes.paper}>
             <div className={classes.eventText}>
-              <Typography variant="h5" component="h3" className={classes.eventTitle} inline>
+              <Typography variant="h5" component="h3" className={classes.eventTitle} display={"inline"}>
                 {eventData.Name}
               </Typography>
-              <Typography variant="h6" component="h4" inline>
+              <Typography variant="h6" component="h4" display={"inline"}>
                 |
                 {' '}
                 {eventData.Date}
