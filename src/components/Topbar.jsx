@@ -14,6 +14,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import Menu from './Menu';
 
 const logo = require('../logo.svg');
@@ -94,9 +95,9 @@ class Topbar extends Component {
     this.setState({ value });
   }
 
-  logoClick = () => {
+  handleLogoClick = () => {
     this.setState({ value: 0 });
-  };
+  }
 
   current = () => {
     const { location } = this.props;
@@ -122,14 +123,16 @@ class Topbar extends Component {
         <Toolbar>
           <Grid container spacing={24} alignItems="baseline">
             <Grid item xs={12} container alignItems="baseline" className={classes.flex}>
-              <div className={classes.inline}>
-                <Typography variant="h6" color="inherit" noWrap>
-                  <Link to="/" className={classes.link}>
-                    <img onClick={this.logoClick} width={20} src={logo} alt="Logo" />
-                    <span onClick={this.logoClick} className={classes.tagline}>DevClub</span>
-                  </Link>
-                </Typography>
-              </div>
+              <ButtonBase onClick={this.handleLogoClick}>
+                <div className={classes.inline}>
+                  <Typography variant="h6" color="inherit" noWrap>
+                    <Link to="/" className={classes.link}>
+                      <img width={20} src={logo} alt="Logo" />
+                      <span className={classes.tagline}>DevClub</span>
+                    </Link>
+                  </Typography>
+                </div>
+              </ButtonBase>
               {!noTabs && (
                 <React.Fragment>
                   <div className={classes.productLogo}>

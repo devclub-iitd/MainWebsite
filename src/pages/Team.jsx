@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { Typography, withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
+import ReactFullpage from '@fullpage/react-fullpage';
 import MemberViewCard from '../components/MemberViewCard';
 import { fetchMembers as fetchTeamAction } from '../actions/allActions';
-import ReactFullpage from '@fullpage/react-fullpage';
 
-import "../overrides.css";
+import '../overrides.css';
 
 const styles = theme => ({
   centerText: {
@@ -98,20 +98,19 @@ class Team extends React.Component {
         </Grid>
       );
       return section;
-    } else {
-      let slides = [];
-      for (let i = 0; i < array.length; i += arrayLength) {
-        const slide = (
-          <div className="slide">
-            <Grid container>
-              {array.slice(i, i+arrayLength)}
-            </Grid>
-          </div>
-        );
-        slides.push(slide);
-      }
-      return slides;
     }
+    const slides = [];
+    for (let i = 0; i < array.length; i += arrayLength) {
+      const slide = (
+        <div className="slide">
+          <Grid container>
+            {array.slice(i, i + arrayLength)}
+          </Grid>
+        </div>
+      );
+      slides.push(slide);
+    }
+    return slides;
   }
 
   render() {
@@ -124,12 +123,12 @@ class Team extends React.Component {
           <ReactFullpage
             slidesNavigation
             controlArrows={false}
-            render={({ state, fullpageApi }) => {
+            render={() => {
               if (isLoading === false) {
-                let seniorSection = this.renderSections(renders.senior);
-                let juniorSection = this.renderSections(renders.junior);
-                let sophoSection = this.renderSections(renders.sopho);
-                return (                                                                                                                                                                                                                                                        
+                const seniorSection = this.renderSections(renders.senior);
+                const juniorSection = this.renderSections(renders.junior);
+                const sophoSection = this.renderSections(renders.sopho);
+                return (
                   <ReactFullpage.Wrapper>
                     <div className="section">
                       <Typography gutterBottom variant="h5" className={classes.centerText}>
@@ -151,15 +150,14 @@ class Team extends React.Component {
                     </div>
                   </ReactFullpage.Wrapper>
                 );
-              } else {
-                return (
-                  <ReactFullpage.Wrapper>
-                    <div className="section">
-                      Loading
-                    </div>
-                  </ReactFullpage.Wrapper>
-                );
               }
+              return (
+                <ReactFullpage.Wrapper>
+                  <div className="section">
+                    Loading
+                  </div>
+                </ReactFullpage.Wrapper>
+              );
             }}
           />
         </Grid>

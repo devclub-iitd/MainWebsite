@@ -1,9 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Typography, withStyles } from '@material-ui/core';
 import TreeView from '../components/TreeView';
 import { fetchResources as fetchResourcesAction } from '../actions/allActions';
 import CustomModal from '../components/CustomModal';
+
+const styles = theme => ({
+  centerText: {
+    textAlign: 'center',
+    width: '100%',
+    paddingTop: 20,
+    paddingBottom: 20,
+    marginTop: theme.spacing(10),
+  },
+});
 
 function processResourceData(data) {
   if (data === undefined) {
@@ -58,10 +69,13 @@ class Misc extends React.Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, classes } = this.props;
     const processedData = processResourceData(data);
     return (
       <div>
+        <Typography gutterBottom variant="h5" className={classes.centerText}>
+          Resources
+        </Typography>
         <CustomModal
           url="Misc"
           id="Misc"
@@ -77,10 +91,11 @@ class Misc extends React.Component {
 Misc.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   fetchResources: PropTypes.func.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 Misc.defaultProps = {
   data: [],
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Misc);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Misc));

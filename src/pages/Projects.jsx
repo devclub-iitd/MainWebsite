@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { Typography, withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
+import ReactFullpage from '@fullpage/react-fullpage';
 import { fetchProjects as fetchProjectsAction } from '../actions/allActions';
 import ProjectViewCard from '../components/ProjectViewCard';
-import ReactFullpage from '@fullpage/react-fullpage';
 
-import "../overrides.css";
+import '../overrides.css';
 
 const styles = theme => ({
   centerText: {
@@ -51,7 +51,7 @@ class Projects extends React.Component {
 
     const renders = [];
     const keys = Object.keys(data[0]);
-    let arg = 0; 
+    let arg = 0;
     let group = []; // Counter to make groups of projects to be shown on a single page
     let groupLength = 1;
     if (window.innerWidth >= 1280) {
@@ -64,7 +64,8 @@ class Projects extends React.Component {
       const projectData = {};
       keys.forEach((key) => { projectData[key] = data[i][key]; });
       if (projectData['DisplayOnWebsite (Y/N)'] === 'Y') {
-        projectData['arg'] = ''+(arg++);
+        arg += 1;
+        projectData.arg = `${arg}`;
         const project = (
           <Grid item key={`showcase${i}`} xs={12} md={6} lg={4}>
             <ProjectViewCard projectData={projectData} isLoading={isLoading} />
@@ -100,25 +101,24 @@ class Projects extends React.Component {
             Showcase Projects
           </Typography>
           <ReactFullpage
-            scrollBar={true}
-            render={({ state, fullpageApi }) => {
+            scrollBar
+            render={({ state }) => {
               console.log(state);
-              console.log(renderSection); 
+              console.log(renderSection);
               if (isLoading === false) {
-                return (                                                                                                                                                                                                                                                        
+                return (
                   <ReactFullpage.Wrapper>
                     {renderSection}
                   </ReactFullpage.Wrapper>
                 );
-              } else {
-                return (
-                  <ReactFullpage.Wrapper>
-                    <div className="section">
-                      Loading
-                    </div>
-                  </ReactFullpage.Wrapper>
-                );
               }
+              return (
+                <ReactFullpage.Wrapper>
+                  <div className="section">
+                      Loading
+                  </div>
+                </ReactFullpage.Wrapper>
+              );
             }}
           />
         </Grid>

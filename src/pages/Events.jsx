@@ -13,9 +13,7 @@ const styles = theme => ({
     width: '100%',
     paddingTop: 20,
     paddingBottom: 20,
-    margin: 0,
-    backgroundColor: '#FFFFFF',
-    zIndex: 100,
+    marginTop: theme.spacing(10),
   },
   paper: {
     padding: theme.spacing.unit * 2,
