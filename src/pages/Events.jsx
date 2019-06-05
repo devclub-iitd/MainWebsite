@@ -73,10 +73,10 @@ class Events extends React.Component {
         const project = (
           <Paper className={classes.paper}>
             <div className={classes.eventText}>
-              <Typography variant="h5" component="h3" className={classes.eventTitle} display={"inline"}>
+              <Typography variant="h5" component="h3" className={classes.eventTitle} display="inline">
                 {eventData.Name}
               </Typography>
-              <Typography variant="h6" component="h4" display={"inline"}>
+              <Typography variant="h6" component="h4" display="inline">
                 |
                 {' '}
                 {eventData.Date}

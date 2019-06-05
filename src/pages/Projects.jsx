@@ -86,7 +86,6 @@ class Projects extends React.Component {
         }
       }
     }
-    console.log(renders);
     return renders;
   }
 
@@ -103,8 +102,8 @@ class Projects extends React.Component {
           <ReactFullpage
             scrollBar
             render={({ state }) => {
+              // eslint-disable-next-line no-console
               console.log(state);
-              console.log(renderSection);
               if (isLoading === false) {
                 return (
                   <ReactFullpage.Wrapper>
