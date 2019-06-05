@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Typography, withStyles } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 import { fetchProjects as fetchProjectsAction } from '../actions/allActions';
 import IdeaViewPanel from '../components/IdeaViewPanel';
 
@@ -11,10 +13,10 @@ const styles = theme => ({
     width: '100%',
     paddingTop: 20,
     paddingBottom: 20,
-    marginTop: theme.spacing.unit * 10,
+    marginTop: theme.spacing(10),
   },
   list: {
-    marginBottom: theme.spacing.unit * 10,
+    marginBottom: theme.spacing(10),
   },
 });
 
@@ -56,13 +58,11 @@ class Ideas extends React.Component {
       const openProjectData = [];
       keys.forEach((key) => { openProjectData[key] = data[i][key]; });
       const project = (
-        <div>
-          <IdeaViewPanel
-            openProjectData={openProjectData}
-            isLoading={isLoading}
-            serialNo={serialNo}
-          />
-        </div>
+        <IdeaViewPanel
+          openProjectData={openProjectData}
+          isLoading={isLoading}
+          serialNo={serialNo}
+        />
       );
       renders.push(project);
     }
@@ -72,15 +72,26 @@ class Ideas extends React.Component {
 
 
   render() {
-    const { classes } = this.props;
-    return (
+    const { classes, isLoading } = this.props;
+    if (isLoading === false) {
+      return (
+        <Container maxWidth="lg">
+          <Typography gutterBottom variant="h5" className={classes.centerText}>
+            Open Projects
+          </Typography>
+          <Box boxShadow={2}>
+            <div className={classes.list}>
+              {this.renderProjects()}
+            </div>
+          </Box>
+        </Container>
+      );
+    } return ( // isLoading === true
       <React.Fragment>
         <Typography gutterBottom variant="h5" className={classes.centerText}>
           Open Projects
         </Typography>
-        <div className={classes.list}>
-          {this.renderProjects()}
-        </div>
+        {this.renderProjects()}
       </React.Fragment>
     );
   }
