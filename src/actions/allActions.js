@@ -27,3 +27,15 @@ export const fetchResources = () => (dispatch) => {
     payload: fetch(urls.resourcesAPI).then(response => (response.json())),
   });
 };
+
+export const setVisibilityFilter = filter => ({
+  type: 'SET_VISIBILITY_FILTER',
+  filter,
+});
+
+export const VisibilityFilters = {
+  SHOW_ALL: 'SHOW_ALL',
+  SHOW_LABEL1: 'SHOW_LABEL1',
+  SHOW_LABEL2: 'SHOW_LABEL2',
+  SHOW_LABEL3: 'SHOW_LABEL3',
+};

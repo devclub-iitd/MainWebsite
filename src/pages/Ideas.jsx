@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { Typography, withStyles } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import { fetchProjects as fetchProjectsAction } from '../actions/allActions';
+import { VisibilityFilters, fetchProjects as fetchProjectsAction } from '../actions/allActions';
 import IdeaViewPanel from '../components/IdeaViewPanel';
+import IdeaFilter from '../components/IdeaFilter';
 
 const styles = theme => ({
   centerText: {
@@ -16,12 +17,28 @@ const styles = theme => ({
     marginTop: theme.spacing(10),
   },
   list: {
+    marginTop: theme.spacing(5),
     marginBottom: theme.spacing(10),
   },
 });
 
+const getVisibleIdeas = (data, filter) => {
+  switch (filter) {
+    case VisibilityFilters.SHOW_ALL:
+      return data;
+    case VisibilityFilters.SHOW_LABEL1:
+      return data.filter(d => d.Labels.includes('label1'));
+    case VisibilityFilters.SHOW_LABEL2:
+      return data.filter(d => d.Labels.includes('label2'));
+    case VisibilityFilters.SHOW_LABEL3:
+      return data.filter(d => d.Labels.includes('label3'));
+    default:
+      throw new Error(`Unknown filter: ${filter}`);
+  }
+};
+
 const mapStateToProps = state => ({
-  data: state.completeReducer.data.projects,
+  data: getVisibleIdeas(state.completeReducer.data.projects, state.visibilityFilter),
   isLoading: state.completeReducer.isLoading.projects,
   error: state.completeReducer.errorFetching.projects,
 });
@@ -79,6 +96,7 @@ class Ideas extends React.Component {
           <Typography gutterBottom variant="h5" className={classes.centerText}>
             Open Projects
           </Typography>
+          <IdeaFilter />
           <Box boxShadow={2}>
             <div className={classes.list}>
               {this.renderProjects()}

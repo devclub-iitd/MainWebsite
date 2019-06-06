@@ -65,15 +65,6 @@ class IdeaViewPanel extends React.Component {
     return null;
   }
 
-  Label = (str, serialNo) => {
-    if (str === '' || str === '-') {
-      return null;
-    }
-    return (
-      <Chip style={{ height: 27, background: this.backgroundColor(serialNo, 1) }} label={str} />
-    );
-  }
-
   render() {
     const {
       classes,
@@ -111,8 +102,14 @@ class IdeaViewPanel extends React.Component {
             </div>
             <div className={classes.labelColumn}>
               <Grid container justify="flex-end" spacing={2}>
-                {/* To be replaced with labels from api */}
-                <Grid item>{this.Label('sample label', serialNo)}</Grid>
+                {openProjectData.Labels.map(lb => (
+                  <Grid item>
+                    <Chip
+                      style={{ height: 27, background: this.backgroundColor(serialNo, 1) }}
+                      label={lb}
+                    />
+                  </Grid>
+                ))}
                 <Grid item>{this.acceptLabel(openProjectData['Accepted (Y/N)'])}</Grid>
               </Grid>
             </div>
