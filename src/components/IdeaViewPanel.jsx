@@ -56,7 +56,20 @@ class IdeaViewPanel extends React.Component {
       return colors.color3[shade];
     }
     return colors.color4[shade];
-  };
+  }
+
+  labelColor = (str) => {
+    if (str === 'label1') {
+      return colors.color1.light;
+    }
+    if (str === 'label2') {
+      return colors.color2.light;
+    }
+    if (str === 'label3') {
+      return colors.color3.light;
+    }
+    return colors.color4.light;
+  }
 
   acceptLabel = (str) => {
     if (str === 'Y') {
@@ -105,7 +118,7 @@ class IdeaViewPanel extends React.Component {
                 {openProjectData.Labels.map(lb => (
                   <Grid item>
                     <Chip
-                      style={{ height: 27, background: this.backgroundColor(serialNo, 1) }}
+                      style={{ height: 27, background: this.labelColor(lb) }}
                       label={lb}
                     />
                   </Grid>

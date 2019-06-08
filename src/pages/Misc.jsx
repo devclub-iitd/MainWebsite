@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Typography, withStyles } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
 import TreeView from '../components/TreeView';
 import { fetchResources as fetchResourcesAction } from '../actions/allActions';
 import CustomModal from '../components/CustomModal';
@@ -13,6 +14,10 @@ const styles = theme => ({
     paddingTop: 20,
     paddingBottom: 20,
     marginTop: theme.spacing(10),
+  },
+  list: {
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(10),
   },
 });
 
@@ -69,33 +74,44 @@ class Misc extends React.Component {
   }
 
   render() {
-    const { data, classes } = this.props;
+    const { data, classes, isLoading } = this.props;
+
+    if (isLoading !== false) {
+      return 'Loading';
+    }
     const processedData = processResourceData(data);
+
     return (
-      <div>
+      <React.Fragment>
         <Typography gutterBottom variant="h5" className={classes.centerText}>
           Resources
         </Typography>
-        <CustomModal
-          url="Misc"
-          id="Misc"
-          title="Misc"
-        />
-        <TreeView data={processedData.archive} />
-        <TreeView data={processedData.new} />
-      </div>
+        <Container maxWidth="sm">
+          <CustomModal
+            url="Misc"
+            id="Misc"
+            title="Misc"
+          />
+          <div className={classes.list}>
+            <TreeView data={processedData.archive} isLoading={isLoading} />
+            <TreeView data={processedData.new} isLoading={isLoading} />
+          </div>
+        </Container>
+      </React.Fragment>
     );
   }
 }
 
 Misc.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
+  isLoading: PropTypes.bool,
   fetchResources: PropTypes.func.isRequired,
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 Misc.defaultProps = {
   data: [],
+  isLoading: true,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Misc));

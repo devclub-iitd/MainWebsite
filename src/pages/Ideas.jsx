@@ -17,7 +17,7 @@ const styles = theme => ({
     marginTop: theme.spacing(10),
   },
   list: {
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(3),
     marginBottom: theme.spacing(10),
   },
 });

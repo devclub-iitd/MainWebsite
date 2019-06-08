@@ -13,8 +13,7 @@ const Link = ({ classes, children, onClick }) => (
   <Chip
     label={children}
     onClick={onClick}
-    color="secondary"
-    onDelete
+    clickable
     variant="outlined"
     className={classes.chip}
   />

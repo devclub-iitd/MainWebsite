@@ -9,20 +9,26 @@ import Collapse from '@material-ui/core/Collapse';
 import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Typography from '@material-ui/core/Typography';
+import Attachment from '@material-ui/icons/Attachment';
+import Divider from '@material-ui/core/Divider';
+import Box from '@material-ui/core/Box';
+import Folder from '@material-ui/icons/Folder';
+import { grey } from '@material-ui/core/colors';
 
 const styles = theme => ({
   root: {
     width: '100%',
-    maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
   },
   nested: {
-    maxWidth: 360,
     paddingLeft: theme.spacing.unit * 4,
+    backgroundColor: grey[100],
   },
   superNested: {
-    maxWidth: 360,
     paddingLeft: theme.spacing.unit * 4 * 2,
+    backgroundColor: grey[300],
   },
 });
 
@@ -36,6 +42,15 @@ class TreeView extends React.Component {
     this.generateTree.bind(this);
   }
 
+  listIcon = (level) => {
+    switch (level) {
+      case 0: return <SendIcon color="primary" />;
+      case 1: return <Folder />;
+      case 3: return <Attachment />;
+      default: return <Attachment />;
+    }
+  }
+
   handleClick(selfPath) {
     this.setState((prevState) => {
       if (prevState[selfPath] === undefined) {
@@ -46,7 +61,7 @@ class TreeView extends React.Component {
   }
 
   generateTree(obj, classes, level = 0, parentConcatenatedName) {
-    const parentDirectory = parentConcatenatedName === undefined ? 'root' : parentConcatenatedName;
+    const parentDirectory = parentConcatenatedName === undefined ? '' : parentConcatenatedName;
 
     let className = '';
     switch (level) {
@@ -65,11 +80,11 @@ class TreeView extends React.Component {
     if (Array.isArray(obj)) {
       for (let i = 0; i < obj.length; i += 1) {
         const listItemJSX = (
-          <ListItem key={`${level}tree${i}`} button className={className}>
-            <ListItemIcon>
-              <SendIcon />
-            </ListItemIcon>
-            <ListItemText inset primary={obj[i].name} />
+          <ListItem key={`${level}tree${i}`} className={className}>
+            <ButtonBase href={obj[i].URL}>
+              <ListItemIcon>{this.listIcon(level)}</ListItemIcon>
+              <Typography variant="body2">{obj[i].name}</Typography>
+            </ButtonBase>
           </ListItem>
         );
         listItems.push(listItemJSX);
@@ -77,6 +92,7 @@ class TreeView extends React.Component {
       return (
         <List component="div" disablePadding>
           {listItems}
+          <Divider />
         </List>
       );
     }
@@ -88,20 +104,23 @@ class TreeView extends React.Component {
       const { [selfPath]: selfPathOpenState } = this.state;
       const openState = selfPathOpenState === undefined ? false : selfPathOpenState;
       const listItemJSX = (
-        <ListItem
-          key={`${level}tree${i}`}
-          button
-          className={className}
-          onClick={
-            e => this.handleClick(selfPath, e)
-          }
-        >
-          <ListItemIcon>
-            <SendIcon />
-          </ListItemIcon>
-          <ListItemText inset primary={keys[i]} />
-          {openState ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
+        <div>
+          <ListItem
+            key={`${level}tree${i}`}
+            button
+            className={className}
+            onClick={
+              e => this.handleClick(selfPath, e)
+            }
+          >
+            <ListItemIcon>
+              {this.listIcon(level)}
+            </ListItemIcon>
+            <ListItemText primary={keys[i]} secondary={parentDirectory.split('/').pop()} />
+            {openState ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Divider />
+        </div>
       );
       listItems.push(listItemJSX);
       const subListJSX = (
@@ -114,14 +133,24 @@ class TreeView extends React.Component {
 
 
     return (
-      <List component="div" disablePadding>
-        {listItems}
-      </List>
+      <div className={classes.root}>
+        <Box boxShadow={2}>
+          <List component="div" disablePadding>
+            <Divider />
+            {listItems}
+          </List>
+        </Box>
+      </div>
     );
   }
 
   render() {
-    const { classes, data } = this.props;
+    const { classes, data, isLoading } = this.props;
+
+    if (isLoading !== false) {
+      return 'Loading TreeView\n';
+    }
+
     return (
       <React.Fragment>
         {this.generateTree(data, classes)}
@@ -133,6 +162,7 @@ class TreeView extends React.Component {
 TreeView.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   data: PropTypes.objectOf(PropTypes.object).isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(TreeView);
