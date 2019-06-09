@@ -2,6 +2,8 @@ import React from 'react';
 import Iframe from 'react-iframe';
 import { Typography, withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
+import Container from '@material-ui/core/Container';
+import GoogleMaps from '../components/GoogleMaps';
 
 const styles = theme => ({
   centerText: {
@@ -13,25 +15,28 @@ const styles = theme => ({
   },
 });
 
+
 const Contact = (props) => {
   const { classes } = props;
   return (
     <React.Fragment>
-      <div>
-        <Typography gutterBottom variant="h5" className={classes.centerText}>
-          Contact Us
+      <Typography gutterBottom variant="h5" className={classes.centerText}>
+        Contact Us
+      </Typography>
+      <GoogleMaps />
+      <Container maxWidth="md">
+        <Typography>
+          Contact Details Here
         </Typography>
-        <br />
-        Contact Details Here
-        <br />
-        More contact details
-        <br />
-        Give Iframe a class so that it scales accordingly.
-        <br />
+        <Typography>
+          More contact details
+        </Typography>
         <Iframe
           url="http://bit.ly/2U0uIOe"
+          width="100%"
+          height="700px"
         />
-      </div>
+      </Container>
     </React.Fragment>
   );
 };
