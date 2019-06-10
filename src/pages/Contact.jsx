@@ -1,5 +1,4 @@
 import React from 'react';
-import Iframe from 'react-iframe';
 import { Typography, withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
@@ -7,7 +6,9 @@ import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import { grey } from '@material-ui/core/colors';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import Grid from '@material-ui/core/Grid';
 import LocationMap from '../components/LocationMap';
+import Form from '../components/Form';
 
 const githubLogo = require('../media/github.png');
 const fbLogo = require('../media/facebook.png');
@@ -22,9 +23,7 @@ const styles = theme => ({
     marginTop: theme.spacing(10),
   },
   footer: {
-    textAlign: 'center',
-    paddingBottom: 20,
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(10),
   },
 });
 
@@ -57,26 +56,29 @@ const Contact = (props) => {
         right="4%"
       >
         <Paper elevation={24}>
-          <Box p={7}>
-              Contact Details Here
-          </Box>
           <Container maxWidth="md">
-            <Iframe
-              url="http://bit.ly/2U0uIOe"
-              width="100%"
-              height="700px"
-            />
-            <div className={classes.footer}>
-              <ButtonBase href="https://github.com/devclub-iitd">
-                <img src={githubLogo} alt="" />
-              </ButtonBase>
-              <ButtonBase href="https://www.facebook.com/tech.iitd/">
-                <img src={fbLogo} alt="" />
-              </ButtonBase>
-              <ButtonBase href="mailto: devclub.iitd@gmail.com">
-                <img src={mailLogo} alt="" />
-              </ButtonBase>
-            </div>
+            <Box p={7}>
+              Contact Details Here
+            </Box>
+            <Form />
+            <Grid container justify="center" spacing={3} className={classes.footer}>
+              <Grid item>
+                <ButtonBase href="https://github.com/devclub-iitd">
+                  <img src={githubLogo} alt="" />
+                </ButtonBase>
+              </Grid>
+              <Grid item>
+                <ButtonBase href="https://www.facebook.com/tech.iitd/">
+                  <img src={fbLogo} alt="" />
+                </ButtonBase>
+              </Grid>
+              <Grid item>
+                {/** link to be changed */}
+                <ButtonBase href="mailto:devclub.iitd@gmail.com">
+                  <img src={mailLogo} alt="" />
+                </ButtonBase>
+              </Grid>
+            </Grid>
           </Container>
         </Paper>
       </Box>

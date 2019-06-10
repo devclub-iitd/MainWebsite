@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const marker = require('../media/marker.png');
 
@@ -50,9 +50,10 @@ export default function LocationMap() {
               setSelected(null);
             }}
           >
-            <Typography>
-              IIT Delhi
-            </Typography>
+            <Box m={2}>
+              DevClub
+              IIT Delhi, Hauz Khas, New Delhi-110 016, India
+            </Box>
           </Popup>
         ) : null}
       </ReactMapGL>
