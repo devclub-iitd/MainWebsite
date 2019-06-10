@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Box from '@material-ui/core/Box';
-
-const marker = require('../media/marker.png');
+import { MapMarker } from 'mdi-material-ui';
+import { red } from '@material-ui/core/colors';
 
 // to be replaced with devclub's token;
 const ACCESS_TOKEN = 'pk.eyJ1Ijoic3ZnMTIzNDU2IiwiYSI6ImNqd291ZTV0bDBhOTczeW13emprMWFpZ20ifQ.RVNSN4qTOLs3FxUwO6npvA';
@@ -32,16 +32,16 @@ export default function LocationMap() {
           latitude={28.544972}
           longitude={77.190524}
         >
+
           <ButtonBase
             onClick={(e) => {
               e.preventDefault();
               setSelected(true);
             }}
           >
-            <img src={marker} alt="" />
+            <MapMarker style={{ color: red[500], fontSize: 65 }} />
           </ButtonBase>
         </Marker>
-
         {selected ? (
           <Popup
             latitude={28.544972}
@@ -51,8 +51,7 @@ export default function LocationMap() {
             }}
           >
             <Box m={2}>
-              DevClub
-              IIT Delhi, Hauz Khas, New Delhi-110 016, India
+              DevClub - IIT Delhi, Hauz Khas, New Delhi-110 016, India
             </Box>
           </Popup>
         ) : null}
