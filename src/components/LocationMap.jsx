@@ -24,8 +24,8 @@ export default function LocationMap() {
         {...viewport}
         mapboxApiAccessToken={ACCESS_TOKEN}
         mapStyle="mapbox://styles/mapbox/streets-v9"
-        onViewportChange={(viewport) => {
-          setViewport(viewport);
+        onViewportChange={(viewport_) => {
+          setViewport(viewport_);
         }}
       >
         <Marker

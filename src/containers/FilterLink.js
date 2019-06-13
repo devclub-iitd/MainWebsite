@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { setVisibilityFilter } from '../actions/allActions';
-// eslint-disable-next-line import/extensions
-import Link from '../components/Link.jsx';
+import Link from '../components/Link';
 
 const mapStateToProps = (state, ownProps) => ({
   active: ownProps.filter === state.visibilityFilter,

@@ -29,6 +29,38 @@ const mapDispatchToProps = dispatch => ({
   fetchMembers: () => dispatch(fetchTeamAction()),
 });
 
+function renderSections(array) {
+  let arrayLength = 2;
+  if (window.innerWidth >= 1280) {
+    arrayLength = 8;
+  } else if (window.innerWidth >= 480) {
+    arrayLength = 6;
+  }
+  // console.log(arrayLength);
+
+  if (array.length <= arrayLength) {
+    const section = (
+      <Grid container>
+        {array}
+      </Grid>
+    );
+    return section;
+  }
+  const slides = [];
+  for (let i = 0; i < array.length; i += arrayLength) {
+    const slide = (
+      <div className="slide">
+        <Grid container>
+          {array.slice(i, i + arrayLength)}
+        </Grid>
+      </div>
+    );
+    slides.push(slide);
+  }
+  return slides;
+}
+
+
 class Team extends React.Component {
   constructor(props) {
     super(props);
@@ -82,37 +114,6 @@ class Team extends React.Component {
     return renders;
   }
 
-  renderSections(array) {
-    let arrayLength = 2;
-    if (window.innerWidth >= 1280) {
-      arrayLength = 8;
-    } else if (window.innerWidth >= 480) {
-      arrayLength = 6;
-    }
-    console.log(arrayLength);
-
-    if (array.length <= arrayLength) {
-      const section = (
-        <Grid container>
-          {array}
-        </Grid>
-      );
-      return section;
-    }
-    const slides = [];
-    for (let i = 0; i < array.length; i += arrayLength) {
-      const slide = (
-        <div className="slide">
-          <Grid container>
-            {array.slice(i, i + arrayLength)}
-          </Grid>
-        </div>
-      );
-      slides.push(slide);
-    }
-    return slides;
-  }
-
   render() {
     const { classes, isLoading } = this.props;
     const renders = this.renderMembers();
@@ -125,9 +126,9 @@ class Team extends React.Component {
             controlArrows={false}
             render={() => {
               if (isLoading === false) {
-                const seniorSection = this.renderSections(renders.senior);
-                const juniorSection = this.renderSections(renders.junior);
-                const sophoSection = this.renderSections(renders.sopho);
+                const seniorSection = renderSections(renders.senior);
+                const juniorSection = renderSections(renders.junior);
+                const sophoSection = renderSections(renders.sopho);
                 return (
                   <ReactFullpage.Wrapper>
                     <div className="section">
