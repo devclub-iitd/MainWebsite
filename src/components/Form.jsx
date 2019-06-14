@@ -15,7 +15,7 @@ class Form extends React.Component {
   showForm = () => {
     this.setState({
       isLoading: false,
-      height: '600px',
+      height: '850px',
     });
   };
 
@@ -27,8 +27,11 @@ class Form extends React.Component {
           <Typography>
             Loading
           </Typography>
-        ) : null}
-        <Box boxShadow={2}>
+        ) : (
+          null
+        )
+        }
+        <Box>
           <Iframe
             onLoad={this.showForm}
             frameBorder="0"

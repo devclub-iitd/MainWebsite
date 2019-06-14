@@ -81,7 +81,7 @@ class TreeView extends React.Component {
       for (let i = 0; i < obj.length; i += 1) {
         const listItemJSX = (
           <ListItem key={`${level}tree${i}`} className={className}>
-            <ButtonBase href={obj[i].URL}>
+            <ButtonBase target="_blank" rel="noopener noreferrer" href={obj[i].URL}>
               <ListItemIcon>{this.listIcon(level)}</ListItemIcon>
               <Typography variant="body2">{obj[i].name}</Typography>
             </ButtonBase>
