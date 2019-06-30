@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import React from 'react';
 import { withStyles, Grid } from '@material-ui/core';
 import styled, { css, keyframes } from 'styled-components';
@@ -17,7 +18,7 @@ import react from '../images/react-freepik.svg';
 const styles = () => ({
   root: {
     width: '90vw',
-    height: '55vh',
+    height: '90vh',
     marginTop: '10vh',
     willChange: 'width, height, left, top',
     marginLeft: '5vw',
@@ -32,10 +33,15 @@ const styles = () => ({
   scriptBox: {
     position: 'relative',
   },
-  typing: {
+  typingContainer: {
     position: 'relative',
+    height: '90vh',
+  },
+  typing: {
+    marginTop: '25vh',
     fontSize: '36px',
     textAlign: 'center',
+    margin: 'auto',
   },
   line1: {
     fontSize: '28px',
@@ -62,7 +68,7 @@ const AnimatedSvg = styled.div`
 
 function responsiveDistance(distance) {
   let ratio = window.innerWidth / 1920;
-  ratio = ratio < 0.6 ? 0.6 : ratio;
+  ratio = ratio < 0.3 ? 0.3 : ratio;
   return ratio * distance;
 }
 

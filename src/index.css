@@ -22,8 +22,8 @@ code {
 .card1 {
   min-width: 30ch;
   min-height: 30ch;
-  width: 25vw;
-  height: 25vw;
+  width: 20vw;
+  height: 20vw;
   max-width: 80ch;
   max-height: 80ch;
   background-image: url(images/devices-srip.svg);
@@ -34,6 +34,7 @@ code {
   height: 3.5vw;
   min-width: 5ch;
   min-height: 5ch;
+  /* animation: orbit1 5s infinite linear; */
 }
 
 .card2 {
