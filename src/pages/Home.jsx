@@ -6,6 +6,7 @@ import { withStyles, Grid } from '@material-ui/core';
 import styled, { css, keyframes } from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 import PropTypes from 'prop-types';
+import Process from '../components/Process';
 
 import css3 from '../images/css-3-pp.svg';
 import html5 from '../images/html-5-freepik.svg';
@@ -201,6 +202,7 @@ const Home = (props) => {
             <Intro classes={classes} />
           </Grid>
         </Grid>
+        <Process />
       </div>
       {/* <a href="http://bit.ly/2CGChyY"> Report bugs/Suggestions.</a> */}
     </React.Fragment>
