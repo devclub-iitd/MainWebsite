@@ -75,7 +75,7 @@ class Projects extends React.Component {
         if (group.length === groupLength) {
           // Number of projects to be displayed in a single FullPage Component
           const section = (
-            <div className="section">
+            <div className="section" key={i}>
               <Grid container>
                 {group}
               </Grid>

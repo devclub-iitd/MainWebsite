@@ -104,7 +104,7 @@ class TreeView extends React.Component {
       const { [selfPath]: selfPathOpenState } = this.state;
       const openState = selfPathOpenState === undefined ? false : selfPathOpenState;
       const listItemJSX = (
-        <div>
+        <div key={`${level}tree${i}`}>
           <ListItem
             key={`${level}tree${i}`}
             button

@@ -71,7 +71,7 @@ class Events extends React.Component {
       keys.forEach((key) => { eventData[key] = data[i][key]; });
       if (eventData.DisplayOnWebsite === 'Y') {
         const project = (
-          <Paper className={classes.paper}>
+          <Paper className={classes.paper} key={i}>
             <div className={classes.eventText}>
               <Typography variant="h5" component="h3" className={classes.eventTitle} display="inline">
                 {eventData.Name}

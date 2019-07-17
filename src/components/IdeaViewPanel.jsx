@@ -116,7 +116,7 @@ class IdeaViewPanel extends React.Component {
             <div className={classes.labelColumn}>
               <Grid container justify="flex-end" spacing={2}>
                 {openProjectData.Labels.map(lb => (
-                  <Grid item>
+                  <Grid item key={lb}>
                     <Chip
                       style={{ height: 27, background: this.labelColor(lb) }}
                       label={lb}

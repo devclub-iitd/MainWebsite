@@ -24,8 +24,12 @@ const Menu = [
     pathname: '/ideas',
   },
   {
-    label: 'Others Things',
+    label: 'Resources',
     pathname: '/misc',
+  },
+  {
+    label: 'About Us',
+    pathname: '/about',
   },
 ];
 
