@@ -11,7 +11,7 @@ import css3 from '../images/css-3-pp.svg';
 import html5 from '../images/html-5-freepik.svg';
 import js from '../images/java-script-pp.svg';
 import python from '../images/python-freepik.svg';
-import bash from '../images/gnu-bash-freepik.svg';
+import bash from '../images/gnu-bash.svg';
 import ts from '../images/typescript-freepik.svg';
 import docker from '../images/docker-freepik.svg';
 import react from '../images/react-freepik.svg';
@@ -158,11 +158,11 @@ const Intro = (props) => {
     ref.current.map(clearTimeout);
     ref.current = [];
     set([]);
-    ref.current.push(setTimeout(() => set(['This is ', 'Software', 'Development', 'Club', 'IIT Delhi']), 3000));
-    ref.current.push(setTimeout(() => set(['This is ', 'Development', 'Club', 'IIT Delhi']), 4000));
-    ref.current.push(setTimeout(() => set(['This is ', 'Club', 'IIT Delhi']), 5000));
-    ref.current.push(setTimeout(() => set(['This is ', 'DevClub', 'IIT Delhi']), 8000));
-    ref.current.push(setTimeout(() => set(['This is ', 'DevClub']), 11000));
+    ref.current.push(setTimeout(() => set(['This is ', 'Software', 'Development', 'Club', 'IIT Delhi']), 1000));
+    ref.current.push(setTimeout(() => set(['This is ', 'Development', 'Club', 'IIT Delhi']), 2000));
+    ref.current.push(setTimeout(() => set(['This is ', 'Club', 'IIT Delhi']), 3000));
+    ref.current.push(setTimeout(() => set(['This is ', 'DevClub', 'IIT Delhi']), 6000));
+    ref.current.push(setTimeout(() => set(['This is ', 'DevClub']), 9000));
   }, []);
 
   useEffect(() => reset(), []);

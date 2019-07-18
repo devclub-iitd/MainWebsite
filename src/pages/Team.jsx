@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { Typography, withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import ReactFullpage from '@fullpage/react-fullpage';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import MemberViewCard from '../components/MemberViewCard';
 import { fetchMembers as fetchTeamAction } from '../actions/allActions';
 
@@ -16,6 +17,13 @@ const styles = theme => ({
     paddingTop: 20,
     paddingBottom: 20,
     marginTop: theme.spacing.unit * 10,
+  },
+  loadingCircle: {
+    color: '#6798e5',
+    animationDuration: '600ms',
+    position: 'absolute',
+    left: '50%',
+    top: '50%',
   },
 });
 
@@ -72,10 +80,14 @@ class Team extends React.Component {
   }
 
   renderMembers() {
-    const { data, isLoading, error } = this.props;
+    const {
+      data, isLoading, error, classes,
+    } = this.props;
 
     if (isLoading !== false) {
-      return 'Loading';
+      return (
+        <CircularProgress disableShrink size={50} className={classes.loadingCircle} />
+      );
     }
     if (error) {
       return 'Error';

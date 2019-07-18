@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Typography, withStyles } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import TreeView from '../components/TreeView';
 import { fetchResources as fetchResourcesAction } from '../actions/allActions';
 import CustomModal from '../components/CustomModal';
@@ -18,6 +19,13 @@ const styles = theme => ({
   list: {
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(10),
+  },
+  loadingCircle: {
+    color: '#6798e5',
+    animationDuration: '600ms',
+    position: 'absolute',
+    left: '50%',
+    top: '50%',
   },
 });
 
@@ -77,7 +85,9 @@ class Misc extends React.Component {
     const { data, classes, isLoading } = this.props;
 
     if (isLoading !== false) {
-      return 'Loading';
+      return (
+        <CircularProgress disableShrink size={50} className={classes.loadingCircle} />
+      );
     }
     const processedData = processResourceData(data);
 
