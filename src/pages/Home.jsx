@@ -154,7 +154,7 @@ const Intro = (props) => {
     update: { color: '#28b4d7' },
   });
 
-  const reset = useCallback(() => {
+  const typefont = useCallback(() => {
     ref.current.map(clearTimeout);
     ref.current = [];
     set([]);
@@ -165,12 +165,12 @@ const Intro = (props) => {
     ref.current.push(setTimeout(() => set(['This is ', 'DevClub']), 9000));
   }, []);
 
-  useEffect(() => reset(), []);
+  useEffect(() => typefont(), []);
 
   return (
     <div className={classes.intro}>
       {transitions.map(({ item, props: { innerHeight, ...rest }, key }) => (
-        <animated.div className={classes.transitionsItem} key={key} style={rest} onClick={reset}>
+        <animated.div className={classes.transitionsItem} key={key} style={rest} onClick={typefont}>
           <animated.div className={classes.transitionsText}>{item}</animated.div>
         </animated.div>
       ))}

@@ -20,3 +20,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# local
+src/config/firebase_config.jsx
+src/images/back-arrow.svg
+src/images/logo.svg
+src/images/rectangle.svg
+src/images/shape.svg

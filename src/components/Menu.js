@@ -4,8 +4,8 @@ const Menu = [
     pathname: '/',
   },
   {
-    label: 'Contact Us',
-    pathname: '/contact',
+    label: 'About Us',
+    pathname: '/about',
   },
   {
     label: 'Events',
@@ -28,8 +28,8 @@ const Menu = [
     pathname: '/misc',
   },
   {
-    label: 'About Us',
-    pathname: '/about',
+    label: 'Contact Us',
+    pathname: '/contact',
   },
 ];
 

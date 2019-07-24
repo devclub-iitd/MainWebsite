@@ -21,6 +21,12 @@ const styles = theme => ({
     paddingBottom: 20,
     marginTop: theme.spacing(10),
   },
+  centerBody: {
+    textAlign: 'center',
+    width: '80%',
+    maxWidth: '900px',
+    margin: 'auto',
+  },
   root: {
     width: '100%',
     marginBottom: theme.spacing(10),
@@ -95,18 +101,19 @@ function getStepContent(step, classes) {
         <div>
           <Typography className={classes.caption}>DESIGN</Typography>
           <Typography className={classes.description}>
-            Design and Documentation.
+            Design and Documentation, starting from UI design to the backend requirements,
+            this is where the foundation of our projects lie.
           </Typography>
         </div>
       );
     }
     case 2: {
-      const team = <Link to="/team" className={classes.link}>Meet the team</Link>;
+      const team = <Link to="/team" className={classes.link}>magicians</Link>;
       return (
         <div>
           <Typography className={classes.caption}>CODE</Typography>
           <Typography className={classes.description}>
-            Where the magic happens!
+            Where the magic happens! Meet our
             {' '}
             {team}
             .
@@ -208,7 +215,7 @@ const Process = (props) => {
                       Back
                     </Button>
                     <Button size="small" onClick={handleNext} className={classes.nextButton}>
-                        Next
+                      Next
                       <KeyboardArrowRight style={{ fontSize: 20 }} />
                     </Button>
                   </div>
@@ -226,7 +233,13 @@ const AboutUs = (props) => {
   const { classes } = props;
   return (
     <React.Fragment>
-      <Typography variant="h5" gutterBottom className={classes.centerText}>Discover our process.</Typography>
+      <Typography variant="h5" gutterBottom className={classes.centerText}>Inception</Typography>
+      <Typography variant="body1" gutterBottom className={classes.centerBody}>
+        Dev Club is a student group that tries to innovate and foster technical activities,
+        and create a coding culture which is somewhat missing.
+        And we develop cool stuff that benefits everyone in the campus.
+      </Typography>
+      <Typography variant="h5" gutterBottom className={classes.centerText}>Discover Our Process</Typography>
       <Process classes={classes} />
     </React.Fragment>
   );
