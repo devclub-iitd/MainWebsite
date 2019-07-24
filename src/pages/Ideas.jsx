@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Typography, withStyles } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { VisibilityFilters, fetchProjects as fetchProjectsAction } from '../actions/allActions';
 import IdeaViewPanel from '../components/IdeaViewPanel';
 import IdeaFilter from '../components/IdeaFilter';
+import Loading from '../components/Loading';
 
 const styles = theme => ({
   centerText: {
@@ -20,13 +20,6 @@ const styles = theme => ({
   list: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(10),
-  },
-  loadingCircle: {
-    color: '#6798e5',
-    animationDuration: '600ms',
-    position: 'absolute',
-    left: '50%',
-    top: '50%',
   },
 });
 
@@ -66,12 +59,12 @@ class Ideas extends React.Component {
 
   renderProjects() {
     const {
-      data, isLoading, error, classes,
+      data, isLoading, error,
     } = this.props;
 
     if (isLoading !== false) {
       return (
-        <CircularProgress disableShrink size={50} className={classes.loadingCircle} />
+        <Loading />
       );
     }
     if (error) {

@@ -4,9 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import { Paper, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchEvents as fetchEventsAction } from '../actions/allActions';
 import EventAlbumList from '../components/EventAlbumList';
+import Loading from '../components/Loading';
 
 const styles = theme => ({
   centerText: {
@@ -29,13 +29,6 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit,
     marginRight: 'auto',
     marginLeft: 'auto',
-  },
-  loadingCircle: {
-    color: '#6798e5',
-    animationDuration: '600ms',
-    position: 'absolute',
-    left: '50%',
-    top: '50%',
   },
 });
 
@@ -66,7 +59,7 @@ class Events extends React.Component {
 
     if (isLoading !== false) {
       return (
-        <CircularProgress disableShrink size={50} className={classes.loadingCircle} />
+        <Loading />
       );
     }
     if (error) {
