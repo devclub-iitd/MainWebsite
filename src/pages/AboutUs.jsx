@@ -235,9 +235,18 @@ const AboutUs = (props) => {
     <React.Fragment>
       <Typography variant="h5" gutterBottom className={classes.centerText}>Inception</Typography>
       <Typography variant="body1" gutterBottom className={classes.centerBody}>
-        Dev Club is a student group that tries to innovate and foster technical activities,
+        DevClub is a student group that tries to innovate and foster technical activities,
         and create a coding culture which is somewhat missing.
         And we develop cool stuff that benefits everyone in the campus.
+      </Typography>
+      <Typography variant="body1" gutterBottom className={classes.centerBody}>
+        A couple of our seniors realized that there is no such community in our college
+        where students can apply their skills into developing something actually useful
+        and that this must be fixed as soon as possible.
+        Hence, they came up with the idea of this club - Our own
+        {' '}
+        <strong>DevClub</strong>
+        .
       </Typography>
       <Typography variant="h5" gutterBottom className={classes.centerText}>Discover Our Process</Typography>
       <Process classes={classes} />
