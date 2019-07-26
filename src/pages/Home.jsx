@@ -158,11 +158,10 @@ const Intro = (props) => {
     ref.current.map(clearTimeout);
     ref.current = [];
     set([]);
-    ref.current.push(setTimeout(() => set(['This is ', 'Software', 'Development', 'Club', 'IIT Delhi']), 1000));
-    ref.current.push(setTimeout(() => set(['This is ', 'Development', 'Club', 'IIT Delhi']), 2000));
-    ref.current.push(setTimeout(() => set(['This is ', 'Club', 'IIT Delhi']), 3000));
-    ref.current.push(setTimeout(() => set(['This is ', 'DevClub', 'IIT Delhi']), 6000));
-    ref.current.push(setTimeout(() => set(['This is ', 'DevClub']), 9000));
+    ref.current.push(setTimeout(() => set(['Welcome to ', 'Software Development', 'Club, IIT Delhi']), 2000));
+    ref.current.push(setTimeout(() => set(['Welcome to ', 'Club, IIT Delhi']), 2500));
+    ref.current.push(setTimeout(() => set(['Welcome to ']), 3000));
+    ref.current.push(setTimeout(() => set(['Welcome to ', 'DevClub']), 4000));
   }, []);
 
   useEffect(() => typefont(), []);
@@ -170,7 +169,7 @@ const Intro = (props) => {
   return (
     <div className={classes.intro}>
       {transitions.map(({ item, props: { innerHeight, ...rest }, key }) => (
-        <animated.div className={classes.transitionsItem} key={key} style={rest} onClick={typefont}>
+        <animated.div className={classes.transitionsItem} key={key} style={rest}>
           <animated.div className={classes.transitionsText}>{item}</animated.div>
         </animated.div>
       ))}
