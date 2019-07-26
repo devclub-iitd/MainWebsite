@@ -1,65 +1,48 @@
 import React, { useState } from 'react';
-import ReactMapGL, {
-  Marker,
-  Popup,
-  NavigationControl,
-} from 'react-map-gl';
-import IconButton from '@material-ui/core/IconButton';
-import Box from '@material-ui/core/Box';
+import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl';
 import { MapMarker } from 'mdi-material-ui';
-import { red } from '@material-ui/core/colors';
+import Box from '@material-ui/core/Box';
 
-// to be replaced with devclub's token;
-const ACCESS_TOKEN = 'pk.eyJ1Ijoic3ZnMTIzNDU2IiwiYSI6ImNqd291ZTV0bDBhOTczeW13emprMWFpZ20ifQ.RVNSN4qTOLs3FxUwO6npvA';
+const Map = ReactMapboxGl({
+  // to be replaced with devclub's token;
+  accessToken:
+    'pk.eyJ1Ijoic3ZnMTIzNDU2IiwiYSI6ImNqd291ZTV0bDBhOTczeW13emprMWFpZ20ifQ.RVNSN4qTOLs3FxUwO6npvA',
+});
 
-const navStyle = {
-  position: 'absolute',
-  bottom: '10%',
-  right: '1%',
-  padding: '10px',
-};
-
-export default function LocationMap() {
-  const [viewport, setViewport] = useState({
-    latitude: 28.544972,
-    longitude: 77.190524,
-    width: '100%',
-    height: window.innerHeight,
-    zoom: 10,
-  });
+const LocationMap = () => {
   const [selected, setSelected] = useState(false);
-
   return (
-    <ReactMapGL
-      {...viewport}
-      mapboxApiAccessToken={ACCESS_TOKEN}
-      mapStyle="mapbox://styles/mapbox/streets-v9"
-      onViewportChange={(viewport_) => {
-        setViewport(viewport_);
+    <Map
+    // eslint-disable-next-line react/style-prop-object
+      style="mapbox://styles/mapbox/streets-v9"
+      containerStyle={{
+        height: window.innerHeight,
+        width: '100%',
       }}
+      center={[77.190524, 28.544972]}
+      zoom={[10]}
     >
-      <Marker
-        key="marker"
-        latitude={28.544972}
-        longitude={77.190524}
-      >
-        <IconButton
-          size="small"
-          onClick={(e) => {
-            e.preventDefault();
-            setSelected(true);
-          }}
-        >
-          <MapMarker style={{ color: red[500], fontSize: 65 }} />
-        </IconButton>
-      </Marker>
 
+      <Marker
+        coordinates={[77.190524, 28.544972]}
+        anchor="center"
+        style={{ zIndex: 1 }}
+        onClick={(e) => {
+          e.preventDefault();
+          setSelected(true);
+        }}
+      >
+        <MapMarker style={{ fontSize: 50 }} />
+      </Marker>
       {selected ? (
         <Popup
-          latitude={28.544972}
-          longitude={77.190524}
+          style={{ zIndex: 1 }}
+          coordinates={[77.190524, 28.544972]}
           onClose={() => {
             setSelected(null);
+          }}
+          offset={{
+            'bottom-left': [12, -38], bottom: [0, -38], 'bottom-right': [-12, -38],
           }}
         >
           <Box m={2}>
@@ -67,10 +50,9 @@ export default function LocationMap() {
           </Box>
         </Popup>
       ) : null}
-
-      <div className="nav" style={navStyle}>
-        <NavigationControl />
-      </div>
-    </ReactMapGL>
+    </Map>
   );
-}
+};
+
+
+export default LocationMap;

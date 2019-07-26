@@ -95,7 +95,7 @@ const renderPage = (classes) => {
         position="absolute"
         zIndex={2}
         left={0}
-        right="65%"
+        right="60%"
         top={170}
         bottom={70}
         boxShadow={15}
