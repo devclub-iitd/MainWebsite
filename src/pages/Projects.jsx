@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { Typography, withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import ReactFullpage from '@fullpage/react-fullpage';
+import Box from '@material-ui/core/Box';
 import { fetchProjects as fetchProjectsAction } from '../actions/allActions';
 import ProjectViewCard from '../components/ProjectViewCard';
 import Loading from '../components/Loading';
@@ -119,7 +120,9 @@ class Projects extends React.Component {
               return (
                 <ReactFullpage.Wrapper>
                   <div className="section">
-                      Loading
+                    <Box position="absolute" top="30%" left="50%">
+                      <Loading />
+                    </Box>
                   </div>
                 </ReactFullpage.Wrapper>
               );
