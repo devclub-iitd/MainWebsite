@@ -16,7 +16,7 @@ const LocationMap = () => {
     // eslint-disable-next-line react/style-prop-object
       style="mapbox://styles/mapbox/streets-v9"
       containerStyle={{
-        height: window.innerHeight,
+        height: window.innerHeight * (0.6),
         width: '100%',
       }}
       center={[77.190524, 28.544972]}
