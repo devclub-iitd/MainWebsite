@@ -94,7 +94,7 @@ class Team extends React.Component {
     }
 
     let renders = {};
-    const senior = []; const junior = []; const sopho = [];
+    const senior = []; const junior = []; const sopho = []; const alumni = [];
 
     const keys = Object.keys(data[0]);
 
@@ -112,8 +112,10 @@ class Team extends React.Component {
           senior.push(col);
         } else if (memberData.Category === 'Junior Undergraduate') {
           junior.push(col);
-        } else {
+        } else if (memberData.Category === 'Sophomore') {
           sopho.push(col);
+        } else {
+          alumni.push(col);
         }
       }
     }
@@ -122,6 +124,7 @@ class Team extends React.Component {
       senior,
       junior,
       sopho,
+      alumni,
     };
     return renders;
   }
@@ -141,6 +144,7 @@ class Team extends React.Component {
                 const seniorSection = renderSections(renders.senior, 'Senior Undergraduates', classes);
                 const juniorSection = renderSections(renders.junior, 'Junior Undergraduates', classes);
                 const sophoSection = renderSections(renders.sopho, 'Sophomores', classes);
+                const alumniSection = renderSections(renders.alumni, 'Alumni', classes);
                 return (
                   <ReactFullpage.Wrapper>
                     <div className="section">
@@ -151,6 +155,9 @@ class Team extends React.Component {
                     </div>
                     <div className="section">
                       {sophoSection}
+                    </div>
+                    <div className="section">
+                      {alumniSection}
                     </div>
                   </ReactFullpage.Wrapper>
                 );
