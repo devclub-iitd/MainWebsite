@@ -30,20 +30,24 @@ const mapDispatchToProps = dispatch => ({
   fetchMembers: () => dispatch(fetchTeamAction()),
 });
 
-function renderSections(array) {
+function renderSections(array, string, classes) {
   let arrayLength = 2;
-  if (window.innerWidth >= 1280) {
-    arrayLength = 8;
-  } else if (window.innerWidth >= 480) {
+  if (window.innerWidth >= 960) {
     arrayLength = 6;
+  } else if (window.innerWidth >= 600) {
+    arrayLength = 4;
   }
-  // console.log(arrayLength);
 
   if (array.length <= arrayLength) {
     const section = (
-      <Grid container>
-        {array}
-      </Grid>
+      <React.Fragment>
+        <Typography gutterBottom variant="h5" className={classes.centerText}>
+          {string}
+        </Typography>
+        <Grid container>
+          {array}
+        </Grid>
+      </React.Fragment>
     );
     return section;
   }
@@ -51,6 +55,9 @@ function renderSections(array) {
   for (let i = 0; i < array.length; i += arrayLength) {
     const slide = (
       <div className="slide">
+        <Typography gutterBottom variant="h5" className={classes.centerText}>
+          {string}
+        </Typography>
         <Grid container>
           {array.slice(i, i + arrayLength)}
         </Grid>
@@ -97,7 +104,7 @@ class Team extends React.Component {
 
       if (memberData.DisplayOnWebsite === 'Y') {
         const col = (
-          <Grid item key={`frag${i}`} xs={12} md={4} lg={3}>
+          <Grid item key={`frag${i}`} xs={12} sm={6} md={4}>
             <MemberViewCard memberData={memberData} isLoading={isLoading} />
           </Grid>
         );
@@ -131,27 +138,18 @@ class Team extends React.Component {
             controlArrows={false}
             render={() => {
               if (isLoading === false) {
-                const seniorSection = renderSections(renders.senior);
-                const juniorSection = renderSections(renders.junior);
-                const sophoSection = renderSections(renders.sopho);
+                const seniorSection = renderSections(renders.senior, 'Senior Undergraduates', classes);
+                const juniorSection = renderSections(renders.junior, 'Junior Undergraduates', classes);
+                const sophoSection = renderSections(renders.sopho, 'Sophomores', classes);
                 return (
                   <ReactFullpage.Wrapper>
                     <div className="section">
-                      <Typography gutterBottom variant="h5" className={classes.centerText}>
-                        Senior Undergraduates
-                      </Typography>
                       {seniorSection}
                     </div>
                     <div className="section">
-                      <Typography gutterBottom variant="h5" className={classes.centerText}>
-                        Junior Undergraduates
-                      </Typography>
                       {juniorSection}
                     </div>
                     <div className="section">
-                      <Typography gutterBottom variant="h5" className={classes.centerText}>
-                        Sophomores
-                      </Typography>
                       {sophoSection}
                     </div>
                   </ReactFullpage.Wrapper>

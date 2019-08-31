@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Chip from '@material-ui/core/Chip';
 import { Facebook, GithubCircle, Email } from 'mdi-material-ui';
 import Typography from '@material-ui/core/Typography';
 import { grey } from '@material-ui/core/colors';
@@ -15,7 +15,7 @@ import colors from './Pallete';
 
 const styles = theme => ({
   card: {
-    minWidth: 275,
+    minWidth: 260,
     margin: '10px',
   },
   cardContent: {
@@ -31,6 +31,7 @@ const styles = theme => ({
   },
   intro: {
     minHeight: 70,
+    marginTop: 10,
   },
   bullet: {
     display: 'inline-block',
@@ -49,8 +50,8 @@ const styles = theme => ({
   },
   bigAvatar: {
     margin: '0 auto',
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
   },
   social: {
     display: 'flex',
@@ -66,6 +67,13 @@ const styles = theme => ({
     '&:hover': {
       color: grey[800],
     },
+  },
+  memberDetails: {
+    width: 250,
+    margin: 'auto',
+  },
+  memberName: {
+    width: '100%',
   },
 });
 
@@ -104,26 +112,34 @@ class MemberViewCard extends Component {
     return (
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
-          <div>
-            <div className={classes.avatarHolder}>
-              <Avatar alt={memberData.Name} src={memberData['Picture URL']} className={classes.bigAvatar} />
-            </div>
-            <Typography variant="h5" component="h2">
-              {memberData.Name}
-            </Typography>
+          <div className={classes.memberDetails}>
+            <MediaQuery maxDeviceWidth={1400}>
+              <Grid container alignItems="center" justify="center">
+                <Grid item xs={5}>
+                  <div className={classes.avatarHolder}>
+                    <Avatar alt={memberData.Name} src={memberData['Picture URL']} className={classes.bigAvatar} />
+                  </div>
+                </Grid>
+                <Grid item xs={7}>
+                  <Typography variant="h6" component="h4" className={classes.memberName}>
+                    {memberData.Name}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </MediaQuery>
+            <MediaQuery minDeviceWidth={1401}>
+              <div className={classes.avatarHolder}>
+                <Avatar alt={memberData.Name} src={memberData['Picture URL']} className={classes.bigAvatar} />
+              </div>
+              <Typography variant="h6" component="h4" className={classes.memberName}>
+                {memberData.Name}
+              </Typography>
+            </MediaQuery>
           </div>
-          <MediaQuery query="(min-device-width: 1224px)">
-            <Typography component="p" className={classes.intro}>
-              {memberData.Description}
-            </Typography>
-          </MediaQuery>
+          <Typography component="p" className={classes.intro}>
+            {memberData.Description}
+          </Typography>
         </CardContent>
-        <Chip
-          label={memberData.Category}
-          className={classes.chip}
-          component="a"
-          clickable
-        />
         <StyledCardActions theme={backgroundTheme}>
           <div className={classes.social}>
             <a href={memberData['FB URL']} className={classes.socialIcon}><Facebook /></a>

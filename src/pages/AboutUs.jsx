@@ -101,7 +101,7 @@ function getStepContent(step, classes) {
         <div>
           <Typography className={classes.caption}>DESIGN</Typography>
           <Typography className={classes.description}>
-            Design and Documentation, starting from UI design to the backend requirements,
+            Design and Documentation, from UI to backend,
             this is where the foundation of our projects lie.
           </Typography>
         </div>
