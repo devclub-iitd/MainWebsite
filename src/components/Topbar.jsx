@@ -105,13 +105,12 @@ class Topbar extends Component {
 
     switch (currentPath) {
       case '/home': return 0;
-      case '/about': return 1;
-      case '/events': return 2;
-      case '/team': return 3;
-      case '/projects': return 4;
-      case '/ideas': return 5;
-      case '/misc': return 6;
-      case '/contact': return 7;
+      case '/team': return 1;
+      case '/projects': return 2;
+      case '/ideas': return 3;
+      case '/events': return 4;
+      case '/misc': return 5;
+      case '/contact': return 6;
       default: return 0;
     }
   }

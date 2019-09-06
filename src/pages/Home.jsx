@@ -1,11 +1,9 @@
 /* eslint-disable no-await-in-loop */
-import React, {
-  useRef, useState, useEffect, useCallback,
-} from 'react';
-import { withStyles, Grid } from '@material-ui/core';
+import React from 'react';
+import { withStyles, Grid, Typography } from '@material-ui/core';
 import styled, { css, keyframes } from 'styled-components';
-import { useTransition, animated } from 'react-spring';
 import PropTypes from 'prop-types';
+import Typist from 'react-typist';
 
 import css3 from '../images/css-3-pp.svg';
 import html5 from '../images/html-5-freepik.svg';
@@ -16,6 +14,7 @@ import ts from '../images/typescript-freepik.svg';
 import docker from '../images/docker-freepik.svg';
 import react from '../images/react-freepik.svg';
 import devices from '../images/devices-srip.svg';
+import colors from '../components/Pallete';
 
 const styles = () => ({
   root: {
@@ -33,11 +32,17 @@ const styles = () => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '30vh',
-    margin: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
-  introContainer: {
-    height: '60vh',
+  aboutContent: {
+    position: 'relative',
+    height: '30vh',
+    marginTop: '25vh',
+  },
+  centerBody: {
+    width: '75%',
+    minWidth: 300,
     margin: 'auto',
   },
   devices: {
@@ -57,7 +62,13 @@ const styles = () => ({
     position: 'relative',
   },
   intro: {
-    margin: 'auto',
+    position: 'absolute',
+    marginTop: '28vh',
+    fontWeight: 800,
+    fontSize: '2.5em',
+    textAlign: 'center',
+    fontFamily: '--apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+    color: colors.heading.main,
   },
   transitionsItem: {
     overflow: 'hidden',
@@ -139,44 +150,6 @@ function svgTheme(index) {
   return svgStyle;
 }
 
-const Intro = (props) => {
-  const { classes } = props;
-  const ref = useRef([]);
-  const [stateItems, set] = useState([]);
-  const transitions = useTransition(stateItems, null, {
-    from: {
-      opacity: 0, height: 0, innerHeight: 0, color: '#8fa5b6',
-    },
-    enter: [
-      { opacity: 1, height: 80, innerHeight: 60 },
-    ],
-    leave: [{ color: '#c23369' }, { innerHeight: 0 }, { opacity: 0, height: 0 }],
-    update: { color: '#28b4d7' },
-  });
-
-  const typefont = useCallback(() => {
-    ref.current.map(clearTimeout);
-    ref.current = [];
-    set([]);
-    ref.current.push(setTimeout(() => set(['Welcome to ', 'Software Development', 'Club, IIT Delhi']), 2000));
-    ref.current.push(setTimeout(() => set(['Welcome to ', 'Club, IIT Delhi']), 2500));
-    ref.current.push(setTimeout(() => set(['Welcome to ']), 3000));
-    ref.current.push(setTimeout(() => set(['Welcome to ', 'DevClub']), 4000));
-  }, []);
-
-  useEffect(() => typefont(), []);
-
-  return (
-    <div className={classes.intro}>
-      {transitions.map(({ item, props: { innerHeight, ...rest }, key }) => (
-        <animated.div className={classes.transitionsItem} key={key} style={rest}>
-          <animated.div className={classes.transitionsText}>{item}</animated.div>
-        </animated.div>
-      ))}
-    </div>
-  );
-};
-
 const Home = (props) => {
   const { classes } = props;
   // Generate animated SVG components using items array
@@ -190,16 +163,32 @@ const Home = (props) => {
     svgArray.push(svgItem);
   }
 
+  const svgContainerHeight = window.innerWidth < 960 ? '30vh' : '50vh';
   return (
     <React.Fragment>
       <div className={classes.root}>
         <Grid container className={classes.landingContainer}>
-          <Grid container item md={7} className={classes.svgContainer}>
+          <Grid item md={8} className={classes.svgContainer} style={{ height: `${svgContainerHeight}` }}>
             <div className={classes.devices} />
             {svgArray}
+            <Typist className={classes.intro} avgTypingDelay={200}>
+              <span>Welcome to</span>
+              <br />
+              <span style={{ fontSize: '1.5em', color: colors.color1.main }}>DevClub</span>
+            </Typist>
           </Grid>
-          <Grid container item md={5} className={classes.introContainer}>
-            <Intro classes={classes} />
+          <Grid container item md={4}>
+            <div className={classes.aboutContent}>
+              <Typography variant="h5" className={classes.centerBody}>
+                DevClub is a student group that develops cool stuff
+                that benefits everyone in the campus.
+              </Typography>
+              <Typography variant="h6" gutterBottom className={classes.centerBody}>
+                We are a community where students can apply their skills into
+                developing applications which are actually useful, and enhancing
+                their own skills in the process.
+              </Typography>
+            </div>
           </Grid>
         </Grid>
       </div>
@@ -209,10 +198,6 @@ const Home = (props) => {
 };
 
 Home.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
-};
-
-Intro.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 

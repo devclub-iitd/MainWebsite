@@ -4,14 +4,6 @@ const Menu = [
     pathname: '/',
   },
   {
-    label: 'About Us',
-    pathname: '/about',
-  },
-  {
-    label: 'Events',
-    pathname: '/events',
-  },
-  {
     label: 'Team',
     pathname: '/team',
   },
@@ -22,6 +14,10 @@ const Menu = [
   {
     label: 'Ideas',
     pathname: '/ideas',
+  },
+  {
+    label: 'Events',
+    pathname: '/events',
   },
   {
     label: 'Resources',
