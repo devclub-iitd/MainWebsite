@@ -13,7 +13,6 @@ import Admin from './pages/Admin';
 import Misc from './pages/Misc';
 import Events from './pages/Events';
 import Contact from './pages/Contact';
-import AboutUs from './pages/AboutUs';
 
 import ScrollToTop from './components/ScrollTop';
 import Topbar from './components/Topbar';
@@ -130,7 +129,6 @@ const App = () => (
             <Route exact path="/projects" component={Projects} />
             <Route exact path="/ideas" component={Ideas} />
             <Route exact path="/misc" component={Misc} />
-            <Route exact path="/about" component={AboutUs} />
             <Route exact path="/admin" component={Admin} />
           </div>
         </ScrollToTop>
