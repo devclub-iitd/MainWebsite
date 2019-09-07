@@ -104,9 +104,9 @@ class ProjectViewCard extends React.Component {
     return (
       <Card className={classes.card}>
         <CardHeader
-          title={projectData.Projects}
+          title={projectData.name}
           // subheader={projectData.launchDate}
-          subheader="October 18, 2018"
+          subheader={projectData.start_date}
         />
         <CardMedia
           className={classes.media}
@@ -116,7 +116,7 @@ class ProjectViewCard extends React.Component {
         />
         <CardContent className={classes.cardContent}>
           <Typography component="p">
-            {projectData.Description}
+            {projectData.description}
           </Typography>
         </CardContent>
         <StyledCardActions className={classes.actions} theme={actionBackgroundTheme}>
@@ -141,7 +141,7 @@ class ProjectViewCard extends React.Component {
               {' '}
 Working Team:
               {' '}
-              {projectData['Working Team']}
+              {projectData.members}
             </Typography>
             <CustomModal
               url={projectData.id}

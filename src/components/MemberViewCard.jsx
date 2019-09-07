@@ -102,9 +102,6 @@ class MemberViewCard extends Component {
       return 'Loading MemberViewCard\n';
     }
 
-    // let backgroundColor = this.getBackgroundColor(memberData.Category);
-    // console.log(this.backgroundColor(memberData.Category));
-
     const backgroundTheme = {
       main: this.backgroundColor(memberData.Category),
     };

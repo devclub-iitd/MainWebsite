@@ -111,11 +111,11 @@ class IdeaViewPanel extends React.Component {
               <Avatar className={classes.serialNumber} style={colorBackgroundDark}><Typography variant="body2">{serialNo}</Typography></Avatar>
             </div>
             <div className={classes.nameColumn}>
-              <Typography variant="body1">{openProjectData.Projects}</Typography>
+              <Typography variant="body1">{openProjectData.name}</Typography>
             </div>
             <div className={classes.labelColumn}>
               <Grid container justify="flex-end" spacing={2}>
-                {openProjectData.Labels.map(lb => (
+                {openProjectData.labels.map(lb => (
                   <Grid item key={lb}>
                     <Chip
                       style={{ height: 27, background: this.labelColor(lb) }}

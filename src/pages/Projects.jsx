@@ -69,7 +69,7 @@ class Projects extends React.Component {
     for (let i = 0; i < data.length; i += 1) {
       const projectData = {};
       keys.forEach((key) => { projectData[key] = data[i][key]; });
-      if (projectData['DisplayOnWebsite (Y/N)'] === 'Y') {
+      if (projectData.display_on_website === true) {
         arg += 1;
         projectData.arg = `${arg}`;
         const project = (

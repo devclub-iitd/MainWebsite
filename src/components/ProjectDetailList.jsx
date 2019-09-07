@@ -30,17 +30,13 @@ class ProjectDetailList extends React.Component {
           {`#${openProjectData.id}`}
         </Typography>
         <List>
-          {this.listItem('Description', openProjectData.Description)}
-          {this.listItem('Extra', openProjectData.Extra)}
-          {this.listItem('Working Team', openProjectData['Working Team'])}
-          {this.listItem('Issuing Authority / Contact', openProjectData['Issuing Authority / Contact'])}
-          {this.listItem('Email ID / Number of Contact', openProjectData['Email ID / Number of Contact'])}
-          {this.listItem('Date of Issue', openProjectData['Date of Issue (dd-mm-yyyy)'])}
-          {this.listItem('Date of Closure', openProjectData['Date of Closure (If not Active)'])}
-          {this.listItem('Comments on Status', openProjectData['Comment on Status'])}
-          {this.listItem('Requirements', openProjectData['Requirement if still Active'])}
-          {this.listItem('Rewards/Benefit', openProjectData['Rewards/Benefit'])}
-          {this.listItem('Document', openProjectData.Document)}
+          {this.listItem('Description', openProjectData.description)}
+          {this.listItem('Working Team', openProjectData.members)}
+          {this.listItem('Issuing Authority / Contact', openProjectData.origin)}
+          {this.listItem('Email ID / Number of Contact', openProjectData.origin_contact)}
+          {this.listItem('Date of Issue', openProjectData.start_date)}
+          {this.listItem('Requirements', openProjectData.requirements)}
+          {this.listItem('Rewards/Benefit', openProjectData.perks)}
         </List>
       </React.Fragment>
     );

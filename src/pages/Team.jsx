@@ -102,7 +102,7 @@ class Team extends React.Component {
       const memberData = {};
       keys.forEach((key) => { memberData[key] = data[i][key]; });
 
-      if (memberData.DisplayOnWebsite === 'Y') {
+      if (memberData.display_on_website === 'true') {
         const col = (
           <Grid item key={`frag${i}`} xs={12} sm={6} md={4}>
             <MemberViewCard memberData={memberData} isLoading={isLoading} />

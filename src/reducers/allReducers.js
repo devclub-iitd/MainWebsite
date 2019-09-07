@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
         ...state,
         data: {
           ...state.data,
-          members: action.payload,
+          members: action.payload.data,
         },
         isLoading: {
           ...state.isLoading,
@@ -51,7 +51,7 @@ export default (state = initialState, action) => {
         ...state,
         data: {
           ...state.data,
-          events: action.payload,
+          events: action.payload.data,
         },
         isLoading: {
           ...state.isLoading,
@@ -83,7 +83,7 @@ export default (state = initialState, action) => {
         ...state,
         data: {
           ...state.data,
-          projects: action.payload,
+          projects: action.payload.data,
         },
         isLoading: {
           ...state.isLoading,
@@ -115,7 +115,7 @@ export default (state = initialState, action) => {
         ...state,
         data: {
           ...state.data,
-          resources: action.payload,
+          resources: action.payload.data,
         },
         isLoading: {
           ...state.isLoading,

@@ -68,22 +68,23 @@ class Events extends React.Component {
 
     const renders = [];
 
+    console.log(data);
     const keys = Object.keys(data[0]);
 
     for (let i = 0; i < data.length; i += 1) {
       const eventData = {};
       keys.forEach((key) => { eventData[key] = data[i][key]; });
-      if (eventData.DisplayOnWebsite === 'Y') {
+      if (eventData.display_on_website === true) {
         const project = (
           <Paper className={classes.paper} key={i}>
             <div className={classes.eventText}>
               <Typography variant="h5" component="h3" className={classes.eventTitle} display="inline">
-                {eventData.Name}
+                {eventData.name}
               </Typography>
               <Typography variant="h6" component="h4" display="inline">
                 |
                 {' '}
-                {eventData.Date}
+                {eventData.start_date}
               </Typography>
             </div>
             <EventAlbumList isLoading={isLoading} />
