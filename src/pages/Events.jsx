@@ -42,6 +42,21 @@ const mapDispatchToProps = dispatch => ({
   fetchEvents: () => dispatch(fetchEventsAction()),
 });
 
+function parseEmbedCode(str) {
+  const parser = new DOMParser();
+  const parsedHtml = parser.parseFromString(str, 'text/html');
+  const { images } = parsedHtml;
+  console.log(images);
+
+  const imagesList = [];
+  for (let i = 0; i < images.length; i += 1) {
+    imagesList.push(images[i].dataset.src.replace(/\s/g, ''));
+  }
+
+  console.log(imagesList);
+  return imagesList;
+}
+
 class Events extends React.Component {
   constructor(props) {
     super(props);
@@ -68,7 +83,6 @@ class Events extends React.Component {
 
     const renders = [];
 
-    console.log(data);
     const keys = Object.keys(data[0]);
 
     for (let i = 0; i < data.length; i += 1) {
@@ -87,7 +101,10 @@ class Events extends React.Component {
                 {eventData.start_date}
               </Typography>
             </div>
-            <EventAlbumList isLoading={isLoading} />
+            <EventAlbumList
+              isLoading={isLoading}
+              mediaList={parseEmbedCode(eventData.embed_code)}
+            />
             <br />
           </Paper>
         );

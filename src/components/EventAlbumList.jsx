@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import mediaList from './MediaList.json';
 
 const styles = theme => ({
   root: {
@@ -35,7 +34,7 @@ class EventAlbumList extends Component {
    * ];
    */
   renderData() {
-    const { classes } = this.props;
+    const { classes, mediaList } = this.props;
     let numCols = 3;
     if (window.innerWidth >= 1280) {
       numCols = 6;
@@ -46,8 +45,8 @@ class EventAlbumList extends Component {
       <div className={classes.root}>
         <GridList cellHeight={160} className={classes.gridList} cols={numCols}>
           {mediaList.map(tile => (
-            <GridListTile key={tile.fullUrl} cols={1}>
-              <img src={tile.fullUrl} alt="Event" />
+            <GridListTile key={tile} cols={1}>
+              <img src={tile} alt="Event" />
             </GridListTile>
           ))}
         </GridList>
@@ -68,6 +67,7 @@ class EventAlbumList extends Component {
 
 EventAlbumList.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  mediaList: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default withStyles(styles)(EventAlbumList);
