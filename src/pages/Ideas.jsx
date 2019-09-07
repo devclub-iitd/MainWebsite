@@ -79,7 +79,7 @@ class Ideas extends React.Component {
     for (let i = 0; i < data.length; i += 1) {
       const openProjectData = [];
       keys.forEach((key) => { openProjectData[key] = data[i][key]; });
-      if (openProjectData.showcase === false) {
+      if (openProjectData.showcase === false && openProjectData.display_on_website === true) {
         serialNo += 1;
         const project = (
           <div key={i}>
