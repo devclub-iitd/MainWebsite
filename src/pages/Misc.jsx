@@ -34,20 +34,20 @@ function processResourceData(data) {
       if (processedData.archive[entry.directory_year] === undefined) {
         processedData.archive[entry.directory_year] = {};
       }
-      if (processedData.archive[entry.directory_year][entry.sub_directory] === undefined) {
-        processedData.archive[entry.directory_year][entry.sub_directory] = [];
+      if (processedData.archive[entry.directory_year][entry.subdirectory] === undefined) {
+        processedData.archive[entry.directory_year][entry.subdirectory] = [];
       }
 
-      processedData.archive[entry.directory_year][entry.sub_directory].push(entry);
+      processedData.archive[entry.directory_year][entry.subdirectory].push(entry);
     } else {
       if (processedData.new[entry.directory_year] === undefined) {
         processedData.new[entry.directory_year] = {};
       }
-      if (processedData.new[entry.directory_year][entry.sub_directory] === undefined) {
-        processedData.new[entry.directory_year][entry.sub_directory] = [];
+      if (processedData.new[entry.directory_year][entry.subdirectory] === undefined) {
+        processedData.new[entry.directory_year][entry.subdirectory] = [];
       }
 
-      processedData.new[entry.directory_year][entry.sub_directory].push(entry);
+      processedData.new[entry.directory_year][entry.subdirectory].push(entry);
     }
   });
 
