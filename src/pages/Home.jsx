@@ -38,19 +38,19 @@ const styles = () => ({
   aboutContent: {
     position: 'relative',
     height: '30vh',
-    marginTop: '25vh',
+    marginTop: '20vh',
   },
   aboutPillar: {
     position: 'relative',
     width: '80%',
-    minWidth: 350,
+    minWidth: 300,
     margin: 'auto',
     paddingTop: '2vh',
     backgroundColor: colors.heading.main,
   },
   aboutBackground: {
     width: '80%',
-    minWidth: 300,
+    minWidth: 250,
     margin: 'auto',
     padding: 20,
     backgroundColor: colors.color1.main,
@@ -73,7 +73,6 @@ const styles = () => ({
   },
   intro: {
     position: 'absolute',
-    marginTop: '28vh',
     fontWeight: 800,
     fontSize: '2.5em',
     textAlign: 'center',
@@ -174,7 +173,8 @@ const Home = (props) => {
   }
 
   const svgContainerHeight = window.innerWidth < 960 ? '30vh' : '50vh';
-  const aboutPillarHeight = window.innerWidth < 960 ? '33vh' : '63vh';
+  const aboutPillarHeight = window.innerWidth < 960 ? '38vh' : '68vh';
+  const introTopHeight = window.innerWidth < 960 ? '32vh' : '42vh';
   return (
     <React.Fragment>
       <div className={classes.root}>
@@ -182,21 +182,23 @@ const Home = (props) => {
           <Grid item md={8} className={classes.svgContainer} style={{ height: `${svgContainerHeight}` }}>
             <div className={classes.devices} />
             {svgArray}
-            <Typist className={classes.intro} avgTypingDelay={200}>
-              <span>Welcome to</span>
-              <br />
-              <span style={{ fontSize: '1.5em', color: colors.color1.main }}>DevClub</span>
-            </Typist>
+            <div className={classes.intro} style={{ top: `${introTopHeight}` }}>
+              <Typist avgTypingDelay={200}>
+                <span>Welcome to</span>
+                <br />
+                <span style={{ fontSize: '1.5em', color: colors.color1.main }}>DevClub</span>
+              </Typist>
+            </div>
           </Grid>
           <Grid container item md={4}>
             <div className={classes.aboutContent}>
               <div className={classes.aboutPillar} style={{ height: `${aboutPillarHeight}` }}>
                 <div className={classes.aboutBackground}>
-                  <Typography variant="h5" className={classes.centerBody}>
+                  <Typography variant="h6" className={classes.centerBody}>
                     DevClub is a student group that develops cool stuff
                     that benefits everyone in the campus.
                   </Typography>
-                  <Typography variant="h6" gutterBottom className={classes.centerBody}>
+                  <Typography variant="body1" gutterBottom className={classes.centerBody}>
                     We are a community where students can apply their skills into
                     developing applications which are actually useful, and enhancing
                     their own skills in the process.
