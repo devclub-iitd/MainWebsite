@@ -57,6 +57,10 @@ function parseEmbedCode(str) {
   return imagesList;
 }
 
+function trimTime(str) {
+  return str.substring(0, str.indexOf('T'));
+}
+
 class Events extends React.Component {
   constructor(props) {
     super(props);
@@ -98,7 +102,7 @@ class Events extends React.Component {
               <Typography variant="h6" component="h4" display="inline">
                 |
                 {' '}
-                {eventData.start_date}
+                {trimTime(eventData.start_date)}
               </Typography>
             </div>
             <EventAlbumList
