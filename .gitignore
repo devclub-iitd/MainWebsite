@@ -27,3 +27,6 @@ src/images/logo.svg
 src/images/rectangle.svg
 src/images/shape.svg
 public/data
+
+# env
+*.env
