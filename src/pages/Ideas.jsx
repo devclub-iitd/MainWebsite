@@ -28,11 +28,11 @@ const getVisibleIdeas = (data, filter) => {
     case VisibilityFilters.SHOW_ALL:
       return data;
     case VisibilityFilters.SHOW_LABEL1:
-      return data.filter(d => d.Labels.includes('label1'));
+      return data.filter(d => d.labels.includes('label1'));
     case VisibilityFilters.SHOW_LABEL2:
-      return data.filter(d => d.Labels.includes('label2'));
+      return data.filter(d => d.labels.includes('label2'));
     case VisibilityFilters.SHOW_LABEL3:
-      return data.filter(d => d.Labels.includes('label3'));
+      return data.filter(d => d.labels.includes('label3'));
     default:
       throw new Error(`Unknown filter: ${filter}`);
   }
