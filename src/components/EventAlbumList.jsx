@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
+import Masonry from 'react-masonry-component';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   root: {
@@ -13,9 +13,16 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: '90%',
+    width: '80vw',
     maxHeight: 450,
     marginTop: theme.spacing.unit,
+    overflow: 'scroll',
+  },
+  imageElement: {
+    width: '98%',
+    margin: 2,
+    borderRadius: 5,
+    overflow: 'hidden',
   },
 });
 
@@ -35,22 +42,22 @@ class EventAlbumList extends Component {
    */
   renderData() {
     const { classes, mediaList } = this.props;
-    let numCols = 3;
-    if (window.innerWidth >= 1280) {
-      numCols = 6;
-    } else if (window.innerWidth >= 480) {
-      numCols = 4;
-    }
+
+    const childElements = mediaList.map(tile => (
+      <Grid item md={2} sm={4}>
+        <img src={tile} alt="Event" className={classes.imageElement} />
+      </Grid>
+    ));
+
     return (
-      <div className={classes.root}>
-        <GridList cellHeight={160} className={classes.gridList} cols={numCols}>
-          {mediaList.map(tile => (
-            <GridListTile key={tile} cols={1}>
-              <img src={tile} alt="Event" />
-            </GridListTile>
-          ))}
-        </GridList>
-      </div>
+      <Grid container>
+        <Masonry
+          elementType="Grid" // default 'div'
+          className={classes.gridList}
+        >
+          {childElements}
+        </Masonry>
+      </Grid>
     );
   }
 
