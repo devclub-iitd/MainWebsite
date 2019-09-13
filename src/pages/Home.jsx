@@ -101,7 +101,7 @@ const styles = () => ({
 });
 
 const items = [css3, html5, js, python, bash, ts, docker, react];
-const distanceX = [240, 240, 120, 120, -120, -120, -240, -240];
+const distanceX = [180, 240, 120, 120, -120, -120, -240, -180];
 const distanceY = [120, -150, 160, -100, 100, -120, 140, -80];
 
 const AnimatedSvg = styled.div`
@@ -141,7 +141,7 @@ function svgTheme(index) {
   const radius = responsiveWidth(20 + Math.random() * 10);
   const direction = Math.random() > 0.5 ? -1 : 1;
   const startAngle = Math.random() * 360;
-  const duration = responsiveDuration(2 + Math.random() * 3);
+  const duration = responsiveDuration(3 + Math.random() * 2);
   const keyFrame = keyframes`
     0% {
       transform:  rotate(${startAngle}deg)
@@ -175,10 +175,17 @@ const Home = (props) => {
     svgArray.push(svgItem);
   }
 
+  const aboutContent1 = 'DevClub is a student group that develops cool stuff that benefits everyone in the campus.';
+  const aboutContent2 = 'We are a community where students can apply their skills into developing applications which are actually useful, and enhancing their own skills in the process.';
+
   const svgContainerHeight = window.innerWidth < 960 ? '30vh' : '50vh';
-  const aboutPillarHeight = window.innerWidth < 960 ? '38vh' : '68vh';
   const introTopHeight = window.innerWidth < 960 ? '32vh' : '42vh';
   const backgroundWidth = window.innerWidth < 960 ? '100vw' : '50vw';
+
+  /* To ensure single page UI on Mobile as well as Larger Screens */
+  const aboutMobile = window.innerWidth < 960 ? 'block' : 'none';
+  const aboutDesktop = window.innerWidth < 960 ? 'none' : 'block';
+
   return (
     <React.Fragment>
       <div className={classes.background} style={{ width: `${backgroundWidth}` }} />
@@ -198,15 +205,23 @@ const Home = (props) => {
           <Grid container item md={4}>
             <div className={classes.aboutContent}>
               <div className={classes.aboutBackground}>
-                <Typography variant="h5" className={classes.centerBody}>
-                  DevClub is a student group that develops cool stuff
-                  that benefits everyone in the campus.
+
+                {/* Display on Laptop Devices */}
+                <Typography variant="h5" className={classes.centerBody} style={{ display: `${aboutDesktop}` }}>
+                  {aboutContent1}
                 </Typography>
-                <Typography variant="h6" gutterBottom className={classes.centerBody}>
-                  We are a community where students can apply their skills into
-                  developing applications which are actually useful, and enhancing
-                  their own skills in the process.
+                <Typography variant="h6" gutterBottom className={classes.centerBody} style={{ display: `${aboutDesktop}` }}>
+                  {aboutContent2}
                 </Typography>
+
+                {/* Display on Mobile Devices */}
+                <Typography variant="h6" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
+                  {aboutContent1}
+                </Typography>
+                <Typography variant="body1" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
+                  {aboutContent2}
+                </Typography>
+
               </div>
             </div>
           </Grid>

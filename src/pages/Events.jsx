@@ -46,14 +46,12 @@ function parseEmbedCode(str) {
   const parser = new DOMParser();
   const parsedHtml = parser.parseFromString(str, 'text/html');
   const { images } = parsedHtml;
-  console.log(images);
 
   const imagesList = [];
   for (let i = 0; i < images.length; i += 1) {
     imagesList.push(images[i].dataset.src.replace(/\s/g, ''));
   }
 
-  console.log(imagesList);
   return imagesList;
 }
 
