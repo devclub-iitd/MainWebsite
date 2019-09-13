@@ -15,8 +15,19 @@ import docker from '../images/docker-freepik.svg';
 import react from '../images/react-freepik.svg';
 import devices from '../images/devices-srip.svg';
 import colors from '../components/Pallete';
+import beam from '../images/beam.png';
 
 const styles = () => ({
+  background: {
+    position: 'fixed',
+    right: 0,
+    top: 0,
+    height: '100vh',
+    backgroundImage: `url(${beam})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'left contain',
+    backgroundOrigin: 'border-box',
+  },
   root: {
     width: '90vw',
     height: '90vh',
@@ -38,22 +49,14 @@ const styles = () => ({
   aboutContent: {
     position: 'relative',
     height: '30vh',
-    marginTop: '20vh',
-  },
-  aboutPillar: {
-    position: 'relative',
-    width: '80%',
-    minWidth: 300,
-    margin: 'auto',
-    paddingTop: '2vh',
-    backgroundColor: colors.heading.main,
+    marginTop: '25vh',
   },
   aboutBackground: {
     width: '80%',
     minWidth: 250,
     margin: 'auto',
     padding: 20,
-    backgroundColor: colors.color1.main,
+    // backgroundColor: colors.color1.main,
   },
   devices: {
     position: 'absolute',
@@ -175,8 +178,10 @@ const Home = (props) => {
   const svgContainerHeight = window.innerWidth < 960 ? '30vh' : '50vh';
   const aboutPillarHeight = window.innerWidth < 960 ? '38vh' : '68vh';
   const introTopHeight = window.innerWidth < 960 ? '32vh' : '42vh';
+  const backgroundWidth = window.innerWidth < 960 ? '100vw' : '50vw';
   return (
     <React.Fragment>
+      <div className={classes.background} style={{ width: `${backgroundWidth}` }} />
       <div className={classes.root}>
         <Grid container className={classes.landingContainer}>
           <Grid item md={8} className={classes.svgContainer} style={{ height: `${svgContainerHeight}` }}>
@@ -192,18 +197,16 @@ const Home = (props) => {
           </Grid>
           <Grid container item md={4}>
             <div className={classes.aboutContent}>
-              <div className={classes.aboutPillar} style={{ height: `${aboutPillarHeight}` }}>
-                <div className={classes.aboutBackground}>
-                  <Typography variant="h6" className={classes.centerBody}>
-                    DevClub is a student group that develops cool stuff
-                    that benefits everyone in the campus.
-                  </Typography>
-                  <Typography variant="body1" gutterBottom className={classes.centerBody}>
-                    We are a community where students can apply their skills into
-                    developing applications which are actually useful, and enhancing
-                    their own skills in the process.
-                  </Typography>
-                </div>
+              <div className={classes.aboutBackground}>
+                <Typography variant="h5" className={classes.centerBody}>
+                  DevClub is a student group that develops cool stuff
+                  that benefits everyone in the campus.
+                </Typography>
+                <Typography variant="h6" gutterBottom className={classes.centerBody}>
+                  We are a community where students can apply their skills into
+                  developing applications which are actually useful, and enhancing
+                  their own skills in the process.
+                </Typography>
               </div>
             </div>
           </Grid>
