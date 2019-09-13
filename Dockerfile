@@ -9,4 +9,4 @@ RUN apt-get update
 RUN npm install
 COPY . .
 
-RUN npm run start
+ENTRYPOINT ["/code/entry-point.sh"] 
