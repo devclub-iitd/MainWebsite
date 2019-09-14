@@ -3,28 +3,61 @@ import PropTypes from 'prop-types';
 import { DiscussionEmbed, CommentCount } from 'disqus-react';
 import { urlBase, disqusShortname } from '../config/API';
 
-const DisqusBoard = (props) => {
-  const {
-    url, id, title, body,
-  } = props;
+class DisqusBoard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      u: props.url,
+      i: props.id,
+      t: props.title,
+      b: props.body,
+    };
+  }
 
-  const disqusConfig = {
-    url: urlBase + url.toLowerCase(),
-    identifier: id.toLowerCase(),
-    title,
-  };
+  render() {
+    const {
+      u, i, t, b,
+    } = this.state;
+    const disqusConfig = {
+      url: urlBase + u.toLowerCase(),
+      identifier: i.toLowerCase(),
+      title: t,
+    };
+    return (
+      <div>
+        <h1>{t}</h1>
+        <CommentCount shortname={disqusShortname} config={disqusConfig}>
+          {'Comments'}
+        </CommentCount>
+        <p>{b}</p>
+        <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+      </div>
+    );
+  }
+}
 
-  return (
-    <div>
-      <h1>{title}</h1>
-      <CommentCount shortname={disqusShortname} config={disqusConfig}>
-        {'Comments'}
-      </CommentCount>
-      <p>{body}</p>
-      <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
-    </div>
-  );
-};
+// const DisqusBoard = (props) => {
+//   const {
+//     url, id, title, body,
+//   } = props;
+
+//   const disqusConfig = {
+//     url: urlBase + url.toLowerCase(),
+//     identifier: id.toLowerCase(),
+//     title,
+//   };
+
+//   return (
+//     <div>
+//       <h1>{title}</h1>
+//       <CommentCount shortname={disqusShortname} config={disqusConfig}>
+//         {'Comments'}
+//       </CommentCount>
+//       <p>{body}</p>
+//       <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+//     </div>
+//   );
+// };
 
 DisqusBoard.propTypes = {
   url: PropTypes.string.isRequired,

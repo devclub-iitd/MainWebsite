@@ -13,6 +13,10 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     outline: 'none',
+    top: '20%',
+    left: '20%',
+    marginLeft: 10,
+    marginRight: 10,
   },
 });
 

@@ -50,11 +50,65 @@ const mapDispatchToProps = dispatch => ({
 class Ideas extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      id: 0,
+    };
     const { data } = this.props;
     if (data === undefined || data.length === 0) {
       const { fetchProjects } = this.props;
       fetchProjects();
     }
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  // handleChange = (id, length) => {
+  //   this.setState((state) => {
+  //     let l = state.list;
+  //     for (int i = 0; i < length; i+= 1 ) {
+
+  //     }
+  //     state.list.map((item, index) => {
+  //       if (index === id) {
+  //         item = true;
+  //       }
+  //     });
+  //     return {
+  //       list,
+  //     };
+  //   });
+  // };
+
+  // handleChange = (id, length) => {
+  //   this.setState((state) => {
+  //     const l = state.list;
+
+  //     for (let i = 0; i < length; i += 1) {
+  //       if (i === id) {
+  //         l[i] = true;
+  //       } else {
+  //         l[i] = false;
+  //       }
+  //     }
+  //   });
+  // };
+
+  // handleChange = (id, length) => {
+  //   const { l1 } = this.state;
+  //   const l = l1.list.slice();
+
+  //   for (let i = 0; i < length; i += 1) {
+  //     if (i === id) {
+  //       l[i] = true;
+  //     } else {
+  //       l[i] = false;
+  //     }
+  //   }
+
+  //   this.setState({ list: l });
+  // };
+
+  handleChange = (id) => {
+    this.setState({ id });
   }
 
   renderProjects() {
@@ -62,6 +116,7 @@ class Ideas extends React.Component {
       data, isLoading, error,
     } = this.props;
 
+    const { id } = this.state;
     if (isLoading !== false) {
       return (
         <Loading />
