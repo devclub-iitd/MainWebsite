@@ -55,7 +55,7 @@ function renderSections(array, string, classes) {
   for (let i = 0; i < array.length; i += arrayLength) {
     const slide = (
       <div className="slide">
-        <Typography gutterBottom variant="h5" className={classes.centerText}>
+        <Typography variant="h5" className={classes.centerText}>
           {string}
         </Typography>
         <Grid container>

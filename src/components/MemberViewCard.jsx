@@ -13,6 +13,8 @@ import styled from 'styled-components';
 import MediaQuery from 'react-responsive';
 import colors from './Pallete';
 
+const avatarSize = window.innerWidth < 960 ? '80px' : '100px';
+
 const styles = theme => ({
   card: {
     minWidth: 260,
@@ -50,8 +52,8 @@ const styles = theme => ({
   },
   bigAvatar: {
     margin: '0 auto',
-    width: 80,
-    height: 80,
+    width: `${avatarSize}`,
+    height: `${avatarSize}`,
   },
   social: {
     display: 'flex',
@@ -112,6 +114,7 @@ class MemberViewCard extends Component {
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <div className={classes.memberDetails}>
+            {/* Width Query to decide whether to display photo and name side by side or below */}
             <MediaQuery maxDeviceWidth={1400}>
               <Grid container alignItems="center" justify="center">
                 <Grid item xs={5}>
@@ -135,9 +138,13 @@ class MemberViewCard extends Component {
               </Typography>
             </MediaQuery>
           </div>
-          <Typography component="p" className={classes.intro}>
-            {memberData.intro}
-          </Typography>
+
+          {/* Height Query to decide whether to display intro or not */}
+          <MediaQuery minDeviceHeight={700}>
+            <Typography component="p" className={classes.intro}>
+              {memberData.intro}
+            </Typography>
+          </MediaQuery>
         </CardContent>
         <StyledCardActions theme={backgroundTheme}>
           <div className={classes.social}>

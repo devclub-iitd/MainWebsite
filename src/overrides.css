@@ -6,16 +6,21 @@
 }
 
 .fp-slidesNav.fp-bottom {
-    width: 100px;
+    width: 200px;
     margin: auto;
     padding: auto;
 }
 
+.fp-slidesNav.fp-bottom ul {
+    display: flex;
+    justify-content: center;
+}
+/* 
 .fp-slidesNav.fp-bottom ul::after {
     content: '';
     display: inline-block;
     width: 100%;
-}
+} */
 
 #fp-nav ul li:hover a.active span, 
 #fp-nav ul li a.active span, 
