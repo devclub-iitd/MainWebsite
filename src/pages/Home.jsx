@@ -175,7 +175,7 @@ const Home = (props) => {
     svgArray.push(svgItem);
   }
 
-  const aboutContent1 = 'DevClub is a student group that develops cool stuff that benefits everyone in the campus.';
+  const aboutContent1 = 'DevClub is a student group at IIT Delhi, that develops cool stuff that benefits everyone in the campus.';
   const aboutContent2 = 'We are a community where students can apply their skills into developing applications which are actually useful, and enhancing their own skills in the process.';
 
   const svgContainerHeight = window.innerWidth < 960 ? '30vh' : '50vh';

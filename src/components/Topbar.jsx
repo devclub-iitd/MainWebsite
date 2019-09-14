@@ -41,7 +41,6 @@ const styles = theme => ({
   },
   clubLogo: {
     display: 'inline-block',
-    position: 'absolute',
     overflow: 'hidden',
   },
   clubImage: {
@@ -131,19 +130,23 @@ class Topbar extends Component {
   render() {
     const { classes, noTabs, location } = this.props;
     const { menuDrawer, value } = this.state;
+
+    const logoPosition = window.innerWidth < 960 ? 'relative' : 'absolute';
+    const iitMargin = window.innerWidth < 960 ? 0 : 132;
+
     return (
       <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
           <Grid container alignItems="baseline">
             <Grid item xs={12} container alignItems="baseline" className={classes.flex}>
-              <ButtonBase onClick={this.handleLogoClick} className={classes.clubLogo}>
+              <ButtonBase onClick={this.handleLogoClick} className={classes.clubLogo} style={{ position: `${logoPosition}` }}>
                 <Link to="/" className={classes.link}>
                   <img src={logo} alt="Logo" className={classes.clubImage} />
                 </Link>
               </ButtonBase>
               {!noTabs && (
                 <React.Fragment>
-                  <Typography className={classes.productLogo}>
+                  <Typography className={classes.productLogo} style={{ marginLeft: `${iitMargin}` }}>
                     IIT Delhi
                   </Typography>
                   <div className={classes.iconContainer}>

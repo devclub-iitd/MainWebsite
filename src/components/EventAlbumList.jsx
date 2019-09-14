@@ -16,7 +16,7 @@ const styles = theme => ({
     width: '80vw',
     maxHeight: 450,
     marginTop: theme.spacing.unit,
-    overflow: 'scroll',
+    overflowY: 'scroll',
   },
   imageElement: {
     width: '98%',
