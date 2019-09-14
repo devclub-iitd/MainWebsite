@@ -17,7 +17,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Menu from './Menu';
 
-const logo = require('../logo.svg');
+const logo = require('../logo.png');
 
 const styles = theme => ({
   appBar: {
@@ -27,7 +27,9 @@ const styles = theme => ({
     backgroundColor: 'white',
   },
   inline: {
-    display: 'inline',
+    display: 'inline-block',
+    position: 'relative',
+    overflow: 'hidden',
   },
   flex: {
     display: 'flex',
@@ -37,15 +39,33 @@ const styles = theme => ({
       alignItems: 'center',
     },
   },
+  clubLogo: {
+    display: 'inline-flex',
+    position: 'relative',
+    lineHeight: 1.75,
+    overflow: 'hidden',
+  },
   link: {
     textDecoration: 'none',
     color: 'inherit',
+    position: 'relative',
+  },
+  imageContainer: {
+    position: 'relative',
+    display: 'inline-block',
+    height: 40,
+    boxSizing: 'border-box',
   },
   productLogo: {
     display: 'inline-block',
-    borderLeft: `1px solid ${theme.palette.grey.A100}`,
+    position: 'relative',
+    lineHeight: 1.75,
     marginLeft: 32,
+    paddingTop: 20,
+    paddingBottom: 20,
     paddingLeft: 24,
+    overflow: 'hidden',
+    borderLeft: `1px solid ${theme.palette.grey.A100}`,
   },
   tagline: {
     display: 'inline-block',
@@ -123,23 +143,23 @@ class Topbar extends Component {
         <Toolbar>
           <Grid container alignItems="baseline">
             <Grid item xs={12} container alignItems="baseline" className={classes.flex}>
-              <ButtonBase onClick={this.handleLogoClick}>
+              <ButtonBase onClick={this.handleLogoClick} className={classes.clubLogo}>
                 <div className={classes.inline}>
-                  <Typography variant="h6" color="inherit" noWrap>
-                    <Link to="/" className={classes.link}>
-                      <img width={20} src={logo} alt="Logo" />
-                      <span className={classes.tagline}>DevClub</span>
-                    </Link>
-                  </Typography>
+                  {/* <Link to="/" className={classes.link}> */}
+                  <div className={classes.imageContainer}>
+                    <div className={classes.logoImage}>
+                      <img height={40} src={logo} alt="Logo" />
+                    </div>
+                  </div>
+                  {/* <span className={classes.tagline}>DevClub</span> */}
+                  {/* </Link> */}
                 </div>
               </ButtonBase>
               {!noTabs && (
                 <React.Fragment>
-                  <div className={classes.productLogo}>
-                    <Typography>
-                      IIT Delhi
-                    </Typography>
-                  </div>
+                  <Typography className={classes.productLogo}>
+                    IIT Delhi
+                  </Typography>
                   <div className={classes.iconContainer}>
                     <IconButton onClick={this.mobileMenuOpen} className={classes.iconButton} color="inherit" aria-label="Menu">
                       <MenuIcon />
