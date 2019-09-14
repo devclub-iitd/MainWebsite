@@ -164,6 +164,7 @@ const Contact = (props) => {
               bottom={0}
               left={0}
               right={0}
+              zIndex={2}
             >
               <div className={classes.social}>
                 <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/tech.iitd/" className={classes.socialIcon}><FacebookBox style={{ fontSize: 45 }} /></a>

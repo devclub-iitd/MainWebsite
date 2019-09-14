@@ -5,7 +5,7 @@ import { Typography, withStyles } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import TreeView from '../components/TreeView';
 import { fetchResources as fetchResourcesAction } from '../actions/allActions';
-import CustomModal from '../components/CustomModal';
+import DisqusDialog from '../components/DisqusDialog';
 import Loading from '../components/Loading';
 
 const styles = theme => ({
@@ -90,10 +90,10 @@ class Misc extends React.Component {
           Resources
         </Typography>
         <Container maxWidth="sm">
-          <CustomModal
-            url="Misc"
-            id="Misc"
-            title="Misc"
+          <DisqusDialog
+            url="Resources"
+            id="Resources"
+            title="Resources"
           />
           <div className={classes.list}>
             <TreeView data={processedData.archive} isLoading={isLoading} />

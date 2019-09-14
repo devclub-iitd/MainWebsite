@@ -10,7 +10,7 @@ import Chip from '@material-ui/core/Chip';
 import DoneIcon from '@material-ui/icons/Done';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
-import CustomModal from './CustomModal';
+import DisqusDialog from './DisqusDialog';
 import ProjectDetailList from './ProjectDetailList';
 import colors from './Pallete';
 
@@ -132,10 +132,10 @@ class IdeaViewPanel extends React.Component {
               <ProjectDetailList openProjectData={openProjectData} />
             </div>
             <div className={classes.disqusColumn}>
-              <CustomModal
+              <DisqusDialog
                 url={openProjectData.id}
                 id={openProjectData.id}
-                title={openProjectData.id}
+                title={openProjectData.name}
               />
             </div>
           </ExpansionPanelDetails>
