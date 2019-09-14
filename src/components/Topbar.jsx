@@ -40,27 +40,20 @@ const styles = theme => ({
     },
   },
   clubLogo: {
-    display: 'inline-flex',
-    position: 'relative',
-    lineHeight: 1.75,
+    display: 'inline-block',
+    position: 'absolute',
     overflow: 'hidden',
   },
-  link: {
-    textDecoration: 'none',
-    color: 'inherit',
-    position: 'relative',
-  },
-  imageContainer: {
-    position: 'relative',
+  clubImage: {
     display: 'inline-block',
-    height: 40,
-    boxSizing: 'border-box',
+    height: 60,
+    width: 'auto',
   },
   productLogo: {
     display: 'inline-block',
     position: 'relative',
     lineHeight: 1.75,
-    marginLeft: 32,
+    marginLeft: 132,
     paddingTop: 20,
     paddingBottom: 20,
     paddingLeft: 24,
@@ -144,16 +137,9 @@ class Topbar extends Component {
           <Grid container alignItems="baseline">
             <Grid item xs={12} container alignItems="baseline" className={classes.flex}>
               <ButtonBase onClick={this.handleLogoClick} className={classes.clubLogo}>
-                <div className={classes.inline}>
-                  {/* <Link to="/" className={classes.link}> */}
-                  <div className={classes.imageContainer}>
-                    <div className={classes.logoImage}>
-                      <img height={40} src={logo} alt="Logo" />
-                    </div>
-                  </div>
-                  {/* <span className={classes.tagline}>DevClub</span> */}
-                  {/* </Link> */}
-                </div>
+                <Link to="/" className={classes.link}>
+                  <img src={logo} alt="Logo" className={classes.clubImage} />
+                </Link>
               </ButtonBase>
               {!noTabs && (
                 <React.Fragment>
