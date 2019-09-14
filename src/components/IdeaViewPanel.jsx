@@ -10,14 +10,9 @@ import Chip from '@material-ui/core/Chip';
 import DoneIcon from '@material-ui/icons/Done';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
-import Slide from '@material-ui/core/Slide';
-import Fab from '@material-ui/core/Fab';
-import Paper from '@material-ui/core/Paper';
-// import CustomModal from './CustomModal';
+import DisqusDialog from './DisqusDialog';
 import ProjectDetailList from './ProjectDetailList';
 import colors from './Pallete';
-
-import DisqusBoard from './DisqusBoard';
 
 const styles = ({
   root: {
@@ -48,10 +43,6 @@ const styles = ({
 });
 
 class IdeaViewPanel extends React.Component {
-  // state = {
-  //   checked: false,
-  // };
-
   backgroundColor = (i, type) => {
     let shade = 'light';
     if (type === 0) {
@@ -87,21 +78,13 @@ class IdeaViewPanel extends React.Component {
     return null;
   }
 
-  // handleChange = () => {
-  //   this.setState({ checked: true });
-  // };
-
   render() {
     const {
       classes,
       openProjectData,
       isLoading,
       serialNo,
-      handleChange,
-      isChecked,
     } = this.props;
-
-    // const { checked } = this.state;
 
     if (isLoading !== false) {
       return 'Loading IdeaViewPanel\n';
@@ -149,26 +132,11 @@ class IdeaViewPanel extends React.Component {
               <ProjectDetailList openProjectData={openProjectData} />
             </div>
             <div className={classes.disqusColumn}>
-              {/* <CustomModal
+              <DisqusDialog
                 url={openProjectData.id}
                 id={openProjectData.id}
-                title={openProjectData.id}
-              /> */}
-              <Fab color="primary" onClick={handleChange} variant="extended" className={classes.button}>Disqus This</Fab>
-              <Slide direction="down" in={isChecked} mountOnEnter unmountOnExit>
-                <Paper elevation={4} className={classes.paper}>
-                  <div className={classes.paper}>
-                    <Paper elevation={4}>
-                      <DisqusBoard
-                        url={openProjectData.id}
-                        id={openProjectData.id}
-                        title={openProjectData.id}
-                        body="body"
-                      />
-                    </Paper>
-                  </div>
-                </Paper>
-              </Slide>
+                title={openProjectData.name}
+              />
             </div>
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -182,8 +150,6 @@ IdeaViewPanel.propTypes = {
   openProjectData: PropTypes.objectOf(PropTypes.string).isRequired,
   isLoading: PropTypes.bool.isRequired,
   serialNo: PropTypes.number.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  isChecked: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(IdeaViewPanel);

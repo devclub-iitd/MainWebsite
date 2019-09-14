@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { grey } from '@material-ui/core/colors';
 import styled from 'styled-components';
-import CustomModal from './CustomModal';
+import DisqusDialog from './DisqusDialog';
 import colors from './Pallete';
 
 const styles = theme => ({
@@ -143,10 +143,10 @@ Working Team:
               {' '}
               {projectData.members}
             </Typography>
-            <CustomModal
+            <DisqusDialog
               url={projectData.id}
               id={projectData.id}
-              title={projectData.id}
+              title={projectData.name}
             />
           </CardContent>
         </Collapse>
