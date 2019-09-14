@@ -7,6 +7,7 @@ import ReactFullpage from '@fullpage/react-fullpage';
 import MemberViewCard from '../components/MemberViewCard';
 import { fetchMembers as fetchTeamAction } from '../actions/allActions';
 import Loading from '../components/Loading';
+import colors from '../components/Pallete';
 
 import '../overrides.css';
 
@@ -38,11 +39,22 @@ function renderSections(array, string, classes) {
     arrayLength = 4;
   }
 
+  let color = colors.color4;
+  if (string === 'Senior Undergraduates') {
+    color = colors.color1;
+  } if (string === 'Junior Undergraduates') {
+    color = colors.color2;
+  } if (string === 'Sophomores') {
+    color = colors.color3;
+  }
+
   if (array.length <= arrayLength) {
     const section = (
       <React.Fragment>
         <Typography gutterBottom variant="h5" className={classes.centerText}>
-          {string}
+          <span style={{ background: `${color.main}`, color: `${color.text}` }}>
+            {string}
+          </span>
         </Typography>
         <Grid container>
           {array}
@@ -51,12 +63,15 @@ function renderSections(array, string, classes) {
     );
     return section;
   }
+
   const slides = [];
   for (let i = 0; i < array.length; i += arrayLength) {
     const slide = (
       <div className="slide">
         <Typography variant="h5" className={classes.centerText}>
-          {string}
+          <span style={{ background: `${color.main}`, color: `${color.text}` }}>
+            {string}
+          </span>
         </Typography>
         <Grid container>
           {array.slice(i, i + arrayLength)}
@@ -96,7 +111,6 @@ class Team extends React.Component {
     let renders = {};
     const senior = []; const junior = []; const sopho = []; const alumni = [];
 
-    console.log(data);
     const keys = Object.keys(data[0]);
 
     for (let i = 0; i < data.length; i += 1) {

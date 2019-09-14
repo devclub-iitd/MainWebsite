@@ -15,18 +15,22 @@ const colors = {
   color1: {
     main: cyan[500],
     light: cyan[200],
+    text: cyan[50],
   },
   color2: {
     main: green[500],
     light: green[200],
+    text: green[50],
   },
   color3: {
     main: amber[400],
     light: amber[200],
+    text: amber[50],
   },
   color4: {
     main: brown[400],
     light: brown[200],
+    text: brown[50],
   },
 };
 
