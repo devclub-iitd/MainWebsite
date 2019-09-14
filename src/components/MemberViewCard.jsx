@@ -91,8 +91,10 @@ class MemberViewCard extends Component {
       return colors.color1.main;
     } if (string === 'Junior Undergraduate') {
       return colors.color2.main;
+    } if (string === 'Sophomore') {
+      return colors.color3.main;
     }
-    return colors.color3.main;
+    return colors.color4.main;
   };
 
   renderData() {
@@ -103,7 +105,7 @@ class MemberViewCard extends Component {
     }
 
     const backgroundTheme = {
-      main: this.backgroundColor(memberData.Category),
+      main: this.backgroundColor(memberData.category),
     };
 
     return (
@@ -114,34 +116,34 @@ class MemberViewCard extends Component {
               <Grid container alignItems="center" justify="center">
                 <Grid item xs={5}>
                   <div className={classes.avatarHolder}>
-                    <Avatar alt={memberData.Name} src={memberData['Picture URL']} className={classes.bigAvatar} />
+                    <Avatar alt={memberData.name} src={memberData.url.picture_url} className={classes.bigAvatar} />
                   </div>
                 </Grid>
                 <Grid item xs={7}>
                   <Typography variant="h6" component="h4" className={classes.memberName}>
-                    {memberData.Name}
+                    {memberData.name}
                   </Typography>
                 </Grid>
               </Grid>
             </MediaQuery>
             <MediaQuery minDeviceWidth={1401}>
               <div className={classes.avatarHolder}>
-                <Avatar alt={memberData.Name} src={memberData['Picture URL']} className={classes.bigAvatar} />
+                <Avatar alt={memberData.name} src={memberData.url.picture_url} className={classes.bigAvatar} />
               </div>
               <Typography variant="h6" component="h4" className={classes.memberName}>
-                {memberData.Name}
+                {memberData.name}
               </Typography>
             </MediaQuery>
           </div>
           <Typography component="p" className={classes.intro}>
-            {memberData.Description}
+            {memberData.intro}
           </Typography>
         </CardContent>
         <StyledCardActions theme={backgroundTheme}>
           <div className={classes.social}>
-            <a href={memberData['FB URL']} className={classes.socialIcon}><Facebook /></a>
-            <a href={memberData['Github URL']} className={classes.socialIcon}><GithubCircle /></a>
-            <a href={memberData['Primary Email Address']} className={classes.socialIcon}><Email /></a>
+            <a href={memberData.url.fb_url} className={classes.socialIcon}><Facebook /></a>
+            <a href={memberData.url.github_url} className={classes.socialIcon}><GithubCircle /></a>
+            <a href={memberData.email} className={classes.socialIcon}><Email /></a>
           </div>
         </StyledCardActions>
       </Card>

@@ -96,23 +96,24 @@ class Team extends React.Component {
     let renders = {};
     const senior = []; const junior = []; const sopho = []; const alumni = [];
 
+    console.log(data);
     const keys = Object.keys(data[0]);
 
     for (let i = 0; i < data.length; i += 1) {
       const memberData = {};
       keys.forEach((key) => { memberData[key] = data[i][key]; });
 
-      if (memberData.display_on_website === 'true') {
+      if (memberData.display_on_website === true) {
         const col = (
           <Grid item key={`frag${i}`} xs={12} sm={6} md={4}>
             <MemberViewCard memberData={memberData} isLoading={isLoading} />
           </Grid>
         );
-        if (memberData.Category === 'Senior Undergraduate') {
+        if (memberData.category === 'Senior Undergraduate') {
           senior.push(col);
-        } else if (memberData.Category === 'Junior Undergraduate') {
+        } else if (memberData.category === 'Junior Undergraduate') {
           junior.push(col);
-        } else if (memberData.Category === 'Sophomore') {
+        } else if (memberData.category === 'Sophomore') {
           sopho.push(col);
         } else {
           alumni.push(col);
