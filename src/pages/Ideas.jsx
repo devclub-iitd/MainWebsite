@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Typography, withStyles } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { VisibilityFilters, fetchProjects as fetchProjectsAction } from '../actions/allActions';
 import IdeaViewPanel from '../components/IdeaViewPanel';
 import IdeaFilter from '../components/IdeaFilter';
@@ -102,20 +103,24 @@ class Ideas extends React.Component {
     const { classes, isLoading } = this.props;
     if (isLoading === false) {
       return (
-        <Container maxWidth="lg">
-          <Typography gutterBottom variant="h5" className={classes.centerText}>
-            Open Projects
-          </Typography>
-          <IdeaFilter />
-          <Box boxShadow={2}>
-            <div className={classes.list}>
-              {this.renderProjects()}
-            </div>
-          </Box>
-        </Container>
+        <React.Fragment>
+          <CssBaseline />
+          <Container maxWidth="lg">
+            <Typography gutterBottom variant="h5" className={classes.centerText}>
+              Open Projects
+            </Typography>
+            <IdeaFilter />
+            <Box boxShadow={2}>
+              <div className={classes.list}>
+                {this.renderProjects()}
+              </div>
+            </Box>
+          </Container>
+        </React.Fragment>
       );
     } return ( // isLoading === true
       <React.Fragment>
+        <CssBaseline />
         <Typography gutterBottom variant="h5" className={classes.centerText}>
           Open Projects
         </Typography>

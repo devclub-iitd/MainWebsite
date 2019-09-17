@@ -5,6 +5,7 @@ import { Typography, withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import ReactFullpage from '@fullpage/react-fullpage';
 import Box from '@material-ui/core/Box';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { fetchProjects as fetchProjectsAction } from '../actions/allActions';
 import ProjectViewCard from '../components/ProjectViewCard';
 import Loading from '../components/Loading';
@@ -17,7 +18,7 @@ const styles = theme => ({
     width: '100%',
     paddingTop: 20,
     paddingBottom: 20,
-    marginTop: theme.spacing.unit * 10,
+    marginTop: theme.spacing(10),
   },
 });
 
@@ -99,38 +100,41 @@ class Projects extends React.Component {
     const { classes, isLoading } = this.props;
     const renderSection = this.renderProjects();
     return (
-      <Grid container>
-        <Grid container item md={1} />
-        <Grid container item xs={12} md={10}>
-          <Typography gutterBottom variant="h5" className={classes.centerText}>
-            Showcase Projects
-          </Typography>
-          <ReactFullpage
-            scrollBar
-            render={({ state }) => {
-              // eslint-disable-next-line no-console
-              console.log(state);
-              if (isLoading === false) {
+      <React.Fragment>
+        <CssBaseline />
+        <Grid container>
+          <Grid container item md={1} />
+          <Grid container item xs={12} md={10}>
+            <Typography gutterBottom variant="h5" className={classes.centerText}>
+              Showcase Projects
+            </Typography>
+            <ReactFullpage
+              scrollBar
+              render={({ state }) => {
+                // eslint-disable-next-line no-console
+                console.log(state);
+                if (isLoading === false) {
+                  return (
+                    <ReactFullpage.Wrapper>
+                      {renderSection}
+                    </ReactFullpage.Wrapper>
+                  );
+                }
                 return (
                   <ReactFullpage.Wrapper>
-                    {renderSection}
+                    <div className="section">
+                      <Box position="absolute" top="30%" left="50%">
+                        <Loading />
+                      </Box>
+                    </div>
                   </ReactFullpage.Wrapper>
                 );
-              }
-              return (
-                <ReactFullpage.Wrapper>
-                  <div className="section">
-                    <Box position="absolute" top="30%" left="50%">
-                      <Loading />
-                    </Box>
-                  </div>
-                </ReactFullpage.Wrapper>
-              );
-            }}
-          />
+              }}
+            />
+          </Grid>
+          <Grid container item md={1} />
         </Grid>
-        <Grid container item md={1} />
-      </Grid>
+      </React.Fragment>
     );
   }
 }

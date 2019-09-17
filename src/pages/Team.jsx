@@ -16,7 +16,7 @@ const styles = theme => ({
     width: '100%',
     paddingTop: 20,
     paddingBottom: 20,
-    marginTop: theme.spacing.unit * 10,
+    marginTop: theme.spacing(10),
   },
 });
 
@@ -54,7 +54,7 @@ function renderSections(array, string, classes) {
   const slides = [];
   for (let i = 0; i < array.length; i += arrayLength) {
     const slide = (
-      <div className="slide">
+      <div className="slide" key={i}>
         <Typography gutterBottom variant="h5" className={classes.centerText}>
           {string}
         </Typography>
@@ -96,7 +96,7 @@ class Team extends React.Component {
     let renders = {};
     const senior = []; const junior = []; const sopho = []; const alumni = [];
 
-    console.log(data);
+    // console.log(data);
     const keys = Object.keys(data[0]);
 
     for (let i = 0; i < data.length; i += 1) {
