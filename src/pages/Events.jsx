@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import { Paper, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { fetchEvents as fetchEventsAction } from '../actions/allActions';
 import EventAlbumList from '../components/EventAlbumList';
 import Loading from '../components/Loading';
@@ -120,18 +121,21 @@ class Events extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid container>
-        <Grid container item md={1} />
-        <Grid container item xs={12} md={10}>
-          <Typography gutterBottom variant="h5" className={classes.centerText}>
+      <React.Fragment>
+        <CssBaseline />
+        <Grid container>
+          <Grid container item md={1} />
+          <Grid container item xs={12} md={10}>
+            <Typography gutterBottom variant="h5" className={classes.centerText}>
             Events
-          </Typography>
-          <ul>
-            {this.renderEvents()}
-          </ul>
+            </Typography>
+            <ul>
+              {this.renderEvents()}
+            </ul>
+          </Grid>
+          <Grid container item md={1} />
         </Grid>
-        <Grid container item md={1} />
-      </Grid>
+      </React.Fragment>
     );
   }
 }

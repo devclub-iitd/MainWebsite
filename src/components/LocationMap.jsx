@@ -17,7 +17,7 @@ const LocationMap = () => {
       style="mapbox://styles/mapbox/streets-v9"
       containerStyle={{
         height: window.innerHeight * (0.6),
-        width: '100%',
+        width: 'inherit',
       }}
       center={[77.190524, 28.544972]}
       zoom={[10]}

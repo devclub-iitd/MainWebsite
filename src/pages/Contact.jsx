@@ -5,14 +5,25 @@ import Box from '@material-ui/core/Box';
 import { grey } from '@material-ui/core/colors';
 import { FacebookBox, GithubCircle, Email } from 'mdi-material-ui';
 import Grid from '@material-ui/core/Grid';
-import ReactFullpage from '@fullpage/react-fullpage';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
+import AppBar from '@material-ui/core/AppBar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import CardActions from '@material-ui/core/CardActions';
+import Link from '@material-ui/core/Link';
 import LocationMap from '../components/LocationMap';
 
 const styles = theme => ({
+  root: {
+    width: '100%',
+    height: '100%',
+    boxSizing: 'borderBox',
+    overflowY: 'scroll',
+  },
   centerText: {
     textAlign: 'center',
     width: '100%',
@@ -21,39 +32,40 @@ const styles = theme => ({
     marginTop: theme.spacing(10),
     marginBottom: theme.spacing(3),
   },
-  bottomText: {
-    textAlign: 'center',
-    width: '100%',
-    marginBottom: theme.spacing(5),
-  },
-  social: {
+  centerAlign: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
   socialIcon: {
-    color: grey[800],
-    marginBottom: theme.spacing(3),
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    marginTop: theme.spacing(2),
-    '&:hover': {
-      color: grey[600],
-    },
+    marginBottom: theme.spacing(1),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    marginTop: theme.spacing(1),
+    // '&:hover': {
+    //   color: grey[800],
+    // },
+  },
+  cards: {
+    marginBottom: theme.spacing(10),
   },
   card: {
     minWidth: '100%',
     height: '100%',
   },
-  mapHeading: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    padding: 10,
+  appBar: {
+    top: 'auto',
+    bottom: 0,
+  },
+  formFooter: {
+    textAlign: 'center',
+    width: '100%',
+    paddingTop: 8,
   },
 });
 
 const renderPage = (classes) => {
-  if (window.innerWidth <= 800) {
+  if (window.innerWidth <= 700) {
     return (
       <div>
         <Box
@@ -61,17 +73,27 @@ const renderPage = (classes) => {
           left={0}
           right={0}
           top={170}
-          height="45%"
+          height="40%"
           zIndex={2}
         >
           <Card className={classes.card}>
-            <CardHeader
-              subheader="Contact Details"
-            />
+            <CardActions>
+              <Typography className={classes.formFooter}>
+                <Link target="_blank" rel="noopener noreferrer" href="https://bit.ly/2U0uIOe" color="textSecondary">
+                  Fill this form
+                </Link>
+                {'  '}
+                    or
+                {'  '}
+                <Link target="_blank" rel="noopener noreferrer" href="mailto:devclub.iitd@gmail.com" color="textSecondary">
+                  mail us here
+                </Link>
+              </Typography>
+            </CardActions>
             <CardMedia
               component="iframe"
-              src="http://bit.ly/2U0uIOe"
-              height="80%"
+              src="https://bit.ly/2U0uIOe"
+              height="75%"
               title="Project Request Form"
             />
           </Card>
@@ -80,7 +102,7 @@ const renderPage = (classes) => {
           position="absolute"
           left={0}
           right={0}
-          bottom={150}
+          bottom={100}
           height="40%"
         >
           <LocationMap />
@@ -91,25 +113,40 @@ const renderPage = (classes) => {
   if (window.innerWidth <= 1000) {
     return (
       <div>
-        <Grid container spacing={2}>
-          <Grid item xs={1} />
-          <Grid item xs={5}>
+        <Grid container spacing={4}>
+          <Grid item xs={6}>
             <Card elevation={4} className={classes.card}>
-              <Box p={2} fontSize={20} color={grey[700]}>Contact Details</Box>
+              <div className={classes.centerAlign}>
+                <Box p={2} fontSize={20} color={grey[700]}>Contact Details</Box>
+              </div>
               <CardMedia
                 component="iframe"
-                src="http://bit.ly/2U0uIOe"
-                height="90%"
+                src="https://bit.ly/2U0uIOe"
+                height="82%"
                 title="Project Request Form"
               />
+              <CardActions>
+                <Typography className={classes.formFooter}>
+                  <Link target="_blank" rel="noopener noreferrer" href="https://bit.ly/2U0uIOe" color="textSecondary">
+                  Fill this form
+                  </Link>
+                  {'  '}
+                    or
+                  {'  '}
+                  <Link target="_blank" rel="noopener noreferrer" href="mailto:devclub.iitd@gmail.com" color="textSecondary">
+                  mail us here
+                  </Link>
+                </Typography>
+              </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <Paper elevation={4}>
-              <Box p={2} fontSize={20} color={grey[700]}>Find us here</Box>
+              <div className={classes.centerAlign}>
+                <Box p={2} fontSize={20} color={grey[700]}>Find us here</Box>
+              </div>
               <LocationMap />
             </Paper>
-            <Grid item xs={1} />
           </Grid>
         </Grid>
       </div>
@@ -117,29 +154,40 @@ const renderPage = (classes) => {
   }
   return (
     <div>
-      <Grid container spacing={10}>
-        <Grid item xs={2} />
-        <Grid item xs={4}>
+      <Grid container spacing={8}>
+        <Grid item xs={6}>
           <Card elevation={4} className={classes.card}>
-            <div className={classes.social}>
+            <div className={classes.centerAlign}>
               <Box p={2} fontSize={20} color={grey[700]}>Contact Details</Box>
             </div>
             <CardMedia
               component="iframe"
-              src="http://bit.ly/2U0uIOe"
-              height="90%"
+              src="https://bit.ly/2U0uIOe"
+              height="82%"
               title="Project Request Form"
             />
+            <CardActions>
+              <Typography className={classes.formFooter}>
+                <Link target="_blank" rel="noopener noreferrer" href="https://bit.ly/2U0uIOe" color="textSecondary">
+                Fill this form
+                </Link>
+                {'  '}
+                  or
+                {'  '}
+                <Link target="_blank" rel="noopener noreferrer" href="mailto:devclub.iitd@gmail.com" color="textSecondary">
+                mail us here
+                </Link>
+              </Typography>
+            </CardActions>
           </Card>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Paper elevation={4}>
-            <div className={classes.social}>
+            <div className={classes.centerAlign}>
               <Box p={2} fontSize={20} color={grey[700]}>Find us here</Box>
             </div>
             <LocationMap />
           </Paper>
-          <Grid item xs={2} />
         </Grid>
       </Grid>
     </div>
@@ -149,33 +197,30 @@ const renderPage = (classes) => {
 const Contact = (props) => {
   const { classes } = props;
   return (
-    <ReactFullpage
-      render={() => (
-        <ReactFullpage.Wrapper>
-          <div className="section">
-            <Typography gutterBottom variant="h5" className={classes.centerText}>
+    <React.Fragment>
+      <CssBaseline />
+      <Container maxWidth="lg">
+        <Typography gutterBottom variant="h5" className={classes.centerText}>
                 Contact Us
-            </Typography>
-            {renderPage(classes)}
-
-            <Box
-              bgcolor="background.paper"
-              position="absolute"
-              bottom={0}
-              left={0}
-              right={0}
-              zIndex={2}
-            >
-              <div className={classes.social}>
-                <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/tech.iitd/" className={classes.socialIcon}><FacebookBox style={{ fontSize: 45 }} /></a>
-                <a target="_blank" rel="noopener noreferrer" href="https://github.com/devclub-iitd" className={classes.socialIcon}><GithubCircle style={{ fontSize: 45 }} /></a>
-                <a target="_blank" rel="noopener noreferrer" href="mailto:devclub.iitd@gmail.com" className={classes.socialIcon}><Email style={{ fontSize: 45 }} /></a>
-              </div>
-            </Box>
-          </div>
-        </ReactFullpage.Wrapper>
-      )}
-    />
+        </Typography>
+        <div className={classes.cards}>
+          {renderPage(classes)}
+        </div>
+      </Container>
+      <AppBar color="inherit" position="fixed" className={classes.appBar}>
+        <Toolbar className={classes.centerAlign}>
+          <IconButton edge="start" color="inherit" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/tech.iitd/" className={classes.socialIcon}>
+            <FacebookBox style={{ fontSize: 43 }} />
+          </IconButton>
+          <IconButton edge="start" color="inherit" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="https://github.com/devclub-iitd" className={classes.socialIcon}>
+            <GithubCircle style={{ fontSize: 43 }} />
+          </IconButton>
+          <IconButton edge="start" color="inherit" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="mailto:devclub.iitd@gmail.com" className={classes.socialIcon}>
+            <Email style={{ fontSize: 43 }} />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+    </React.Fragment>
   );
 };
 
