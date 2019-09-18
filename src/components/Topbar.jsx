@@ -157,18 +157,24 @@ class Topbar extends Component {
                   <div className={classes.tabContainer}>
                     <SwipeableDrawer anchor="right" open={menuDrawer} onOpen={this.mobileMenuOpen} onClose={this.mobileMenuClose}>
                       <AppBar title="Menu" />
-                      <List>
-                        {Menu.map(item => (
-                          <ListItem
-                            key={item.label}
-                            component={Link}
-                            to={{ pathname: item.pathname, search: location.search }}
-                            button
-                          >
-                            <ListItemText primary={item.label} />
-                          </ListItem>
-                        ))}
-                      </List>
+                      <div
+                        role="presentation"
+                        onClick={this.mobileMenuClose}
+                        onKeyDown={this.mobileMenuClose}
+                      >
+                        <List>
+                          {Menu.map(item => (
+                            <ListItem
+                              key={item.label}
+                              component={Link}
+                              to={{ pathname: item.pathname, search: location.search }}
+                              button
+                            >
+                              <ListItemText primary={item.label} />
+                            </ListItem>
+                          ))}
+                        </List>
+                      </div>
                     </SwipeableDrawer>
                     <Tabs
                       value={this.current() || value}
