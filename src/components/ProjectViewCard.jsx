@@ -51,8 +51,8 @@ const styles = theme => ({
     color: '#050401',
     marginTop: 0,
     marginBottom: 0,
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     '&:hover': {
       color: grey[800],
     },
@@ -121,8 +121,8 @@ class ProjectViewCard extends React.Component {
         </CardContent>
         <StyledCardActions className={classes.actions} theme={actionBackgroundTheme}>
           <div className={classes.social}>
-            <a href={projectData['Github URL']} className={classes.socialIcon}><GithubCircle /></a>
-            <a href={projectData['Website URL']} className={classes.socialIcon}><Web /></a>
+            <a target="_blank" rel="noopener noreferrer" href={projectData['Github URL']} className={classes.socialIcon}><GithubCircle /></a>
+            <a target="_blank" rel="noopener noreferrer" href={projectData['Website URL']} className={classes.socialIcon}><Web /></a>
           </div>
           <IconButton
             className={classnames(classes.expand, {

@@ -4,6 +4,7 @@ import { withStyles, Grid, Typography } from '@material-ui/core';
 import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import Typist from 'react-typist';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import css3 from '../images/css-3-pp.svg';
 import html5 from '../images/html-5-freepik.svg';
@@ -188,6 +189,7 @@ const Home = (props) => {
 
   return (
     <React.Fragment>
+      <CssBaseline />
       <div className={classes.background} style={{ width: `${backgroundWidth}` }} />
       <div className={classes.root}>
         <Grid container className={classes.landingContainer}>
@@ -227,7 +229,6 @@ const Home = (props) => {
           </Grid>
         </Grid>
       </div>
-      {/* <a href="http://bit.ly/2CGChyY"> Report bugs/Suggestions.</a> */}
     </React.Fragment>
   );
 };

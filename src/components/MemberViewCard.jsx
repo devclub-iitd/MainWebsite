@@ -26,10 +26,10 @@ const styles = theme => ({
     alignItems: 'center',
   },
   chip: {
-    marginTop: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
-    marginLeft: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 2,
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
   },
   intro: {
     minHeight: 70,
@@ -64,8 +64,8 @@ const styles = theme => ({
     color: '#050401',
     marginTop: 0,
     marginBottom: 0,
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     '&:hover': {
       color: grey[800],
     },
@@ -119,7 +119,11 @@ class MemberViewCard extends Component {
               <Grid container alignItems="center" justify="center">
                 <Grid item xs={5}>
                   <div className={classes.avatarHolder}>
-                    <Avatar alt={memberData.name} src={memberData.url.picture_url} className={classes.bigAvatar} />
+                    <Avatar
+                      alt={memberData.name}
+                      src={memberData.url.picture_url}
+                      className={classes.bigAvatar}
+                    />
                   </div>
                 </Grid>
                 <Grid item xs={7}>
@@ -131,7 +135,11 @@ class MemberViewCard extends Component {
             </MediaQuery>
             <MediaQuery minDeviceWidth={1401}>
               <div className={classes.avatarHolder}>
-                <Avatar alt={memberData.name} src={memberData.url.picture_url} className={classes.bigAvatar} />
+                <Avatar
+                  alt={memberData.name}
+                  src={memberData.url.picture_url}
+                  className={classes.bigAvatar}
+                />
               </div>
               <Typography variant="h6" component="h4" className={classes.memberName}>
                 {memberData.name}
@@ -148,9 +156,9 @@ class MemberViewCard extends Component {
         </CardContent>
         <StyledCardActions theme={backgroundTheme}>
           <div className={classes.social}>
-            <a href={memberData.url.fb_url} className={classes.socialIcon}><Facebook /></a>
-            <a href={memberData.url.github_url} className={classes.socialIcon}><GithubCircle /></a>
-            <a href={memberData.email} className={classes.socialIcon}><Email /></a>
+            <a target="_blank" rel="noopener noreferrer" href={memberData.url.fb_url} className={classes.socialIcon}><Facebook /></a>
+            <a target="_blank" rel="noopener noreferrer" href={memberData.url.github_url} className={classes.socialIcon}><GithubCircle /></a>
+            <a target="_blank" rel="noopener noreferrer" href={memberData.email} className={classes.socialIcon}><Email /></a>
           </div>
         </StyledCardActions>
       </Card>

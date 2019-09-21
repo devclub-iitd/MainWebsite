@@ -23,11 +23,11 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   nested: {
-    paddingLeft: theme.spacing.unit * 4,
+    paddingLeft: theme.spacing(4),
     backgroundColor: grey[100],
   },
   superNested: {
-    paddingLeft: theme.spacing.unit * 4 * 2,
+    paddingLeft: theme.spacing(8),
     backgroundColor: grey[300],
   },
 });

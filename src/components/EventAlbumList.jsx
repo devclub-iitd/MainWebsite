@@ -15,7 +15,7 @@ const styles = theme => ({
   gridList: {
     width: '80vw',
     maxHeight: 450,
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing(1),
     overflowY: 'scroll',
   },
   imageElement: {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Typography, withStyles } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import TreeView from '../components/TreeView';
 import { fetchResources as fetchResourcesAction } from '../actions/allActions';
 import DisqusDialog from '../components/DisqusDialog';
@@ -86,6 +87,7 @@ class Misc extends React.Component {
 
     return (
       <React.Fragment>
+        <CssBaseline />
         <Typography gutterBottom variant="h5" className={classes.centerText}>
           Resources
         </Typography>
