@@ -7,7 +7,7 @@ import './App.css';
 
 import Home from './pages/Home';
 import Team from './pages/Team';
-import Ideas from './pages/Ideas';
+// import Ideas from './pages/Ideas';
 import Projects from './pages/Projects';
 import Admin from './pages/Admin';
 import Misc from './pages/Misc';
@@ -127,7 +127,7 @@ const App = () => (
             <Route exact path="/events" component={Events} />
             <Route exact path="/team" component={Team} />
             <Route exact path="/projects" component={Projects} />
-            <Route exact path="/ideas" component={Ideas} />
+            {/* <Route exact path="/ideas" component={Ideas} /> */}
             <Route exact path="/misc" component={Misc} />
             <Route exact path="/admin" component={Admin} />
           </div>
