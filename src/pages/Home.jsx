@@ -14,7 +14,7 @@ import bash from '../images/gnu-bash.svg';
 import ts from '../images/typescript-freepik.svg';
 import docker from '../images/docker-freepik.svg';
 import react from '../images/react-freepik.svg';
-import devices from '../images/devices-srip.svg';
+import devices from '../images/devices2.svg';
 import colors from '../components/Pallete';
 import beam from '../images/beam.png';
 
@@ -61,12 +61,12 @@ const styles = () => ({
   },
   devices: {
     position: 'absolute',
-    width: '20vw',
+    width: '31vw',
     height: '20vw',
-    minWidth: '25ch',
+    minWidth: '37.5ch',
     minHeight: '25ch',
-    maxWidth: '80ch',
-    maxHeight: '80ch',
+    maxWidth: '255ch',
+    maxHeight: '150ch',
     backgroundImage: `url(${devices})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
@@ -102,8 +102,8 @@ const styles = () => ({
 });
 
 const items = [css3, html5, js, python, bash, ts, docker, react];
-const distanceX = [180, 240, 120, 120, -120, -120, -240, -180];
-const distanceY = [120, -150, 160, -100, 100, -120, 140, -80];
+const distanceX = [180, 240, 200, 120, -120, -120, -240, -180];
+const distanceY = [120, -150, 310, -140, 100, -120, 140, -80];
 
 const AnimatedSvg = styled.div`
   width: 2.5vw;
@@ -179,8 +179,8 @@ const Home = (props) => {
   const aboutContent1 = 'DevClub is a student group at IIT Delhi, that develops cool stuff that benefits everyone in the campus.';
   const aboutContent2 = 'We are a community where students can apply their skills into developing applications which are actually useful, and enhancing their own skills in the process.';
 
-  const svgContainerHeight = window.innerWidth < 960 ? '30vh' : '50vh';
-  const introTopHeight = window.innerWidth < 960 ? '32vh' : '42vh';
+  const svgContainerHeight = window.innerWidth < 960 ? '30vh' : '70vh';
+  const introTopHeight = window.innerWidth < 960 ? '32vh' : '62vh';
   const backgroundWidth = window.innerWidth < 960 ? '100vw' : '50vw';
 
   /* To ensure single page UI on Mobile as well as Larger Screens */
@@ -209,17 +209,22 @@ const Home = (props) => {
               <div className={classes.aboutBackground}>
 
                 {/* Display on Laptop Devices */}
-                <Typography variant="h5" className={classes.centerBody} style={{ display: `${aboutDesktop}` }}>
+                {/* <Typography variant="h5" className={classes.centerBody} style={{ display: `${aboutDesktop}` }}>
                   {aboutContent1}
-                </Typography>
-                <Typography variant="h6" gutterBottom className={classes.centerBody} style={{ display: `${aboutDesktop}` }}>
+                </Typography> */}
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  className={classes.centerBody}
+                  style={{ display: `${aboutDesktop}` }}
+                >
                   {aboutContent2}
                 </Typography>
 
                 {/* Display on Mobile Devices */}
-                <Typography variant="h6" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
+                {/* <Typography variant="h6" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
                   {aboutContent1}
-                </Typography>
+                </Typography> */}
                 <Typography variant="body1" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
                   {aboutContent2}
                 </Typography>
