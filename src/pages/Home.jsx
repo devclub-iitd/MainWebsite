@@ -1,6 +1,7 @@
+/* eslint-disable max-len */
 /* eslint-disable no-await-in-loop */
 import React from 'react';
-import { withStyles, Grid, Typography } from '@material-ui/core';
+import { withStyles, Grid } from '@material-ui/core';
 import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import Typist from 'react-typist';
@@ -61,12 +62,12 @@ const styles = () => ({
   },
   devices: {
     position: 'absolute',
-    width: '31vw',
-    height: '20vw',
-    minWidth: '37.5ch',
-    minHeight: '25ch',
-    maxWidth: '255ch',
-    maxHeight: '150ch',
+    width: '37.5vw',
+    height: '25vw',
+    minWidth: '45ch',
+    minHeight: '30ch',
+    maxWidth: '375ch',
+    maxHeight: '250ch',
     backgroundImage: `url(${devices})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
@@ -102,8 +103,8 @@ const styles = () => ({
 });
 
 const items = [css3, html5, js, python, bash, ts, docker, react];
-const distanceX = [180, 240, 200, 120, -120, -120, -240, -180];
-const distanceY = [120, -150, 310, -140, 100, -120, 140, -80];
+const distanceX = [180, 240, 280, 120, -120, -120, -240, -180];
+const distanceY = [120, -150, 350, -140, 100, -120, 140, -80];
 
 const AnimatedSvg = styled.div`
   width: 2.5vw;
@@ -176,16 +177,16 @@ const Home = (props) => {
     svgArray.push(svgItem);
   }
 
-  const aboutContent1 = 'DevClub is a student group at IIT Delhi, that develops cool stuff that benefits everyone in the campus.';
-  const aboutContent2 = 'We are a community where students can apply their skills into developing applications which are actually useful, and enhancing their own skills in the process.';
+  // const aboutContent1 = 'DevClub is a student group at IIT Delhi, that develops cool stuff that benefits everyone in the campus.';
+  // const aboutContent2 = 'We are a community where students can apply their skills into developing applications which are actually useful, and enhancing their own skills in the process.';
 
   const svgContainerHeight = window.innerWidth < 960 ? '30vh' : '70vh';
   const introTopHeight = window.innerWidth < 960 ? '32vh' : '62vh';
   const backgroundWidth = window.innerWidth < 960 ? '100vw' : '50vw';
 
   /* To ensure single page UI on Mobile as well as Larger Screens */
-  const aboutMobile = window.innerWidth < 960 ? 'block' : 'none';
-  const aboutDesktop = window.innerWidth < 960 ? 'none' : 'block';
+  // const aboutMobile = window.innerWidth < 960 ? 'block' : 'none';
+  // const aboutDesktop = window.innerWidth < 960 ? 'none' : 'block';
 
   return (
     <React.Fragment>
@@ -212,22 +213,22 @@ const Home = (props) => {
                 {/* <Typography variant="h5" className={classes.centerBody} style={{ display: `${aboutDesktop}` }}>
                   {aboutContent1}
                 </Typography> */}
-                <Typography
+                {/* <Typography
                   variant="h6"
                   gutterBottom
                   className={classes.centerBody}
                   style={{ display: `${aboutDesktop}` }}
-                >
-                  {aboutContent2}
-                </Typography>
+                > */}
+                {/* {aboutContent2} */}
+                {/* </Typography> */}
 
                 {/* Display on Mobile Devices */}
                 {/* <Typography variant="h6" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
                   {aboutContent1}
                 </Typography> */}
-                <Typography variant="body1" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
+                {/* <Typography variant="body1" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
                   {aboutContent2}
-                </Typography>
+                </Typography> */}
 
               </div>
             </div>
