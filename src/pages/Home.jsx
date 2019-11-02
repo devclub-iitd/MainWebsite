@@ -103,8 +103,8 @@ const styles = () => ({
 });
 
 const items = [css3, html5, js, python, bash, ts, docker, react];
-const distanceX = [180, 240, 280, 120, -120, -120, -240, -180];
-const distanceY = [120, -150, 350, -140, 100, -120, 140, -80];
+const distanceX = [180, 240, 140, 120, -140, -120, -240, -180];
+const distanceY = [120, -150, 270, -140, 260, -120, 140, -80];
 
 const AnimatedSvg = styled.div`
   width: 2.5vw;
@@ -129,7 +129,8 @@ function responsiveWidth(distance) {
 }
 
 function responsiveHeight(distance) {
-  const ratio = window.innerHeight / 1920;
+  let ratio = window.innerWidth / 1920;
+  ratio = ratio < 0.4 ? 0.4 : ratio;
   return ratio * distance;
 }
 
@@ -180,8 +181,8 @@ const Home = (props) => {
   // const aboutContent1 = 'DevClub is a student group at IIT Delhi, that develops cool stuff that benefits everyone in the campus.';
   // const aboutContent2 = 'We are a community where students can apply their skills into developing applications which are actually useful, and enhancing their own skills in the process.';
 
-  const svgContainerHeight = window.innerWidth < 960 ? '30vh' : '70vh';
-  const introTopHeight = window.innerWidth < 960 ? '32vh' : '62vh';
+  const svgContainerHeight = window.innerWidth < 960 ? '50vh' : '70vh';
+  const introTopHeight = window.innerWidth < 960 ? '42vh' : '62vh';
   const backgroundWidth = window.innerWidth < 960 ? '100vw' : '50vw';
 
   /* To ensure single page UI on Mobile as well as Larger Screens */
@@ -206,32 +207,32 @@ const Home = (props) => {
             </div>
           </Grid>
           <Grid container item md={4}>
-            <div className={classes.aboutContent}>
-              <div className={classes.aboutBackground}>
+            {/* <div className={classes.aboutContent}> */}
+            {/* <div className={classes.aboutBackground}> */}
 
-                {/* Display on Laptop Devices */}
-                {/* <Typography variant="h5" className={classes.centerBody} style={{ display: `${aboutDesktop}` }}>
+            {/* Display on Laptop Devices */}
+            {/* <Typography variant="h5" className={classes.centerBody} style={{ display: `${aboutDesktop}` }}>
                   {aboutContent1}
                 </Typography> */}
-                {/* <Typography
+            {/* <Typography
                   variant="h6"
                   gutterBottom
                   className={classes.centerBody}
                   style={{ display: `${aboutDesktop}` }}
                 > */}
-                {/* {aboutContent2} */}
-                {/* </Typography> */}
+            {/* {aboutContent2} */}
+            {/* </Typography> */}
 
-                {/* Display on Mobile Devices */}
-                {/* <Typography variant="h6" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
+            {/* Display on Mobile Devices */}
+            {/* <Typography variant="h6" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
                   {aboutContent1}
                 </Typography> */}
-                {/* <Typography variant="body1" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
+            {/* <Typography variant="body1" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
                   {aboutContent2}
                 </Typography> */}
 
-              </div>
-            </div>
+            {/* </div> */}
+            {/* {</div>} */}
           </Grid>
         </Grid>
       </div>
