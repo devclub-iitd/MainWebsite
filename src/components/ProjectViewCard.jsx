@@ -14,6 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { grey } from '@material-ui/core/colors';
 import styled from 'styled-components';
+import Box from '@material-ui/core/Box';
+import { Grid } from '@material-ui/core';
 import DisqusDialog from './DisqusDialog';
 import colors from './Pallete';
 
@@ -21,6 +23,9 @@ const styles = theme => ({
   card: {
     maxWidth: 600,
     margin: '10px',
+    justify: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
   },
   cardContent: {
     minHeight: '3em',
@@ -104,9 +109,9 @@ class ProjectViewCard extends React.Component {
     return (
       <Card className={classes.card}>
         <CardHeader
-          title={projectData.name}
+          title={<Grid container spacing={0} direction="column" justify="center" alignItems="center"><Box fontWeight="fontWeightLight" m={1} color={grey[800]} fontSize="h6.fontSize" letterSpacing={1}>{projectData.name}</Box></Grid>}
           // subheader={projectData.launchDate}
-          subheader={projectData.start_date}
+          // subheader={projectData.start_date}
         />
         <CardMedia
           className={classes.media}
@@ -115,7 +120,7 @@ class ProjectViewCard extends React.Component {
           title="Screenshot Image"
         />
         <CardContent className={classes.cardContent}>
-          <Typography component="p">
+          <Typography component="p" color="textSecondary">
             {projectData.description}
           </Typography>
         </CardContent>

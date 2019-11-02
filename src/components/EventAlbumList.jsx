@@ -45,7 +45,7 @@ class EventAlbumList extends Component {
 
     const childElements = mediaList.map(tile => (
       <Grid item md={2} sm={4}>
-        <img src={tile} alt="Event" className={classes.imageElement} />
+        <a target="_blank" rel="noopener noreferrer" href={tile}><img src={tile} alt="Event" className={classes.imageElement} /></a>
       </Grid>
     ));
 

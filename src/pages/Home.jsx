@@ -1,6 +1,7 @@
+/* eslint-disable max-len */
 /* eslint-disable no-await-in-loop */
 import React from 'react';
-import { withStyles, Grid, Typography } from '@material-ui/core';
+import { withStyles, Grid } from '@material-ui/core';
 import styled, { css, keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import Typist from 'react-typist';
@@ -14,7 +15,7 @@ import bash from '../images/gnu-bash.svg';
 import ts from '../images/typescript-freepik.svg';
 import docker from '../images/docker-freepik.svg';
 import react from '../images/react-freepik.svg';
-import devices from '../images/devices-srip.svg';
+import devices from '../images/devices2.svg';
 import colors from '../components/Pallete';
 import beam from '../images/beam.png';
 
@@ -61,12 +62,12 @@ const styles = () => ({
   },
   devices: {
     position: 'absolute',
-    width: '20vw',
-    height: '20vw',
-    minWidth: '25ch',
-    minHeight: '25ch',
-    maxWidth: '80ch',
-    maxHeight: '80ch',
+    width: '37.5vw',
+    height: '25vw',
+    minWidth: '45ch',
+    minHeight: '30ch',
+    maxWidth: '375ch',
+    maxHeight: '250ch',
     backgroundImage: `url(${devices})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
@@ -102,8 +103,8 @@ const styles = () => ({
 });
 
 const items = [css3, html5, js, python, bash, ts, docker, react];
-const distanceX = [180, 240, 120, 120, -120, -120, -240, -180];
-const distanceY = [120, -150, 160, -100, 100, -120, 140, -80];
+const distanceX = [180, 240, 140, 120, -140, -120, -240, -180];
+const distanceY = [120, -150, 270, -140, 260, -120, 140, -80];
 
 const AnimatedSvg = styled.div`
   width: 2.5vw;
@@ -128,7 +129,8 @@ function responsiveWidth(distance) {
 }
 
 function responsiveHeight(distance) {
-  const ratio = window.innerHeight / 1920;
+  let ratio = window.innerWidth / 1920;
+  ratio = ratio < 0.4 ? 0.4 : ratio;
   return ratio * distance;
 }
 
@@ -176,16 +178,16 @@ const Home = (props) => {
     svgArray.push(svgItem);
   }
 
-  const aboutContent1 = 'DevClub is a student group at IIT Delhi, that develops cool stuff that benefits everyone in the campus.';
-  const aboutContent2 = 'We are a community where students can apply their skills into developing applications which are actually useful, and enhancing their own skills in the process.';
+  // const aboutContent1 = 'DevClub is a student group at IIT Delhi, that develops cool stuff that benefits everyone in the campus.';
+  // const aboutContent2 = 'We are a community where students can apply their skills into developing applications which are actually useful, and enhancing their own skills in the process.';
 
-  const svgContainerHeight = window.innerWidth < 960 ? '30vh' : '50vh';
-  const introTopHeight = window.innerWidth < 960 ? '32vh' : '42vh';
+  const svgContainerHeight = window.innerWidth < 960 ? '50vh' : '70vh';
+  const introTopHeight = window.innerWidth < 960 ? '42vh' : '62vh';
   const backgroundWidth = window.innerWidth < 960 ? '100vw' : '50vw';
 
   /* To ensure single page UI on Mobile as well as Larger Screens */
-  const aboutMobile = window.innerWidth < 960 ? 'block' : 'none';
-  const aboutDesktop = window.innerWidth < 960 ? 'none' : 'block';
+  // const aboutMobile = window.innerWidth < 960 ? 'block' : 'none';
+  // const aboutDesktop = window.innerWidth < 960 ? 'none' : 'block';
 
   return (
     <React.Fragment>
@@ -205,27 +207,32 @@ const Home = (props) => {
             </div>
           </Grid>
           <Grid container item md={4}>
-            <div className={classes.aboutContent}>
-              <div className={classes.aboutBackground}>
+            {/* <div className={classes.aboutContent}> */}
+            {/* <div className={classes.aboutBackground}> */}
 
-                {/* Display on Laptop Devices */}
-                <Typography variant="h5" className={classes.centerBody} style={{ display: `${aboutDesktop}` }}>
+            {/* Display on Laptop Devices */}
+            {/* <Typography variant="h5" className={classes.centerBody} style={{ display: `${aboutDesktop}` }}>
                   {aboutContent1}
-                </Typography>
-                <Typography variant="h6" gutterBottom className={classes.centerBody} style={{ display: `${aboutDesktop}` }}>
-                  {aboutContent2}
-                </Typography>
+                </Typography> */}
+            {/* <Typography
+                  variant="h6"
+                  gutterBottom
+                  className={classes.centerBody}
+                  style={{ display: `${aboutDesktop}` }}
+                > */}
+            {/* {aboutContent2} */}
+            {/* </Typography> */}
 
-                {/* Display on Mobile Devices */}
-                <Typography variant="h6" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
+            {/* Display on Mobile Devices */}
+            {/* <Typography variant="h6" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
                   {aboutContent1}
-                </Typography>
-                <Typography variant="body1" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
+                </Typography> */}
+            {/* <Typography variant="body1" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
                   {aboutContent2}
-                </Typography>
+                </Typography> */}
 
-              </div>
-            </div>
+            {/* </div> */}
+            {/* {</div>} */}
           </Grid>
         </Grid>
       </div>

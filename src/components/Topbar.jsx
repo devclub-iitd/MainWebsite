@@ -15,6 +15,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import { indigo } from '@material-ui/core/colors';
 import Menu from './Menu';
 
 const logo = require('../logo.png');
@@ -85,6 +86,41 @@ const styles = theme => ({
   },
 });
 
+const StyledTabs = withStyles({
+  indicator: {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    '& > div': {
+      maxWidth: 60,
+      width: '100%',
+      backgroundColor: indigo[400],
+    },
+  },
+})(props => <Tabs {...props} TabIndicatorProps={{ children: <div /> }} />);
+
+const StyledTab = withStyles(theme => ({
+  root: {
+    textTransform: 'none',
+    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: theme.typography.pxToRem(17),
+    marginRight: theme.spacing(1),
+    '&:focus': {
+      color: indigo[600],
+      opacity: 1,
+    },
+    '&:hover': {
+      color: indigo[600],
+      opacity: 1,
+    },
+    '&$selected': {
+      color: indigo[800],
+      fontWeight: theme.typography.fontWeightMedium,
+    },
+  },
+}))(props => <Tab disableRipple {...props} />);
+
+
 class Topbar extends Component {
   state = {
     value: 0,
@@ -115,14 +151,25 @@ class Topbar extends Component {
     const { location } = this.props;
     const currentPath = location.pathname;
 
+    // switch (currentPath) { // use this when ideas page is ready
+    //   case '/home': return 0;
+    //   case '/team': return 1;
+    //   case '/projects': return 2;
+    //   case '/ideas': return 3;
+    //   case '/events': return 4;
+    //   case '/misc': return 5;
+    //   case '/contact': return 6;
+    //   default: return 0;
+    // }
+
     switch (currentPath) {
       case '/home': return 0;
       case '/team': return 1;
       case '/projects': return 2;
-      case '/ideas': return 3;
-      case '/events': return 4;
-      case '/misc': return 5;
-      case '/contact': return 6;
+      // case '/ideas': return 3;
+      case '/events': return 3;
+      case '/misc': return 4;
+      case '/contact': return 5;
       default: return 0;
     }
   }
@@ -135,7 +182,7 @@ class Topbar extends Component {
     const iitMargin = window.innerWidth < 960 ? 0 : 132;
 
     return (
-      <AppBar position="absolute" color="default" className={classes.appBar}>
+      <AppBar position="absolute" color="inherit" className={classes.appBar}>
         <Toolbar>
           <Grid container alignItems="baseline">
             <Grid item xs={12} container alignItems="baseline" className={classes.flex}>
@@ -150,7 +197,7 @@ class Topbar extends Component {
                     IIT Delhi
                   </Typography>
                   <div className={classes.iconContainer}>
-                    <IconButton onClick={this.mobileMenuOpen} className={classes.iconButton} color="inherit" aria-label="Menu">
+                    <IconButton onClick={this.mobileMenuOpen} className={classes.iconButton} aria-label="Menu">
                       <MenuIcon />
                     </IconButton>
                   </div>
@@ -176,22 +223,19 @@ class Topbar extends Component {
                         </List>
                       </div>
                     </SwipeableDrawer>
-                    <Tabs
+                    <StyledTabs
                       value={this.current() || value}
-                      indicatorColor="primary"
-                      textColor="primary"
                       onChange={this.handleChange}
                     >
                       {Menu.map(item => (
-                        <Tab
+                        <StyledTab
                           key={item.label}
                           component={Link}
                           to={{ pathname: item.pathname, search: location.search }}
-                          classes={{ root: classes.tabItem }}
-                          label={<span className={classes.tabLabel}>{item.label}</span>}
+                          label={item.label}
                         />
                       ))}
-                    </Tabs>
+                    </StyledTabs>
                   </div>
                 </React.Fragment>
               )}

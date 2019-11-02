@@ -194,6 +194,45 @@ const renderPage = (classes) => {
   );
 };
 
+const renderBottom = (classes) => {
+  if (window.innerWidth <= 700) {
+    return (
+      <div>
+        <AppBar color="inherit" position="fixed" className={classes.appBar}>
+          <Toolbar className={classes.centerAlign}>
+            <IconButton edge="start" color="default" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/tech.iitd/" className={classes.socialIcon}>
+              <FacebookBox style={{ fontSize: 43 }} />
+            </IconButton>
+            <IconButton edge="start" color="default" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="https://github.com/devclub-iitd" className={classes.socialIcon}>
+              <GithubCircle style={{ fontSize: 43 }} />
+            </IconButton>
+            <IconButton edge="start" color="default" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="mailto:devclub.iitd@gmail.com" className={classes.socialIcon}>
+              <Email style={{ fontSize: 43 }} />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
+  return (
+    <div>
+      <AppBar color="inherit" position="fixed" className={classes.appBar} style={{ background: 'transparent', boxShadow: 'none' }}>
+        <Toolbar className={classes.centerAlign}>
+          <IconButton edge="start" color="default" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/tech.iitd/" className={classes.socialIcon}>
+            <FacebookBox style={{ fontSize: 43 }} />
+          </IconButton>
+          <IconButton edge="start" color="default" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="https://github.com/devclub-iitd" className={classes.socialIcon}>
+            <GithubCircle style={{ fontSize: 43 }} />
+          </IconButton>
+          <IconButton edge="start" color="default" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="mailto:devclub.iitd@gmail.com" className={classes.socialIcon}>
+            <Email style={{ fontSize: 43 }} />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
+};
+
 const Contact = (props) => {
   const { classes } = props;
   return (
@@ -207,19 +246,9 @@ const Contact = (props) => {
           {renderPage(classes)}
         </div>
       </Container>
-      <AppBar color="inherit" position="fixed" className={classes.appBar}>
-        <Toolbar className={classes.centerAlign}>
-          <IconButton edge="start" color="inherit" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/tech.iitd/" className={classes.socialIcon}>
-            <FacebookBox style={{ fontSize: 43 }} />
-          </IconButton>
-          <IconButton edge="start" color="inherit" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="https://github.com/devclub-iitd" className={classes.socialIcon}>
-            <GithubCircle style={{ fontSize: 43 }} />
-          </IconButton>
-          <IconButton edge="start" color="inherit" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="mailto:devclub.iitd@gmail.com" className={classes.socialIcon}>
-            <Email style={{ fontSize: 43 }} />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+      <div className={classes.cards}>
+        {renderBottom(classes)}
+      </div>
     </React.Fragment>
   );
 };
