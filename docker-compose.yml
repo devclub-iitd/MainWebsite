@@ -5,11 +5,11 @@ services:
     build: .
     image: "${REGISTRY_NAME}devclubiitd/main_website:0.1"
     ports:
-      - ${PORT}:${PORT}
+      - ${PORT}:80
     healthcheck:
-      test: ["CMD", "curl", "http://localhost:${PORT}"]
+      test: ["CMD", "curl", "http://localhost"]
       interval: 1m30s
-      timeout: 10s
+      timeout: 1
       retries: 3
       start_period: 40s
     restart: "unless-stopped" 
