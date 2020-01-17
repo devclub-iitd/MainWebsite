@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
@@ -6,8 +6,9 @@ import { Paper, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { fetchEvents as fetchEventsAction } from '../actions/allActions';
-import EventAlbumList from '../components/EventAlbumList';
 import Loading from '../components/Loading';
+
+const EventAlbumList = lazy(() => import('../components/EventAlbumList'));
 
 const styles = theme => ({
   centerText: {
@@ -50,7 +51,10 @@ function parseEmbedCode(str) {
 
   const imagesList = [];
   for (let i = 0; i < images.length; i += 1) {
-    imagesList.push(images[i].dataset.src.replace(/\s/g, ''));
+    let url = images[i].dataset.src.replace(/\s/g, '');
+    url = url.replace('1920', '720');
+    url = url.replace('1080', '405');
+    imagesList.push(url);
   }
 
   return imagesList;
@@ -104,10 +108,12 @@ class Events extends React.Component {
                 {trimTime(eventData.start_date)}
               </Typography>
             </div>
-            <EventAlbumList
-              isLoading={isLoading}
-              mediaList={parseEmbedCode(eventData.embed_code)}
-            />
+            <Suspense fallback={<div>Loading...</div>}>
+              <EventAlbumList
+                isLoading={isLoading}
+                mediaList={parseEmbedCode(eventData.embed_code)}
+              />
+            </Suspense>
             <br />
           </Paper>
         );

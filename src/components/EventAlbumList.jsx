@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Masonry from 'react-masonry-component';
 import Grid from '@material-ui/core/Grid';
+import Loading from './Loading';
 
 const styles = theme => ({
   root: {
@@ -62,6 +63,14 @@ class EventAlbumList extends Component {
   }
 
   render() {
+    const { isLoading } = this.props;
+
+    if (isLoading !== false) {
+      return (
+        <Loading />
+      );
+    }
+
     return (
       <React.Fragment>
         <div>
@@ -74,6 +83,7 @@ class EventAlbumList extends Component {
 
 EventAlbumList.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  isLoading: PropTypes.bool.isRequired,
   mediaList: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
