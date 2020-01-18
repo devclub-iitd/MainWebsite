@@ -102,7 +102,7 @@ const styles = () => ({
   },
 });
 
-const items = [css3, html5, js, python, bash, ts, docker, react];
+const items = [css3, html5, react, python, js, ts, docker, bash];
 const distanceX = [180, 240, 140, 120, -140, -120, -240, -180];
 const distanceY = [120, -150, 270, -140, 260, -120, 140, -80];
 

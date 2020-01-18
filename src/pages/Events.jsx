@@ -92,7 +92,7 @@ class Events extends React.Component {
 
     const keys = Object.keys(data[0]);
 
-    for (let i = 0; i < data.length; i += 1) {
+    for (let i = data.length - 1; i >= 0; i -= 1) {
       const eventData = {};
       keys.forEach((key) => { eventData[key] = data[i][key]; });
       if (eventData.display_on_website === true) {
