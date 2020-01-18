@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Suspense, Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Masonry from 'react-masonry-component';
@@ -45,9 +45,11 @@ class EventAlbumList extends Component {
     const { classes, mediaList } = this.props;
 
     const childElements = mediaList.map(tile => (
-      <Grid item md={2} sm={4}>
-        <a target="_blank" rel="noopener noreferrer" href={tile}><img src={tile} alt="Event" className={classes.imageElement} /></a>
-      </Grid>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Grid item md={2} sm={4}>
+          <a target="_blank" rel="noopener noreferrer" href={tile}><img src={tile} alt="Event" className={classes.imageElement} /></a>
+        </Grid>
+      </Suspense>
     ));
 
     return (
