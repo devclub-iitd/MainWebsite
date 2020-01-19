@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
 import { Facebook, GithubCircle, Email } from 'mdi-material-ui';
 import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { grey } from '@material-ui/core/colors';
 import styled from 'styled-components';
 import MediaQuery from 'react-responsive';
@@ -17,13 +21,15 @@ const avatarSize = window.innerWidth < 960 ? '80px' : '100px';
 
 const styles = theme => ({
   card: {
-    minWidth: 260,
-    margin: '10px',
+    minWidth: 160,
+    margin: '5px',
   },
   cardContent: {
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 0,
+    paddingTop: 10,
   },
   chip: {
     marginTop: theme.spacing(1),
@@ -31,9 +37,9 @@ const styles = theme => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
   },
-  intro: {
-    minHeight: 70,
-    marginTop: 10,
+  cover: {
+    width: '100%',
+    height: 200,
   },
   bullet: {
     display: 'inline-block',
@@ -54,6 +60,18 @@ const styles = theme => ({
     margin: '0 auto',
     width: `${avatarSize}`,
     height: `${avatarSize}`,
+  },
+  expand: {
+    height: 30,
+    width: 30,
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
   },
   social: {
     display: 'flex',
@@ -88,6 +106,8 @@ const StyledCardActions = styled(CardActions)`
 `;
 
 class MemberViewCard extends Component {
+  state = { expanded: false };
+
   backgroundColor = (string) => {
     if (string === 'Senior Undergraduate') {
       return colors.color1.main;
@@ -99,7 +119,12 @@ class MemberViewCard extends Component {
     return colors.color4.main;
   };
 
+  handleExpandClick = () => {
+    this.setState(state => ({ expanded: !state.expanded }));
+  };
+
   renderData() {
+    const { expanded } = this.state;
     const { classes, memberData, isLoading } = this.props;
 
     if (isLoading !== false) {
@@ -110,32 +135,30 @@ class MemberViewCard extends Component {
       main: this.backgroundColor(memberData.category),
     };
 
+    const expandBackgroundTheme = {
+      backgroundColor: this.backgroundColor(memberData.category, 1),
+    };
+
     return (
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <div className={classes.memberDetails}>
             <Grid container justify="center">
-              <Grid item xs={4}>
-                <div className={classes.avatarHolder}>
-                  <Avatar
-                    alt={memberData.name}
-                    src={memberData.url.picture_url}
-                    className={classes.bigAvatar}
-                  />
-                </div>
-              </Grid>
-              <Grid item xs={8}>
+              <MediaQuery maxDeviceWidth="960px">
+                <Typography variant="body1" component="h4" className={classes.memberName}>
+                  {memberData.name}
+                </Typography>
+              </MediaQuery>
+              <MediaQuery minDeviceWidth="961px">
                 <Typography variant="h6" component="h4" className={classes.memberName}>
                   {memberData.name}
                 </Typography>
-
-                {/* Height Query to decide whether to display intro or not */}
-                <MediaQuery minDeviceHeight={700}>
-                  <Typography component="p" className={classes.intro}>
-                    {memberData.intro}
-                  </Typography>
-                </MediaQuery>
-              </Grid>
+              </MediaQuery>
+              <CardMedia
+                className={classes.cover}
+                image="https://picsum.photos/1200/600/?random"
+                title="Live from space album cover"
+              />
             </Grid>
           </div>
         </CardContent>
@@ -145,7 +168,24 @@ class MemberViewCard extends Component {
             <a target="_blank" rel="noopener noreferrer" href={memberData.url.github_url} className={classes.socialIcon}><GithubCircle /></a>
             <a href={`mailto:${memberData.email}`} className={classes.socialIcon}><Email /></a>
           </div>
+          <IconButton
+            className={classnames(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            onClick={this.handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="Show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
         </StyledCardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent style={expandBackgroundTheme}>
+            <Typography component="p">
+              {memberData.intro}
+            </Typography>
+          </CardContent>
+        </Collapse>
       </Card>
     );
   }

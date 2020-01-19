@@ -92,7 +92,7 @@ class Team extends React.Component {
 
       if (memberData.display_on_website === true) {
         const col = (
-          <Grid item key={`frag${i}`} xs={12} sm={6} xl={4}>
+          <Grid item key={`frag${i}`} xs={6} sm={4} md={3} xl={2}>
             <MemberViewCard memberData={memberData} isLoading={isLoading} />
           </Grid>
         );
