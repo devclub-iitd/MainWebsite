@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { Typography, withStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
-import ReactFullpage from '@fullpage/react-fullpage';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MemberViewCard from '../components/MemberViewCard';
 import { fetchMembers as fetchTeamAction } from '../actions/allActions';
@@ -33,13 +32,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 function renderSections(array, string, classes) {
-  let arrayLength = 2;
-  if (window.innerWidth >= 960) {
-    arrayLength = 6;
-  } else if (window.innerWidth >= 600) {
-    arrayLength = 4;
-  }
-
   let color = colors.color4;
   if (string === 'Senior Undergraduates') {
     color = colors.color1;
@@ -49,39 +41,19 @@ function renderSections(array, string, classes) {
     color = colors.color3;
   }
 
-  if (array.length <= arrayLength) {
-    const section = (
-      <React.Fragment>
-        <Typography gutterBottom variant="h5" className={classes.centerText}>
-          <span style={{ background: `${color.main}`, color: `${color.text}` }}>
-            {string}
-          </span>
-        </Typography>
-        <Grid container>
-          {array}
-        </Grid>
-      </React.Fragment>
-    );
-    return section;
-  }
-
-  const slides = [];
-  for (let i = 0; i < array.length; i += arrayLength) {
-    const slide = (
-      <div className="slide">
-        <Typography variant="h5" className={classes.centerText}>
-          <span style={{ background: `${color.main}`, color: `${color.text}` }}>
-            {string}
-          </span>
-        </Typography>
-        <Grid container>
-          {array.slice(i, i + arrayLength)}
-        </Grid>
-      </div>
-    );
-    slides.push(slide);
-  }
-  return slides;
+  const section = (
+    <React.Fragment>
+      <Typography gutterBottom variant="h5" className={classes.centerText}>
+        <span style={{ background: `${color.main}`, color: `${color.text}` }}>
+          {string}
+        </span>
+      </Typography>
+      <Grid container>
+        {array}
+      </Grid>
+    </React.Fragment>
+  );
+  return section;
 }
 
 
@@ -120,7 +92,7 @@ class Team extends React.Component {
 
       if (memberData.display_on_website === true) {
         const col = (
-          <Grid item key={`frag${i}`} xs={12} sm={6} md={4}>
+          <Grid item key={`frag${i}`} xs={12} sm={6} xl={4}>
             <MemberViewCard memberData={memberData} isLoading={isLoading} />
           </Grid>
         );
@@ -148,47 +120,32 @@ class Team extends React.Component {
   render() {
     const { classes, isLoading } = this.props;
     const renders = this.renderMembers();
+    let render = (
+      <div className="section">
+        Loading
+      </div>
+    );
+    if (isLoading === false) {
+      const seniorSection = renderSections(renders.senior, 'Senior Undergraduates', classes);
+      const juniorSection = renderSections(renders.junior, 'Junior Undergraduates', classes);
+      const sophoSection = renderSections(renders.sopho, 'Sophomores', classes);
+      const alumniSection = renderSections(renders.alumni, 'Alumni', classes);
+      render = (
+        <React.Fragment>
+          {seniorSection}
+          {juniorSection}
+          {sophoSection}
+          {alumniSection}
+        </React.Fragment>
+      );
+    }
     return (
       <React.Fragment>
         <CssBaseline />
         <Grid container>
           <Grid container item md={1} />
           <Grid container item xs={12} md={10}>
-            <ReactFullpage
-              slidesNavigation
-              controlArrows={false}
-              render={() => {
-                if (isLoading === false) {
-                  const seniorSection = renderSections(renders.senior, 'Senior Undergraduates', classes);
-                  const juniorSection = renderSections(renders.junior, 'Junior Undergraduates', classes);
-                  const sophoSection = renderSections(renders.sopho, 'Sophomores', classes);
-                  const alumniSection = renderSections(renders.alumni, 'Alumni', classes);
-                  return (
-                    <ReactFullpage.Wrapper>
-                      <div className="section">
-                        {seniorSection}
-                      </div>
-                      <div className="section">
-                        {juniorSection}
-                      </div>
-                      <div className="section">
-                        {sophoSection}
-                      </div>
-                      <div className="section">
-                        {alumniSection}
-                      </div>
-                    </ReactFullpage.Wrapper>
-                  );
-                }
-                return (
-                  <ReactFullpage.Wrapper>
-                    <div className="section">
-                      Loading
-                    </div>
-                  </ReactFullpage.Wrapper>
-                );
-              }}
-            />
+            {render}
           </Grid>
           <Grid container item md={1} />
         </Grid>

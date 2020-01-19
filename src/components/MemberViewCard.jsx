@@ -71,7 +71,7 @@ const styles = theme => ({
     },
   },
   memberDetails: {
-    width: 250,
+    // width: 250,
     margin: 'auto',
   },
   memberName: {
@@ -114,51 +114,36 @@ class MemberViewCard extends Component {
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <div className={classes.memberDetails}>
-            {/* Width Query to decide whether to display photo and name side by side or below */}
-            <MediaQuery maxDeviceWidth={1400}>
-              <Grid container alignItems="center" justify="center">
-                <Grid item xs={5}>
-                  <div className={classes.avatarHolder}>
-                    <Avatar
-                      alt={memberData.name}
-                      src={memberData.url.picture_url}
-                      className={classes.bigAvatar}
-                    />
-                  </div>
-                </Grid>
-                <Grid item xs={7}>
-                  <Typography variant="h6" component="h4" className={classes.memberName}>
-                    {memberData.name}
-                  </Typography>
-                </Grid>
+            <Grid container justify="center">
+              <Grid item xs={4}>
+                <div className={classes.avatarHolder}>
+                  <Avatar
+                    alt={memberData.name}
+                    src={memberData.url.picture_url}
+                    className={classes.bigAvatar}
+                  />
+                </div>
               </Grid>
-            </MediaQuery>
-            <MediaQuery minDeviceWidth={1401}>
-              <div className={classes.avatarHolder}>
-                <Avatar
-                  alt={memberData.name}
-                  src={memberData.url.picture_url}
-                  className={classes.bigAvatar}
-                />
-              </div>
-              <Typography variant="h6" component="h4" className={classes.memberName}>
-                {memberData.name}
-              </Typography>
-            </MediaQuery>
-          </div>
+              <Grid item xs={8}>
+                <Typography variant="h6" component="h4" className={classes.memberName}>
+                  {memberData.name}
+                </Typography>
 
-          {/* Height Query to decide whether to display intro or not */}
-          <MediaQuery minDeviceHeight={700}>
-            <Typography component="p" className={classes.intro}>
-              {memberData.intro}
-            </Typography>
-          </MediaQuery>
+                {/* Height Query to decide whether to display intro or not */}
+                <MediaQuery minDeviceHeight={700}>
+                  <Typography component="p" className={classes.intro}>
+                    {memberData.intro}
+                  </Typography>
+                </MediaQuery>
+              </Grid>
+            </Grid>
+          </div>
         </CardContent>
         <StyledCardActions theme={backgroundTheme}>
           <div className={classes.social}>
             <a target="_blank" rel="noopener noreferrer" href={memberData.url.fb_url} className={classes.socialIcon}><Facebook /></a>
             <a target="_blank" rel="noopener noreferrer" href={memberData.url.github_url} className={classes.socialIcon}><GithubCircle /></a>
-            <a target="_blank" rel="noopener noreferrer" href={memberData.email} className={classes.socialIcon}><Email /></a>
+            <a href={`mailto:${memberData.email}`} className={classes.socialIcon}><Email /></a>
           </div>
         </StyledCardActions>
       </Card>
