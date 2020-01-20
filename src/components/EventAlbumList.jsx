@@ -34,6 +34,33 @@ const EventAlbumList = (props) => {
   const { isLoading, classes, mediaList } = props;
   const [open, setOpen] = useState(false);
 
+  // class EventAlbumList extends Component {
+  /**
+   * renderData() requires data in the following format;
+   *
+   * const tileData = [
+   *   {
+   *     thumbnail: 'url',
+   *     fullurl: 'url',
+   *   },
+   *   {
+   *     etc...
+   *   },
+   * ];
+   */
+  // renderData() {
+  //   const { classes, mediaList } = this.props;
+
+  //   const childElements = mediaList.map(tile => (
+  //     <Suspense fallback={<div>Loading...</div>}>
+  //       <Grid item md={2} sm={4}>
+  //         <a target="_blank" rel="noopener noreferrer" href={tile.fullurl}>
+  //          <img src={tile.thumbnail} alt="Event" className={classes.imageElement} />
+  //         </a>
+  //       </Grid>
+  //     </Suspense>
+  //   ));
+
   if (isLoading !== false) {
     return (
       <Loading />
@@ -51,7 +78,7 @@ const EventAlbumList = (props) => {
   const childElements = mediaList.map(tile => (
     <Suspense fallback={<div>Loading...</div>}>
       <Grid item md={2} sm={4} xs={6} key={tile}>
-        <img src={tile} alt="Event" className={classes.imageElement} onClick={handleClickOpen} />
+        <img src={tile.thumbnail} alt="Event" className={classes.imageElement} onClick={handleClickOpen} />
       </Grid>
     </Suspense>
   ));
