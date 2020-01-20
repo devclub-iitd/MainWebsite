@@ -51,10 +51,13 @@ function parseEmbedCode(str) {
 
   const imagesList = [];
   for (let i = 0; i < images.length; i += 1) {
-    let url = images[i].dataset.src.replace(/\s/g, '');
-    url = url.replace('1920', '720');
-    url = url.replace('1080', '405');
-    imagesList.push(url);
+    const url = images[i].dataset.src.replace(/\s/g, '');
+    let thumbnailUrl = url.replace('1920', '720');
+    thumbnailUrl = thumbnailUrl.replace('1080', '405');
+    const obj = {};
+    obj.thumbnail = thumbnailUrl;
+    obj.fullurl = url;
+    imagesList.push(obj);
   }
 
   return imagesList;

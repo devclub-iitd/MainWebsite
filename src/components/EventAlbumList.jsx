@@ -33,8 +33,8 @@ class EventAlbumList extends Component {
    *
    * const tileData = [
    *   {
-   *     thumbnailUrl: 'url',
-   *     fullUrl: 'url',
+   *     thumbnail: 'url',
+   *     fullurl: 'url',
    *   },
    *   {
    *     etc...
@@ -47,7 +47,7 @@ class EventAlbumList extends Component {
     const childElements = mediaList.map(tile => (
       <Suspense fallback={<div>Loading...</div>}>
         <Grid item md={2} sm={4}>
-          <a target="_blank" rel="noopener noreferrer" href={tile}><img src={tile} alt="Event" className={classes.imageElement} /></a>
+          <a target="_blank" rel="noopener noreferrer" href={tile.fullurl}><img src={tile.thumbnail} alt="Event" className={classes.imageElement} /></a>
         </Grid>
       </Suspense>
     ));
