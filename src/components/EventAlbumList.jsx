@@ -1,9 +1,12 @@
-import React, { Suspense, Component } from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+import React, { useState, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Masonry from 'react-masonry-component';
 import Grid from '@material-ui/core/Grid';
 import Loading from './Loading';
+import EventCarousel from './EventCarousel';
 
 const styles = theme => ({
   root: {
@@ -27,32 +30,34 @@ const styles = theme => ({
   },
 });
 
-class EventAlbumList extends Component {
-  /**
-   * renderData() requires data in the following format;
-   *
-   * const tileData = [
-   *   {
-   *     thumbnailUrl: 'url',
-   *     fullUrl: 'url',
-   *   },
-   *   {
-   *     etc...
-   *   },
-   * ];
-   */
-  renderData() {
-    const { classes, mediaList } = this.props;
+const EventAlbumList = (props) => {
+  const { isLoading, classes, mediaList } = props;
+  const [open, setOpen] = useState(false);
 
-    const childElements = mediaList.map(tile => (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Grid item md={2} sm={4}>
-          <a target="_blank" rel="noopener noreferrer" href={tile}><img src={tile} alt="Event" className={classes.imageElement} /></a>
-        </Grid>
-      </Suspense>
-    ));
-
+  if (isLoading !== false) {
     return (
+      <Loading />
+    );
+  }
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const childElements = mediaList.map(tile => (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Grid item md={2} sm={4} xs={6} key={tile}>
+        <img src={tile} alt="Event" className={classes.imageElement} onClick={handleClickOpen} />
+      </Grid>
+    </Suspense>
+  ));
+
+  return (
+    <React.Fragment>
       <Grid container>
         <Masonry
           elementType="Grid" // default 'div'
@@ -61,27 +66,10 @@ class EventAlbumList extends Component {
           {childElements}
         </Masonry>
       </Grid>
-    );
-  }
-
-  render() {
-    const { isLoading } = this.props;
-
-    if (isLoading !== false) {
-      return (
-        <Loading />
-      );
-    }
-
-    return (
-      <React.Fragment>
-        <div>
-          {this.renderData()}
-        </div>
-      </React.Fragment>
-    );
-  }
-}
+      <EventCarousel open={open} onClose={handleClose} mediaList={mediaList} />
+    </React.Fragment>
+  );
+};
 
 EventAlbumList.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { fetchEvents as fetchEventsAction } from '../actions/allActions';
 import Loading from '../components/Loading';
+import EventAlbumList from '../components/EventAlbumList';
 
-const EventAlbumList = lazy(() => import('../components/EventAlbumList'));
+// const EventAlbumList = lazy(() => import('../components/EventAlbumList'));
 
 const styles = theme => ({
   centerText: {
@@ -108,12 +109,12 @@ class Events extends React.Component {
                 {trimTime(eventData.start_date)}
               </Typography>
             </div>
-            <Suspense fallback={<div>Loading...</div>}>
-              <EventAlbumList
-                isLoading={isLoading}
-                mediaList={parseEmbedCode(eventData.embed_code)}
-              />
-            </Suspense>
+            {/* <Suspense fallback={<div>Loading...</div>}> */}
+            <EventAlbumList
+              isLoading={isLoading}
+              mediaList={parseEmbedCode(eventData.embed_code)}
+            />
+            {/* </Suspense> */}
             <br />
           </Paper>
         );
