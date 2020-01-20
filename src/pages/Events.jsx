@@ -114,6 +114,7 @@ class Events extends React.Component {
             </div>
             {/* <Suspense fallback={<div>Loading...</div>}> */}
             <EventAlbumList
+              name={eventData.name}
               isLoading={isLoading}
               mediaList={parseEmbedCode(eventData.embed_code)}
             />

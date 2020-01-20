@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import range from 'lodash/range';
 import ItemsCarousel from 'react-items-carousel';
+import { withStyles } from '@material-ui/core/styles';
 
 const noOfItems = 12;
-const noOfCards = 3;
-const autoPlayDelay = 2000;
+const noOfCards = 1;
+const autoPlayDelay = 5000;
 const chevronWidth = 40;
 
 const Wrapper = styled.div`
@@ -15,8 +17,7 @@ const Wrapper = styled.div`
 `;
 
 const SlideItem = styled.div`
-  height: 200px;
-  background: #EEE;
+  height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,13 +25,16 @@ const SlideItem = styled.div`
   font-weight: bold;
 `;
 
-const carouselItems = range(noOfItems).map(index => (
-  <SlideItem key={index} />
-));
+const styles = () => ({
+  imageElement: {
+    height: '98%',
+    overflow: 'hidden',
+  },
+});
 
-export default class AutoPlayCarousel extends Component {
+class AutoPlayCarousel extends Component {
   state = {
-    activeItemIndex: 0,
+    activeItemIndex: this.props.startIndex,
   };
 
   componentDidMount() {
@@ -42,18 +46,27 @@ export default class AutoPlayCarousel extends Component {
   }
 
   tick = () => this.setState(prevState => ({
-    activeItemIndex: (prevState.activeItemIndex + 1) % (noOfItems - noOfCards + 1),
+    activeItemIndex: (prevState.activeItemIndex + 1) % (this.props.mediaList.length - noOfCards + 1),
   }));
 
   onChange = value => this.setState({ activeItemIndex: value });
 
   render() {
+    const { mediaList, classes } = this.props;
+    const { activeItemIndex } = this.state;
+
+    const carouselItems = range(mediaList.length).map(index => (
+      <SlideItem key={index}>
+        <img src={mediaList[index].fullurl} alt="Event" className={classes.imageElement} />
+      </SlideItem>
+    ));
+
     return (
       <Wrapper>
         <ItemsCarousel
           gutter={12}
           numberOfCards={noOfCards}
-          activeItemIndex={this.state.activeItemIndex}
+          activeItemIndex={activeItemIndex}
           requestToChangeActive={this.onChange}
           rightChevron={'>'}
           leftChevron={'<'}
@@ -66,3 +79,11 @@ export default class AutoPlayCarousel extends Component {
     );
   }
 }
+
+AutoPlayCarousel.propTypes = {
+  startIndex: PropTypes.number.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  mediaList: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+export default withStyles(styles)(AutoPlayCarousel);

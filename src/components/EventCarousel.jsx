@@ -7,8 +7,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import Dialog from '@material-ui/core/Dialog';
 import { Button } from '@material-ui/core';
-// import AwesomeSlider from 'react-awesome-slider';
-// import AwesomeSliderStyles from 'react-awesome-slider/src/styles';
 import AutoPlayCarousel from './AutoPlayCarousel';
 
 const styles = () => ({
@@ -21,32 +19,22 @@ const styles = () => ({
 });
 
 function EventCarousel(props) {
-  const { open, onClose } = props;
-  const dialogSize = '80vw';
-  // const items = [
-  //   {
-  //     name: 'Random Name #1',
-  //     description: 'Probably the most random thing you have ever seen!',
-  //   },
-  //   {
-  //     name: 'Random Name #2',
-  //     description: 'Hello World!',
-  //   },
-  // ];
+  const {
+    title, open, onClose, mediaList, startIndex,
+  } = props;
+  const dialogSize = window.innerWidth > 1200 ? '1000' : 0.8 * window.innerWidth;
+
   return (
     <Dialog
-      fullWidth
       maxWidth={dialogSize}
       open={open}
       onClose={onClose}
       aria-labelledby="max-width-dialog-title"
     >
-      <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
+      <DialogTitle id="max-width-dialog-title">{title}</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          You can set my maximum width and whether to adapt or not.
-          {/* <Paper className={classes.paper} /> */}
-          <AutoPlayCarousel />
+          <AutoPlayCarousel mediaList={mediaList} startIndex={startIndex} />
         </DialogContentText>
       </DialogContent>
       <DialogActions>
@@ -59,9 +47,11 @@ function EventCarousel(props) {
 }
 
 EventCarousel.propTypes = {
-  onClose: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
-// mediaList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onClose: PropTypes.func.isRequired,
+  mediaList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  startIndex: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(EventCarousel);
