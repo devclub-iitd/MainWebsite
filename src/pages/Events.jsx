@@ -12,26 +12,37 @@ import EventAlbumList from '../components/EventAlbumList';
 // const EventAlbumList = lazy(() => import('../components/EventAlbumList'));
 
 const styles = theme => ({
+  eventCardContainer: {
+    width: '95%',
+    margin: 'auto'
+  },
   centerText: {
     textAlign: 'center',
     width: '100%',
     paddingTop: 20,
     paddingBottom: 20,
     marginTop: theme.spacing(10),
+    fontWeight: '700'
+  },
+  line: {
+    width: '50px',
+    height: '8px',
+    borderRadius: '4px',
+    marginTop: '20px',
+    marginBottom: '20px',
+    backgroundColor: 'rgba(0,0,0,0.8)',
   },
   paper: {
-    padding: theme.spacing(2),
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    padding: theme.spacing(6),
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
   eventTitle: {
-    marginRight: theme.spacing(1),
+    float: 'left'
+    // marginRight: theme.spacing(1),
   },
   eventText: {
     width: '90%',
-    marginBottom: theme.spacing(1),
-    marginRight: 'auto',
-    marginLeft: 'auto',
   },
 });
 
@@ -102,16 +113,22 @@ class Events extends React.Component {
       if (eventData.display_on_website === true) {
         const project = (
           <Paper className={classes.paper} key={i}>
+          <div className={classes.eventCardContainer}>
             <div className={classes.eventText}>
               <Typography variant="h5" component="h3" className={classes.eventTitle} display="inline">
                 {eventData.name}
               </Typography>
               <Typography variant="h6" component="h4" display="inline">
-                |
+                <span style={{ marginLeft: '5px' }}>
+                  |
+                </span>
                 {' '}
-                {trimTime(eventData.start_date)}
+                <span style={{ fontWeight: '200' }}>
+                  {trimTime(eventData.start_date)}
+                </span>
               </Typography>
             </div>
+            <div className={classes.line} />
             {/* <Suspense fallback={<div>Loading...</div>}> */}
             <EventAlbumList
               name={eventData.name}
@@ -120,6 +137,7 @@ class Events extends React.Component {
             />
             {/* </Suspense> */}
             <br />
+            </div>
           </Paper>
         );
         renders.push(project);
@@ -137,7 +155,7 @@ class Events extends React.Component {
         <Grid container>
           <Grid container item md={1} />
           <Grid container item xs={12} md={10}>
-            <Typography gutterBottom variant="h5" className={classes.centerText}>
+            <Typography gutterBottom variant="h4" className={classes.centerText}>
             Events
             </Typography>
             <ul>
