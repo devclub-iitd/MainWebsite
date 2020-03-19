@@ -14,7 +14,7 @@ import EventAlbumList from '../components/EventAlbumList';
 const styles = theme => ({
   eventCardContainer: {
     width: '95%',
-    margin: 'auto'
+    margin: 'auto',
   },
   centerText: {
     textAlign: 'center',
@@ -22,7 +22,7 @@ const styles = theme => ({
     paddingTop: 20,
     paddingBottom: 20,
     marginTop: theme.spacing(10),
-    fontWeight: '700'
+    fontWeight: '700',
   },
   line: {
     width: '50px',
@@ -38,7 +38,7 @@ const styles = theme => ({
     marginBottom: theme.spacing(2),
   },
   eventTitle: {
-    float: 'left'
+    float: 'left',
     // marginRight: theme.spacing(1),
   },
   eventText: {
