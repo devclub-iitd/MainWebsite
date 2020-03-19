@@ -31,6 +31,7 @@ const styles = theme => ({
     paddingBottom: 30,
     marginTop: theme.spacing(10),
     marginBottom: theme.spacing(3),
+    fontWeight: '700',
   },
   centerAlign: {
     display: 'flex',
@@ -55,12 +56,18 @@ const styles = theme => ({
   },
   appBar: {
     top: 'auto',
-    bottom: 0,
+    bottom: 15,
+    width: '300px',
+    left: '50%',
+    borderRadius: '10px',
+    transform: 'translate(-50%, 0)',
+    backdropFilter: 'blur(3px)',
   },
   formFooter: {
     textAlign: 'center',
     width: '100%',
     paddingTop: 8,
+    paddingBottom: 8,
   },
 });
 
@@ -216,7 +223,7 @@ const renderBottom = (classes) => {
   }
   return (
     <div>
-      <AppBar color="inherit" position="fixed" className={classes.appBar} style={{ background: 'transparent', boxShadow: 'none' }}>
+      <AppBar color="inherit" position="fixed" className={classes.appBar} style={{ background: 'rgba(248,248,248,0.8)', boxShadow: 'none' }}>
         <Toolbar className={classes.centerAlign}>
           <IconButton edge="start" color="default" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/tech.iitd/" className={classes.socialIcon}>
             <FacebookBox style={{ fontSize: 43 }} />
@@ -239,7 +246,7 @@ const Contact = (props) => {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Typography gutterBottom variant="h5" className={classes.centerText}>
+        <Typography gutterBottom variant="h4" className={classes.centerText}>
                 Contact Us
         </Typography>
         <div className={classes.cards}>
