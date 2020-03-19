@@ -18,15 +18,15 @@ const styles = theme => ({
     paddingTop: 20,
     paddingBottom: 20,
     marginTop: theme.spacing(10),
-    fontWeight: '700'
+    fontWeight: '700',
   },
   line: {
     width: '50px',
     height: '10px',
     borderRadius: '4px',
     margin: 'auto',
-    marginBottom: '25px'
-  }
+    marginBottom: '25px',
+  },
 });
 
 const mapStateToProps = state => ({

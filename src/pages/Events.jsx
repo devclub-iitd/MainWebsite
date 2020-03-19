@@ -113,30 +113,30 @@ class Events extends React.Component {
       if (eventData.display_on_website === true) {
         const project = (
           <Paper className={classes.paper} key={i}>
-          <div className={classes.eventCardContainer}>
-            <div className={classes.eventText}>
-              <Typography variant="h5" component="h3" className={classes.eventTitle} display="inline">
-                {eventData.name}
-              </Typography>
-              <Typography variant="h6" component="h4" display="inline">
-                <span style={{ marginLeft: '5px' }}>
-                  |
-                </span>
-                {' '}
-                <span style={{ fontWeight: '200' }}>
-                  {trimTime(eventData.start_date)}
-                </span>
-              </Typography>
-            </div>
-            <div className={classes.line} />
-            {/* <Suspense fallback={<div>Loading...</div>}> */}
-            <EventAlbumList
-              name={eventData.name}
-              isLoading={isLoading}
-              mediaList={parseEmbedCode(eventData.embed_code)}
-            />
-            {/* </Suspense> */}
-            <br />
+            <div className={classes.eventCardContainer}>
+              <div className={classes.eventText}>
+                <Typography variant="h5" component="h3" className={classes.eventTitle} display="inline">
+                  {eventData.name}
+                </Typography>
+                <Typography variant="h6" component="h4" display="inline">
+                  <span style={{ marginLeft: '5px' }}>
+                    |
+                  </span>
+                  {' '}
+                  <span style={{ fontWeight: '200' }}>
+                    {trimTime(eventData.start_date)}
+                  </span>
+                </Typography>
+              </div>
+              <div className={classes.line} />
+              {/* <Suspense fallback={<div>Loading...</div>}> */}
+              <EventAlbumList
+                name={eventData.name}
+                isLoading={isLoading}
+                mediaList={parseEmbedCode(eventData.embed_code)}
+              />
+              {/* </Suspense> */}
+              <br />
             </div>
           </Paper>
         );
