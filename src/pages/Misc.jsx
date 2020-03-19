@@ -16,6 +16,7 @@ const styles = theme => ({
     paddingTop: 20,
     paddingBottom: 20,
     marginTop: theme.spacing(10),
+    fontWeight: '700',
   },
   list: {
     marginTop: theme.spacing(5),
@@ -88,7 +89,7 @@ class Misc extends React.Component {
     return (
       <React.Fragment>
         <CssBaseline />
-        <Typography gutterBottom variant="h5" className={classes.centerText}>
+        <Typography gutterBottom variant="h4" className={classes.centerText}>
           Resources
         </Typography>
         <Container maxWidth="sm">
