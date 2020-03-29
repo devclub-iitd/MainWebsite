@@ -23,6 +23,15 @@ const styles = theme => ({
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(10),
   },
+  bottomButton: {
+    position: 'absolute',
+    bottom: '0px',
+    display: 'flex',
+    height: '80px',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 function processResourceData(data) {
@@ -95,16 +104,18 @@ class Misc extends React.Component {
         </Typography>
         <HeadingLine />
         <Container maxWidth="sm">
-          <DisqusDialog
-            url="Resources"
-            id="Resources"
-            title="Resources"
-          />
           <div className={classes.list}>
             <TreeView data={processedData.archive} isLoading={isLoading} />
             <TreeView data={processedData.new} isLoading={isLoading} />
           </div>
         </Container>
+        <div className={classes.bottomButton}>
+          <DisqusDialog
+            url="Resources"
+            id="Resources"
+            title="Resources"
+          />
+        </div>
       </React.Fragment>
     );
   }
