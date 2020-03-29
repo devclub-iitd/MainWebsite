@@ -16,6 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CardActions from '@material-ui/core/CardActions';
 import Link from '@material-ui/core/Link';
 import LocationMap from '../components/LocationMap';
+import HeadingLine from '../components/HeadingLine';
 
 const styles = theme => ({
   root: {
@@ -30,7 +31,7 @@ const styles = theme => ({
     paddingTop: 20,
     paddingBottom: 30,
     marginTop: theme.spacing(10),
-    marginBottom: theme.spacing(3),
+    // marginBottom: theme.spacing(3),
     fontWeight: '700',
   },
   centerAlign: {
@@ -249,6 +250,8 @@ const Contact = (props) => {
         <Typography gutterBottom variant="h4" className={classes.centerText}>
                 Contact Us
         </Typography>
+        <HeadingLine />
+        <br />
         <div className={classes.cards}>
           {renderPage(classes)}
         </div>

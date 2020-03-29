@@ -8,6 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { fetchEvents as fetchEventsAction } from '../actions/allActions';
 import Loading from '../components/Loading';
 import EventAlbumList from '../components/EventAlbumList';
+import HeadingLine from '../components/HeadingLine';
 
 // const EventAlbumList = lazy(() => import('../components/EventAlbumList'));
 
@@ -156,6 +157,7 @@ class Events extends React.Component {
             <Typography gutterBottom variant="h4" className={classes.centerText}>
             Events
             </Typography>
+            <HeadingLine />
             <ul>
               {this.renderEvents()}
             </ul>

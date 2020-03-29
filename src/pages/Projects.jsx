@@ -9,6 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { fetchProjects as fetchProjectsAction } from '../actions/allActions';
 import ProjectViewCard from '../components/ProjectViewCard';
 import Loading from '../components/Loading';
+import HeadingLine from '../components/HeadingLine';
 
 import '../overrides.css';
 
@@ -109,6 +110,7 @@ class Projects extends React.Component {
             <Typography gutterBottom variant="h4" className={classes.centerText}>
               Showcase Projects
             </Typography>
+            <HeadingLine />
             <ReactFullpage
               scrollBar
               render={({ state }) => {

@@ -8,6 +8,7 @@ import TreeView from '../components/TreeView';
 import { fetchResources as fetchResourcesAction } from '../actions/allActions';
 import DisqusDialog from '../components/DisqusDialog';
 import Loading from '../components/Loading';
+import HeadingLine from '../components/HeadingLine';
 
 const styles = theme => ({
   centerText: {
@@ -92,6 +93,7 @@ class Misc extends React.Component {
         <Typography gutterBottom variant="h4" className={classes.centerText}>
           Resources
         </Typography>
+        <HeadingLine />
         <Container maxWidth="sm">
           <DisqusDialog
             url="Resources"
