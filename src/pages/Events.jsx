@@ -13,8 +13,6 @@ import EventAlbumList from '../components/EventAlbumList';
 
 const styles = theme => ({
   eventCardContainer: {
-    width: '95%',
-    margin: 'auto',
   },
   centerText: {
     textAlign: 'center',
@@ -34,12 +32,13 @@ const styles = theme => ({
   },
   paper: {
     padding: theme.spacing(6),
+    margin: 'auto',
     marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(3),
   },
   eventTitle: {
     float: 'left',
-    // marginRight: theme.spacing(1),
+    marginRight: theme.spacing(1),
   },
   eventText: {
     width: '90%',
@@ -152,9 +151,8 @@ class Events extends React.Component {
     return (
       <React.Fragment>
         <CssBaseline />
-        <Grid container>
-          <Grid container item md={1} />
-          <Grid container item xs={12} md={10}>
+        <Grid container justify="center">
+          <Grid container item xs={12} md={11}>
             <Typography gutterBottom variant="h4" className={classes.centerText}>
             Events
             </Typography>
@@ -162,7 +160,6 @@ class Events extends React.Component {
               {this.renderEvents()}
             </ul>
           </Grid>
-          <Grid container item md={1} />
         </Grid>
       </React.Fragment>
     );
