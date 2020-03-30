@@ -9,6 +9,7 @@ import { fetchResources as fetchResourcesAction } from '../actions/allActions';
 import DisqusDialog from '../components/DisqusDialog';
 import Loading from '../components/Loading';
 import HeadingLine from '../components/HeadingLine';
+import Anim from '../components/ResourceAnim';
 
 const styles = theme => ({
   centerText: {
@@ -99,6 +100,7 @@ class Misc extends React.Component {
     return (
       <React.Fragment>
         <CssBaseline />
+        <Anim />
         <Typography gutterBottom variant="h4" className={classes.centerText}>
           Resources
         </Typography>
