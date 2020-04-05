@@ -115,9 +115,8 @@ class ProjectViewCard extends React.Component {
         />
         <CardMedia
           className={classes.media}
-          // image="/static/images/cards/paella.jpg"
-          image="https://picsum.photos/400/200/?random"
-          title="Screenshot Image"
+          image={projectData.url.photo_url === "" ? "https://d2slcw3kip6qmk.cloudfront.net/marketing/blog/2017Q2/project-planning-header@2x.png" : projectData.url.photo_url}
+          title={projectData.name}
         />
         <CardContent className={classes.cardContent}>
           <Typography component="p" color="textSecondary">
@@ -126,8 +125,12 @@ class ProjectViewCard extends React.Component {
         </CardContent>
         <StyledCardActions className={classes.actions} theme={actionBackgroundTheme}>
           <div className={classes.social}>
-            <a target="_blank" rel="noopener noreferrer" href={projectData['Github URL']} className={classes.socialIcon}><GithubCircle /></a>
-            <a target="_blank" rel="noopener noreferrer" href={projectData['Website URL']} className={classes.socialIcon}><Web /></a>
+            {
+              projectData.url.github_url === undefined ? "" : <a target="_blank" rel="noopener noreferrer" href={projectData['Github URL']} className={classes.socialIcon}><GithubCircle /></a>
+            }
+            {
+              projectData.url.website_url === undefined ? "" : <a target="_blank" rel="noopener noreferrer" href={projectData['Website URL']} className={classes.socialIcon}><Web /></a>
+            }
           </div>
           <IconButton
             className={classnames(classes.expand, {
