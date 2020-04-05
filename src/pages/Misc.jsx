@@ -8,6 +8,8 @@ import TreeView from '../components/TreeView';
 import { fetchResources as fetchResourcesAction } from '../actions/allActions';
 import DisqusDialog from '../components/DisqusDialog';
 import Loading from '../components/Loading';
+import HeadingLine from '../components/HeadingLine';
+import Anim from '../components/ResourceAnim';
 
 const styles = theme => ({
   centerText: {
@@ -16,10 +18,20 @@ const styles = theme => ({
     paddingTop: 20,
     paddingBottom: 20,
     marginTop: theme.spacing(10),
+    fontWeight: '700',
   },
   list: {
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(10),
+  },
+  bottomButton: {
+    position: 'absolute',
+    bottom: '0px',
+    display: 'flex',
+    height: '80px',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
@@ -88,20 +100,24 @@ class Misc extends React.Component {
     return (
       <React.Fragment>
         <CssBaseline />
-        <Typography gutterBottom variant="h5" className={classes.centerText}>
+        <Anim />
+        <Typography gutterBottom variant="h4" className={classes.centerText}>
           Resources
         </Typography>
+        <HeadingLine />
         <Container maxWidth="sm">
-          <DisqusDialog
-            url="Resources"
-            id="Resources"
-            title="Resources"
-          />
           <div className={classes.list}>
             <TreeView data={processedData.archive} isLoading={isLoading} />
             <TreeView data={processedData.new} isLoading={isLoading} />
           </div>
         </Container>
+        <div className={classes.bottomButton}>
+          <DisqusDialog
+            url="Resources"
+            id="Resources"
+            title="Resources"
+          />
+        </div>
       </React.Fragment>
     );
   }

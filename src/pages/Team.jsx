@@ -18,6 +18,14 @@ const styles = theme => ({
     paddingTop: 20,
     paddingBottom: 20,
     marginTop: theme.spacing(10),
+    fontWeight: '700',
+  },
+  line: {
+    width: '50px',
+    height: '10px',
+    borderRadius: '4px',
+    margin: 'auto',
+    marginBottom: '25px',
   },
 });
 
@@ -43,11 +51,12 @@ function renderSections(array, string, classes) {
 
   const section = (
     <React.Fragment>
-      <Typography gutterBottom variant="h5" className={classes.centerText}>
-        <span style={{ background: `${color.main}`, color: `${color.text}` }}>
+      <Typography gutterBottom variant="h4" className={classes.centerText}>
+        <span>
           {string}
         </span>
       </Typography>
+      <div className={classes.line} style={{ background: `${color.main}` }} />
       <Grid container>
         {array}
       </Grid>

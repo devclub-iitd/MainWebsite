@@ -8,30 +8,41 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { fetchEvents as fetchEventsAction } from '../actions/allActions';
 import Loading from '../components/Loading';
 import EventAlbumList from '../components/EventAlbumList';
+import HeadingLine from '../components/HeadingLine';
 
 // const EventAlbumList = lazy(() => import('../components/EventAlbumList'));
 
 const styles = theme => ({
+  eventCardContainer: {
+  },
   centerText: {
     textAlign: 'center',
     width: '100%',
     paddingTop: 20,
     paddingBottom: 20,
     marginTop: theme.spacing(10),
+    fontWeight: '700',
+  },
+  line: {
+    width: '50px',
+    height: '8px',
+    borderRadius: '4px',
+    marginTop: '20px',
+    marginBottom: '20px',
+    backgroundColor: 'rgba(0,0,0,0.8)',
   },
   paper: {
-    padding: theme.spacing(2),
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    padding: theme.spacing(6),
+    margin: 'auto',
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(3),
   },
   eventTitle: {
+    float: 'left',
     marginRight: theme.spacing(1),
   },
   eventText: {
     width: '90%',
-    marginBottom: theme.spacing(1),
-    marginRight: 'auto',
-    marginLeft: 'auto',
   },
 });
 
@@ -102,24 +113,31 @@ class Events extends React.Component {
       if (eventData.display_on_website === true) {
         const project = (
           <Paper className={classes.paper} key={i}>
-            <div className={classes.eventText}>
-              <Typography variant="h5" component="h3" className={classes.eventTitle} display="inline">
-                {eventData.name}
-              </Typography>
-              <Typography variant="h6" component="h4" display="inline">
-                |
-                {' '}
-                {trimTime(eventData.start_date)}
-              </Typography>
+            <div className={classes.eventCardContainer}>
+              <div className={classes.eventText}>
+                <Typography variant="h5" component="h3" className={classes.eventTitle} display="inline">
+                  {eventData.name}
+                </Typography>
+                <Typography variant="h6" component="h4" display="inline">
+                  <span style={{ marginLeft: '5px' }}>
+                    |
+                  </span>
+                  {' '}
+                  <span style={{ fontWeight: '200' }}>
+                    {trimTime(eventData.start_date)}
+                  </span>
+                </Typography>
+              </div>
+              <div className={classes.line} />
+              {/* <Suspense fallback={<div>Loading...</div>}> */}
+              <EventAlbumList
+                name={eventData.name}
+                isLoading={isLoading}
+                mediaList={parseEmbedCode(eventData.embed_code)}
+              />
+              {/* </Suspense> */}
+              <br />
             </div>
-            {/* <Suspense fallback={<div>Loading...</div>}> */}
-            <EventAlbumList
-              name={eventData.name}
-              isLoading={isLoading}
-              mediaList={parseEmbedCode(eventData.embed_code)}
-            />
-            {/* </Suspense> */}
-            <br />
           </Paper>
         );
         renders.push(project);
@@ -134,17 +152,16 @@ class Events extends React.Component {
     return (
       <React.Fragment>
         <CssBaseline />
-        <Grid container>
-          <Grid container item md={1} />
-          <Grid container item xs={12} md={10}>
-            <Typography gutterBottom variant="h5" className={classes.centerText}>
+        <Grid container justify="center">
+          <Grid container item xs={12} md={11}>
+            <Typography gutterBottom variant="h4" className={classes.centerText}>
             Events
             </Typography>
+            <HeadingLine />
             <ul>
               {this.renderEvents()}
             </ul>
           </Grid>
-          <Grid container item md={1} />
         </Grid>
       </React.Fragment>
     );

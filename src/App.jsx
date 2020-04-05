@@ -37,6 +37,9 @@ const theme = createMuiTheme({
       'sans-serif',
     ].join(','),
   },
+  color: {
+    main: 'red'
+  },
 });
 
 const styles = themeIn => ({

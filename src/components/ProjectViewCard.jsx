@@ -109,7 +109,7 @@ class ProjectViewCard extends React.Component {
     return (
       <Card className={classes.card}>
         <CardHeader
-          title={<Grid container spacing={0} direction="column" justify="center" alignItems="center"><Box fontWeight="fontWeightLight" m={1} color={grey[800]} fontSize="h6.fontSize" letterSpacing={1}>{projectData.name}</Box></Grid>}
+          title={<Grid container spacing={0} direction="column" justify="center" alignItems="center"><Box fontWeight="fontWeightLight" m={1} color={grey[800]} fontSize="h6.fontSize" letterSpacing={1.4} style = {{ textTransform:"capitalize" }}>{projectData.name}</Box></Grid>}
           // subheader={projectData.launchDate}
           // subheader={projectData.start_date}
         />

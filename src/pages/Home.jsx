@@ -47,6 +47,7 @@ const styles = () => ({
     justifyContent: 'center',
     marginLeft: 'auto',
     marginRight: 'auto',
+    // opacity: '0.8',
   },
   aboutContent: {
     position: 'relative',
@@ -72,6 +73,8 @@ const styles = () => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
+    backdropFilter: 'blur(5px)',
+    opacity: '0.8',
   },
   scriptBox: {
     position: 'relative',
@@ -83,6 +86,12 @@ const styles = () => ({
     textAlign: 'center',
     fontFamily: '--apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
     color: colors.heading.main,
+    padding: '10px',
+    paddingLeft: '50px',
+    paddingRight: '50px',
+    borderRadius: '10px',
+    backgroundColor: 'rgba(250, 250, 250, 0.7)',
+    backdropFilter: 'blur(5px)',
   },
   transitionsItem: {
     overflow: 'hidden',
@@ -99,6 +108,11 @@ const styles = () => ({
   },
   line1: {
     fontSize: '28px',
+  },
+  canvas: {
+    position: 'absolute',
+    left: 0,
+    top: '65px',
   },
 });
 
@@ -183,16 +197,101 @@ const Home = (props) => {
 
   const svgContainerHeight = window.innerWidth < 960 ? '50vh' : '70vh';
   const introTopHeight = window.innerWidth < 960 ? '42vh' : '62vh';
-  const backgroundWidth = window.innerWidth < 960 ? '100vw' : '50vw';
+  // const backgroundWidth = window.innerWidth < 960 ? '100vw' : '50vw';
 
   /* To ensure single page UI on Mobile as well as Larger Screens */
   // const aboutMobile = window.innerWidth < 960 ? 'block' : 'none';
   // const aboutDesktop = window.innerWidth < 960 ? 'none' : 'block';
+  const canvasRef = React.useRef(null);
 
+  class Bubble {
+    constructor(settings) {
+      this.radius = settings.radius;
+      this.x = settings.x;
+      this.y = settings.y;
+      this.speed = settings.speed;
+      this.color = settings.color;
+    }
+  }
+  const rand = (max, min, onlyInt) => (onlyInt) ? Math.round(min + Math.random() * (max - min)) : min + Math.random() * (max - min);
+
+  window.bubbles = {
+    canvas: null,
+    ctx: null,
+    colors: ['rgba(109, 0, 150, 0.75)', 'rgba(243, 0, 124, 0.75)', 'rgba(200, 0, 133, 0.75)', 'rgba(255, 0, 62, 0.75)'],
+    // colors: ['rgba(39, 212, 150, 0.75)', 'rgba(53, 151, 255, 0.75)', 'rgba(255, 78, 79, 0.75)', 'rgba(112, 94, 255,0.75)'],
+    bg: 'rgba(245, 245, 245, 0.8)',
+    bubbles: [],
+    speedRange: [-2, 2],
+    radRange: [30, 80],
+    num: 20,
+    init: function () {
+      window.bubbles.canvas = canvasRef.current;
+      window.bubbles.ctx = window.bubbles.canvas.getContext('2d');
+      window.bubbles.ctx.fillStyle = 'rgba(245, 245, 245, 0.8)';
+      window.bubbles.ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+      for (let i = 0; i < window.bubbles.num; i++) {
+        let rad = 0;
+        if (window.innerWidth < 850) {
+          rad = rand(window.bubbles.radRange[0] / 1.5, window.bubbles.radRange[1] / 1.5, true);
+        } else {
+          rad = rand(window.bubbles.radRange[0], window.bubbles.radRange[1], true);
+        }
+        window.bubbles.bubbles.push(new Bubble({
+          radius: rad,
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
+          speed: {
+            x: rand(window.bubbles.speedRange[0], window.bubbles.speedRange[1]),
+            y: rand(window.bubbles.speedRange[0], window.bubbles.speedRange[1]),
+          },
+          color: window.bubbles.colors[i % window.bubbles.colors.length],
+        }));
+      }
+    },
+    render: function () {
+      window.bubbles.ctx.fillStyle = window.bubbles.bg;
+      window.bubbles.ctx.fillRect(0, 0, window.bubbles.canvas.width, window.bubbles.canvas.height);
+      for (let i = 0; i < window.bubbles.bubbles.length; i++) {
+        const b = window.bubbles.bubbles[i];
+        window.bubbles.ctx.beginPath();
+        window.bubbles.ctx.fillStyle = b.color;
+        window.bubbles.ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+        window.bubbles.ctx.closePath();
+        window.bubbles.ctx.fill();
+
+        if (b.x + b.radius >= window.bubbles.canvas.width) {
+          window.bubbles.bubbles[i].speed.x *= -1;
+          window.bubbles.bubbles[i].x = window.bubbles.canvas.width - window.bubbles.bubbles[i].radius - 1;
+        } else if (b.x - b.radius <= 0) {
+          window.bubbles.bubbles[i].speed.x *= -1;
+          window.bubbles.bubbles[i].x = window.bubbles.bubbles[i].radius + 1;
+        }
+
+        if (b.y + b.radius >= window.bubbles.canvas.height) {
+          window.bubbles.bubbles[i].speed.y *= -1;
+          window.bubbles.bubbles[i].y = window.bubbles.canvas.height - window.bubbles.bubbles[i].radius - 1;
+        } else if (b.y - b.radius <= 0) {
+          window.bubbles.bubbles[i].speed.y *= -1;
+          window.bubbles.bubbles[i].y = window.bubbles.bubbles[i].radius + 1;
+        }
+        window.bubbles.bubbles[i].x += window.bubbles.bubbles[i].speed.x;
+        window.bubbles.bubbles[i].y += window.bubbles.bubbles[i].speed.y;
+      }
+      window.requestAnimationFrame(window.bubbles.render);
+    },
+  };
+
+
+  React.useEffect(() => {
+    window.bubbles.init();
+    window.bubbles.render();
+    // ctx.clearRect(0, 0, window.innerHeight, window.innerWidth);
+  });
   return (
     <React.Fragment>
       <CssBaseline />
-      <div className={classes.background} style={{ width: `${backgroundWidth}` }} />
+      <canvas ref={canvasRef} className={classes.canvas} width={window.innerWidth} height={window.innerHeight - 65} />
       <div className={classes.root}>
         <Grid container className={classes.landingContainer}>
           <Grid item md={8} className={classes.svgContainer} style={{ height: `${svgContainerHeight}` }}>
@@ -206,34 +305,6 @@ const Home = (props) => {
               </Typist>
             </div>
           </Grid>
-          <Grid container item md={4}>
-            {/* <div className={classes.aboutContent}> */}
-            {/* <div className={classes.aboutBackground}> */}
-
-            {/* Display on Laptop Devices */}
-            {/* <Typography variant="h5" className={classes.centerBody} style={{ display: `${aboutDesktop}` }}>
-                  {aboutContent1}
-                </Typography> */}
-            {/* <Typography
-                  variant="h6"
-                  gutterBottom
-                  className={classes.centerBody}
-                  style={{ display: `${aboutDesktop}` }}
-                > */}
-            {/* {aboutContent2} */}
-            {/* </Typography> */}
-
-            {/* Display on Mobile Devices */}
-            {/* <Typography variant="h6" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
-                  {aboutContent1}
-                </Typography> */}
-            {/* <Typography variant="body1" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
-                  {aboutContent2}
-                </Typography> */}
-
-            {/* </div> */}
-            {/* {</div>} */}
-          </Grid>
         </Grid>
       </div>
     </React.Fragment>
@@ -243,5 +314,35 @@ const Home = (props) => {
 Home.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
+
+// <div className={classes.background} style={{ width: `${backgroundWidth}` }} />
+// <Grid container item md={4}>
+//   {/* <div className={classes.aboutContent}> */}
+//   {/* <div className={classes.aboutBackground}> */}
+//
+//   {/* Display on Laptop Devices */}
+//   {/* <Typography variant="h5" className={classes.centerBody} style={{ display: `${aboutDesktop}` }}>
+//         {aboutContent1}
+//       </Typography> */}
+//   {/* <Typography
+//         variant="h6"
+//         gutterBottom
+//         className={classes.centerBody}
+//         style={{ display: `${aboutDesktop}` }}
+//       > */}
+//   {/* {aboutContent2} */}
+//   {/* </Typography> */}
+//
+//   {/* Display on Mobile Devices */}
+//   {/* <Typography variant="h6" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
+//         {aboutContent1}
+//       </Typography> */}
+//   {/* <Typography variant="body1" className={classes.centerBody} style={{ display: `${aboutMobile}` }}>
+//         {aboutContent2}
+//       </Typography> */}
+//
+//   {/* </div> */}
+//   {/* {</div>} */}
+// </Grid>
 
 export default withStyles(styles)(Home);

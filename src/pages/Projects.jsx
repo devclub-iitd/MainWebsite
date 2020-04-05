@@ -9,6 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { fetchProjects as fetchProjectsAction } from '../actions/allActions';
 import ProjectViewCard from '../components/ProjectViewCard';
 import Loading from '../components/Loading';
+import HeadingLine from '../components/HeadingLine';
 
 import '../overrides.css';
 
@@ -19,6 +20,7 @@ const styles = theme => ({
     paddingTop: 20,
     paddingBottom: 20,
     marginTop: theme.spacing(10),
+    fontWeight: '700'
   },
 });
 
@@ -105,9 +107,10 @@ class Projects extends React.Component {
         <Grid container>
           <Grid container item md={1} />
           <Grid container item xs={12} md={10}>
-            <Typography gutterBottom variant="h5" className={classes.centerText}>
+            <Typography gutterBottom variant="h4" className={classes.centerText}>
               Showcase Projects
             </Typography>
+            <HeadingLine />
             <ReactFullpage
               scrollBar
               render={({ state }) => {

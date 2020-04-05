@@ -16,6 +16,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CardActions from '@material-ui/core/CardActions';
 import Link from '@material-ui/core/Link';
 import LocationMap from '../components/LocationMap';
+import HeadingLine from '../components/HeadingLine';
 
 const styles = theme => ({
   root: {
@@ -30,7 +31,8 @@ const styles = theme => ({
     paddingTop: 20,
     paddingBottom: 30,
     marginTop: theme.spacing(10),
-    marginBottom: theme.spacing(3),
+    // marginBottom: theme.spacing(3),
+    fontWeight: '700',
   },
   centerAlign: {
     display: 'flex',
@@ -55,12 +57,18 @@ const styles = theme => ({
   },
   appBar: {
     top: 'auto',
-    bottom: 0,
+    bottom: 15,
+    width: '300px',
+    left: '50%',
+    borderRadius: '10px',
+    transform: 'translate(-50%, 0)',
+    backdropFilter: 'blur(3px)',
   },
   formFooter: {
     textAlign: 'center',
     width: '100%',
     paddingTop: 8,
+    paddingBottom: 8,
   },
 });
 
@@ -216,7 +224,7 @@ const renderBottom = (classes) => {
   }
   return (
     <div>
-      <AppBar color="inherit" position="fixed" className={classes.appBar} style={{ background: 'transparent', boxShadow: 'none' }}>
+      <AppBar color="inherit" position="fixed" className={classes.appBar} style={{ background: 'rgba(248,248,248,0.8)', boxShadow: 'none' }}>
         <Toolbar className={classes.centerAlign}>
           <IconButton edge="start" color="default" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/tech.iitd/" className={classes.socialIcon}>
             <FacebookBox style={{ fontSize: 43 }} />
@@ -239,9 +247,11 @@ const Contact = (props) => {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
-        <Typography gutterBottom variant="h5" className={classes.centerText}>
+        <Typography gutterBottom variant="h4" className={classes.centerText}>
                 Contact Us
         </Typography>
+        <HeadingLine />
+        <br />
         <div className={classes.cards}>
           {renderPage(classes)}
         </div>

@@ -22,7 +22,7 @@ const avatarSize = window.innerWidth < 960 ? '80px' : '100px';
 const styles = theme => ({
   card: {
     minWidth: 160,
-    margin: '5px',
+    margin: '10px',
   },
   cardContent: {
     textAlign: 'center',
@@ -62,8 +62,11 @@ const styles = theme => ({
     height: `${avatarSize}`,
   },
   expand: {
-    height: 30,
-    width: 30,
+    height: 50,
+    width: 50,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     transform: 'rotate(0deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
@@ -94,6 +97,9 @@ const styles = theme => ({
   },
   memberName: {
     width: '100%',
+    height: '50px',
+    fontWeight: '600',
+    letterSpacing: '1px'
   },
 });
 
