@@ -162,17 +162,23 @@ class MemberViewCard extends Component {
               </MediaQuery>
               <CardMedia
                 className={classes.cover}
-                image="https://picsum.photos/1200/600/?random"
-                title="Live from space album cover"
+                image={memberData.url.picture_url}
+                title={memberData.name}
               />
             </Grid>
           </div>
         </CardContent>
         <StyledCardActions theme={backgroundTheme}>
           <div className={classes.social}>
-            <a target="_blank" rel="noopener noreferrer" href={memberData.url.fb_url} className={classes.socialIcon}><Facebook /></a>
-            <a target="_blank" rel="noopener noreferrer" href={memberData.url.github_url} className={classes.socialIcon}><GithubCircle /></a>
-            <a href={`mailto:${memberData.email}`} className={classes.socialIcon}><Email /></a>
+            {
+              memberData.url.fb_url === "" ? "" : <a target="_blank" rel="noopener noreferrer" href={memberData.url.fb_url} className={classes.socialIcon}><Facebook /></a>
+            }
+            {
+              memberData.url.github_url === "" ? "" : <a target="_blank" rel="noopener noreferrer" href={memberData.url.github_url} className={classes.socialIcon}><GithubCircle /></a>
+            }
+            {
+              memberData.email === "" ? "" : <a href={`mailto:${memberData.email}`} className={classes.socialIcon}><Email /></a>
+            }
           </div>
           <IconButton
             className={classnames(classes.expand, {
