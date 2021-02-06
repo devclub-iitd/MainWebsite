@@ -40,13 +40,15 @@ const mapDispatchToProps = dispatch => ({
 });
 
 function renderSections(array, string, classes) {
-  let color = colors.color4;
-  if (string === 'Senior Undergraduates') {
+  let color = colors.color5;
+  if (string === 'Overall Coordinators') {
     color = colors.color1;
-  } if (string === 'Junior Undergraduates') {
+  } else if (string === 'Executives') {
     color = colors.color2;
-  } if (string === 'Sophomores') {
+  } else if (string === 'Developers') {
     color = colors.color3;
+  } else if (string === 'Event Coordinators') {
+    color = colors.color4;
   }
 
   const section = (
@@ -91,7 +93,7 @@ class Team extends React.Component {
     }
 
     let renders = {};
-    const senior = []; const junior = []; const sopho = []; const alumni = [];
+    const overall = []; const exec = []; const dev = []; const event = []; const alumni = [];
 
     const keys = Object.keys(data[0]);
 
@@ -105,12 +107,14 @@ class Team extends React.Component {
             <MemberViewCard memberData={memberData} isLoading={isLoading} />
           </Grid>
         );
-        if (memberData.category === 'Senior Undergraduate') {
-          senior.push(col);
-        } else if (memberData.category === 'Junior Undergraduate') {
-          junior.push(col);
-        } else if (memberData.category === 'Sophomore') {
-          sopho.push(col);
+        if (memberData.category === 'Overall Coordinator') {
+          overall.push(col);
+        } else if (memberData.category === 'Executive') {
+          exec.push(col);
+        } else if (memberData.category === 'Developer') {
+          dev.push(col);
+        } else if (memberData.category === 'Event Coordinator') {
+          event.push(col);
         } else {
           alumni.push(col);
         }
@@ -118,9 +122,10 @@ class Team extends React.Component {
     }
 
     renders = {
-      senior,
-      junior,
-      sopho,
+      overall,
+      exec,
+      dev,
+      event,
       alumni,
     };
     return renders;
@@ -135,15 +140,17 @@ class Team extends React.Component {
       </div>
     );
     if (isLoading === false) {
-      const seniorSection = renderSections(renders.senior, 'Senior Undergraduates', classes);
-      const juniorSection = renderSections(renders.junior, 'Junior Undergraduates', classes);
-      const sophoSection = renderSections(renders.sopho, 'Sophomores', classes);
+      const overallSection = renderSections(renders.overall, 'Overall Coordinators', classes);
+      const execSection = renderSections(renders.exec, 'Executives', classes);
+      const devSection = renderSections(renders.dev, 'Developers', classes);
+      const eventSection = renderSections(renders.event, 'Event Coordinators', classes);
       const alumniSection = renderSections(renders.alumni, 'Alumni', classes);
       render = (
         <React.Fragment>
-          {seniorSection}
-          {juniorSection}
-          {sophoSection}
+          {overallSection}
+          {execSection}
+          {devSection}
+          {eventSection}
           {alumniSection}
         </React.Fragment>
       );

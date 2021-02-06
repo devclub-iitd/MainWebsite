@@ -27,7 +27,12 @@ const colors = {
     light: amber[200],
     text: amber[50],
   },
-  color4: {
+  color4: { // FIXME: Pick some different color scheme
+    main: amber[400],
+    light: amber[200],
+    text: amber[50],
+  },
+  color5: {
     main: brown[400],
     light: brown[200],
     text: brown[50],

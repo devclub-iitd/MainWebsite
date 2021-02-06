@@ -115,14 +115,16 @@ class MemberViewCard extends Component {
   state = { expanded: false };
 
   backgroundColor = (string) => {
-    if (string === 'Senior Undergraduate') {
+    if (string === 'Overall Coordinator') {
       return colors.color1.main;
-    } if (string === 'Junior Undergraduate') {
+    } if (string === 'Executive') {
       return colors.color2.main;
-    } if (string === 'Sophomore') {
+    } if (string === 'Developer') {
       return colors.color3.main;
+    } if (string === 'Event Coordinator') {
+      return colors.color4.main;
     }
-    return colors.color4.main;
+    return colors.color5.main; // Alumni
   };
 
   handleExpandClick = () => {
