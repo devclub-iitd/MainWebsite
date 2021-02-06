@@ -1,8 +1,8 @@
 # build environment
-FROM node:12.2.0-alpine as build
+FROM node:15.8.0-buster as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
-COPY package.json /app/package.json
+COPY package*.json /app/
 RUN npm ci
 RUN npm install react-scripts@3.0.1 -g --silent
 COPY . /app
