@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
-import { Facebook, GithubCircle, Email } from 'mdi-material-ui';
+import { Facebook, GithubCircle, Email, Linkedin } from 'mdi-material-ui';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { grey } from '@material-ui/core/colors';
@@ -174,6 +174,14 @@ class MemberViewCard extends Component {
           <div className={classes.social}>
             {
               memberData.url.fb_url === "" ? "" : <a target="_blank" rel="noopener noreferrer" href={memberData.url.fb_url} className={classes.socialIcon}><Facebook /></a>
+            }
+            {
+              memberData.url.linkedin_url ?
+              (
+                memberData.url.linkedin_url === "" ? "" 
+                : <a target="_blank" rel="noopener noreferrer" href={memberData.url.linkedin_url} className={classes.socialIcon}><Linkedin /></a>
+              )
+              : null
             }
             {
               memberData.url.github_url === "" ? "" : <a target="_blank" rel="noopener noreferrer" href={memberData.url.github_url} className={classes.socialIcon}><GithubCircle /></a>
