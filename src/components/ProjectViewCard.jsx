@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
-import { GithubCircle, Web } from 'mdi-material-ui';
+import { Github, Web } from 'mdi-material-ui';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { grey } from '@material-ui/core/colors';
@@ -18,7 +18,7 @@ import Box from '@material-ui/core/Box';
 import { Grid } from '@material-ui/core';
 import DisqusDialog from './DisqusDialog';
 import colors from './Pallete';
-
+/* eslint-disable */
 const styles = theme => ({
   card: {
     maxWidth: 600,
@@ -126,7 +126,7 @@ class ProjectViewCard extends React.Component {
         <StyledCardActions className={classes.actions} theme={actionBackgroundTheme}>
           <div className={classes.social}>
             {
-              projectData.url.github_url === undefined ? "" : <a target="_blank" rel="noopener noreferrer" href={projectData['Github URL']} className={classes.socialIcon}><GithubCircle /></a>
+              projectData.url.github_url === undefined ? "" : <a target="_blank" rel="noopener noreferrer" href={projectData['Github URL']} className={classes.socialIcon}><Github /></a>
             }
             {
               projectData.url.website_url === undefined ? "" : <a target="_blank" rel="noopener noreferrer" href={projectData['Website URL']} className={classes.socialIcon}><Web /></a>

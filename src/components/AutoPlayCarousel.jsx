@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import range from 'lodash/range';
 import ItemsCarousel from 'react-items-carousel';
 import { withStyles } from '@material-ui/core/styles';
-
+/* eslint-disable */
 const noOfItems = 12;
 const noOfCards = 1;
 const autoPlayDelay = 5000;

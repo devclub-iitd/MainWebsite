@@ -12,6 +12,8 @@ import HeadingLine from '../components/HeadingLine';
 
 // const EventAlbumList = lazy(() => import('../components/EventAlbumList'));
 
+/* eslint-disable */
+
 const styles = theme => ({
   eventCardContainer: {
   },

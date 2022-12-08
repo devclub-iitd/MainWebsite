@@ -8,7 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import Dialog from '@material-ui/core/Dialog';
 import { Button } from '@material-ui/core';
 import AutoPlayCarousel from './AutoPlayCarousel';
-
+/* eslint-disable */
 const styles = () => ({
   dialog: {
     height: '60vh',

@@ -10,7 +10,7 @@ import Loading from '../components/Loading';
 import colors from '../components/Pallete';
 
 import '../overrides.css';
-
+/* eslint-disable */
 const styles = theme => ({
   centerText: {
     textAlign: 'center',

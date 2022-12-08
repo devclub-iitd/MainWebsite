@@ -3,7 +3,7 @@ import { Typography, withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import { grey } from '@material-ui/core/colors';
-import { FacebookBox, GithubCircle, Email } from 'mdi-material-ui';
+import { Facebook, Github, Email } from 'mdi-material-ui';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -17,6 +17,8 @@ import CardActions from '@material-ui/core/CardActions';
 import Link from '@material-ui/core/Link';
 import LocationMap from '../components/LocationMap';
 import HeadingLine from '../components/HeadingLine';
+
+/* eslint-disable */
 
 const styles = theme => ({
   root: {
@@ -209,10 +211,10 @@ const renderBottom = (classes) => {
         <AppBar color="inherit" position="fixed" className={classes.appBar}>
           <Toolbar className={classes.centerAlign}>
             <IconButton edge="start" color="default" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/tech.iitd/" className={classes.socialIcon}>
-              <FacebookBox style={{ fontSize: 43 }} />
+              <Facebook style={{ fontSize: 43 }} />
             </IconButton>
             <IconButton edge="start" color="default" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="https://github.com/devclub-iitd" className={classes.socialIcon}>
-              <GithubCircle style={{ fontSize: 43 }} />
+              <Github style={{ fontSize: 43 }} />
             </IconButton>
             <IconButton edge="start" color="default" aria-label="open drawer" target="_blank" rel="noopener noreferrer" href="mailto:devclub.iitd@gmail.com" className={classes.socialIcon}>
               <Email style={{ fontSize: 43 }} />

@@ -12,7 +12,7 @@ import Loading from '../components/Loading';
 import HeadingLine from '../components/HeadingLine';
 
 import '../overrides.css';
-
+/* eslint-disable */
 const styles = theme => ({
   centerText: {
     textAlign: 'center',

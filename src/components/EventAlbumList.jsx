@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Masonry from 'react-masonry-component';
 import Loading from './Loading';
 import EventCarousel from './EventCarousel';
-
+/* eslint-disable */
 const styles = theme => ({
   root: {
     display: 'flex',

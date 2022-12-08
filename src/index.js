@@ -5,7 +5,7 @@ import configureStore from './store';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+/* eslint-disable */
 ReactDOM.render(
   <Provider store={configureStore()}>
     <App />

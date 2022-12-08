@@ -19,6 +19,8 @@ import devices from '../images/devices2.svg';
 import colors from '../components/Pallete';
 import beam from '../images/beam.png';
 
+/* eslint-disable */
+
 const styles = () => ({
   background: {
     position: 'fixed',

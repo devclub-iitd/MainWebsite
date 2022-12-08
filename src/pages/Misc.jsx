@@ -10,7 +10,7 @@ import DisqusDialog from '../components/DisqusDialog';
 import Loading from '../components/Loading';
 import HeadingLine from '../components/HeadingLine';
 import Anim from '../components/ResourceAnim';
-
+/* eslint-disable */
 const styles = theme => ({
   centerText: {
     textAlign: 'center',

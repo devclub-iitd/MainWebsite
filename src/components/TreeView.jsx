@@ -16,7 +16,7 @@ import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
 import Folder from '@material-ui/icons/Folder';
 import { grey } from '@material-ui/core/colors';
-
+/* eslint-disable */
 const styles = theme => ({
   root: {
     width: '100%',

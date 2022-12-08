@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -9,13 +10,17 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
-import { Facebook, GithubCircle, Email, Linkedin } from 'mdi-material-ui';
+// import { Facebook, Github, Email, Linkedin } from 'mdi-material-ui';
+import { Facebook, Github, Email, Linkedin } from 'mdi-material-ui';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { grey } from '@material-ui/core/colors';
 import styled from 'styled-components';
 import MediaQuery from 'react-responsive';
 import colors from './Pallete';
+
+
+/* eslint-disable */
 
 const avatarSize = window.innerWidth < 960 ? '80px' : '100px';
 
@@ -184,7 +189,7 @@ class MemberViewCard extends Component {
               : null
             }
             {
-              memberData.url.github_url === "" ? "" : <a target="_blank" rel="noopener noreferrer" href={memberData.url.github_url} className={classes.socialIcon}><GithubCircle /></a>
+              memberData.url.github_url === "" ? "" : <a target="_blank" rel="noopener noreferrer" href={memberData.url.github_url} className={classes.socialIcon}><Github /></a>
             }
             {
               memberData.email === "" ? "" : <a href={`mailto:${memberData.email}`} className={classes.socialIcon}><Email /></a>

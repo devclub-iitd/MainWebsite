@@ -9,7 +9,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import Typography from '@material-ui/core/Typography';
-
+/* eslint-disable */
 import DisqusBoard from './DisqusBoard';
 
 const styles = theme => ({

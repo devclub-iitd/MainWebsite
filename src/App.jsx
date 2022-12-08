@@ -38,7 +38,7 @@ const theme = createMuiTheme({
     ].join(','),
   },
   color: {
-    main: 'red'
+    main: 'red',
   },
 });
 
