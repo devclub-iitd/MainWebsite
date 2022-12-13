@@ -23,9 +23,10 @@ const Menu = [
     label: 'Resources',
     pathname: '/misc',
   },
+
   {
-    label: 'Contact Us',
-    pathname: '/contact',
+    label: 'Partners',
+    pathname: '/partners',
   },
 ];
 
