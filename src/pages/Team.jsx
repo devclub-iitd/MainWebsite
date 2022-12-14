@@ -8,8 +8,8 @@ import MemberViewCard from '../components/MemberViewCard';
 import { fetchMembers as fetchTeamAction } from '../actions/allActions';
 import Loading from '../components/Loading';
 import colors from '../components/Pallete';
-
 import '../overrides.css';
+
 /* eslint-disable */
 const styles = theme => ({
   centerText: {

@@ -156,7 +156,7 @@ class MemberViewCard extends Component {
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <div className={classes.memberDetails}>
-            <Grid container justify="center">
+            <Grid container justifyContent="center">
               <MediaQuery maxDeviceWidth="960px">
                 <Typography variant="body1" component="h4" className={classes.memberName}>
                   {memberData.name}

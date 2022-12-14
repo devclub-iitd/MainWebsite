@@ -169,7 +169,8 @@ class Topbar extends Component {
       // case '/ideas': return 3;
       case '/events': return 3;
       case '/misc': return 4;
-      case '/contact': return 5;
+      // case '/contact': return 5;
+      case '/partners': return 5;
       default: return 0;
     }
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, HashRouter } from 'react-router-dom';
-import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, createTheme, withStyles } from '@material-ui/core/styles';
 import { blue, indigo } from '@material-ui/core/colors';
 
 import './App.css';
@@ -16,10 +16,11 @@ import Contact from './pages/Contact';
 
 import ScrollToTop from './components/ScrollTop';
 import Topbar from './components/Topbar';
+import Partners from './pages/Partners';
 
 // const backgroundShape = require('./images/shape.svg');
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: indigo[700],
@@ -133,6 +134,7 @@ const App = () => (
             {/* <Route exact path="/ideas" component={Ideas} /> */}
             <Route exact path="/misc" component={Misc} />
             <Route exact path="/admin" component={Admin} />
+            <Route exact path="/partners" component={Partners} />
           </div>
         </ScrollToTop>
       </HashRouter>
