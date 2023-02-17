@@ -19,6 +19,7 @@ import { indigo } from '@material-ui/core/colors';
 import Menu from './Menu';
 
 const logo = require('../logo.png');
+const partnerLogo = require('../partner.png');
 
 const styles = theme => ({
   appBar: {
@@ -49,6 +50,12 @@ const styles = theme => ({
     height: 60,
     width: 'auto',
   },
+  partnerImage: {
+    display: 'inline-block',
+    height: 55,
+    width: 'auto',
+    marginLeft : '2vh',
+  },
   productLogo: {
     display: 'inline-block',
     position: 'relative',
@@ -58,7 +65,7 @@ const styles = theme => ({
     paddingBottom: 20,
     paddingLeft: 24,
     overflow: 'hidden',
-    borderLeft: `1px solid ${theme.palette.grey.A100}`,
+    // borderLeft: `1px solid ${theme.palette.grey.A100}`,
   },
   tagline: {
     display: 'inline-block',
@@ -180,7 +187,7 @@ class Topbar extends Component {
     const { menuDrawer, value } = this.state;
 
     const logoPosition = window.innerWidth < 960 ? 'relative' : 'absolute';
-    const iitMargin = window.innerWidth < 960 ? 0 : 132;
+    const iitMargin = window.innerWidth < 960 ? 0 : 200;
 
     return (
       <AppBar position="absolute" color="inherit" className={classes.appBar}>
@@ -191,12 +198,15 @@ class Topbar extends Component {
                 <Link to="/" className={classes.link}>
                   <img src={logo} alt="Logo" className={classes.clubImage} />
                 </Link>
+                <Link to="/" className={classes.link}>
+                  <img src={partnerLogo} alt="Partner" className={classes.partnerImage}/>
+                </Link>
               </ButtonBase>
               {!noTabs && (
                 <React.Fragment>
-                  <Typography className={classes.productLogo} style={{ marginLeft: `${iitMargin}` }}>
-                    IIT Delhi
-                  </Typography>
+                  <div className={classes.productLogo} style={{marginLeft : `${iitMargin}px`}}>
+
+                  </div>
                   <div className={classes.iconContainer}>
                     <IconButton onClick={this.mobileMenuOpen} className={classes.iconButton} aria-label="Menu">
                       <MenuIcon />
